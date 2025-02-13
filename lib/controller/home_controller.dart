@@ -32,7 +32,8 @@ class HomePageController extends GetxController implements GetxService {
       };
       print("+++++++++++++++++ ${map}");
       print(map.toString());
-      String uri = Config.path + Config.homeDataApi;
+      // API Adding ..........................................
+       String uri = Config.path + Config.homeDataApi;
       print("uri :"+ uri);
       var response = await dioApi.sendRequest.post(
         uri,

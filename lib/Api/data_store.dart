@@ -7,3 +7,4 @@ save(Key, val) {
   final data = GetStorage();
   data.write(Key, val);
 }
+

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laundry/screen/placeorder/placeorder.dart';
-import 'package:laundry/utils/Colors.dart';
-
-import '../categorydetails_screen.dart';
+import 'package:laundry/model/laundryment_search_model.dart';
+import 'package:laundry/screen/placeorder/place_order1.dart';
 
 class ServicesScreen extends StatelessWidget {
-  const ServicesScreen({super.key});
+  final Laundry laundry;
+
+  const ServicesScreen({Key? key, required this.laundry}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,13 @@ class ServicesScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Get.back(),
         ),
         title: Text(
           "Services",
           style: TextStyle(
-            color: primeryColor,
-            fontSize: width * 0.05, // Responsive font size
+            color: Theme.of(context).primaryColor,
+            fontSize: width * 0.05,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -40,7 +38,7 @@ class ServicesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Super Laundromat Info Box
+              // Display Laundry Information
               Container(
                 padding: EdgeInsets.all(width * 0.04),
                 decoration: BoxDecoration(
@@ -53,7 +51,7 @@ class ServicesScreen extends StatelessWidget {
                       offset: Offset(0, height * 0.005),
                     ),
                   ],
-                  border: Border.all(color: primeryColor, width: width * 0.005),
+                  border: Border.all(color: Theme.of(context).primaryColor, width: width * 0.005),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +61,7 @@ class ServicesScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Super Laundromat",
+                            laundry.name,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: width * 0.045,
@@ -72,7 +70,7 @@ class ServicesScreen extends StatelessWidget {
                           ),
                           SizedBox(height: height * 0.01),
                           Text(
-                            "325 Park Ave",
+                            laundry.address,
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: width * 0.035,
@@ -86,7 +84,7 @@ class ServicesScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          "0.2 ml",
+                          "${laundry.distance.toStringAsFixed(2)} ml",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: width * 0.045,
@@ -136,14 +134,16 @@ class ServicesScreen extends StatelessWidget {
                     left: width * 0.04,
                     right: width * 0.04,
                     child: GestureDetector(
-
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => DropOffScreen()),
-                       // );
-                        Get.to(DropOffScreen());
+                        // Navigate to PlaceOrderScreen and pass laundry details
+                        Get.to(
+                              () => PlaceOrderScreen(
+                            laundryName: laundry.name,
+                            laundryAddress: laundry.address,
+                            laundryDistance: laundry.distance,
+                            // pricePerPound: laundry.pricePerPound,
+                          ),
+                        );
                       },
                       child: Container(
                         padding: EdgeInsets.all(width * 0.03),
@@ -210,12 +210,10 @@ class ServicesScreen extends StatelessWidget {
                     right: width * 0.04,
                     child: GestureDetector(
                       onTap: () {
-                        // Get.to(CategoryDetailsScreen());
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DropOffScreen()),
-                        );
+                        // Navigate to another screen if needed (placeholder here)
+                        // Get.to(
+                        //       () => DeliverYourDropOff(), // Replace with your appropriate widget
+                        // );
                       },
                       child: Container(
                         padding: EdgeInsets.all(width * 0.03),
@@ -234,7 +232,7 @@ class ServicesScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Deliver your drop-off',
+                              'Pickup to laundromat only',
                               style: TextStyle(
                                 fontSize: width * 0.04,
                                 fontWeight: FontWeight.bold,
@@ -243,7 +241,7 @@ class ServicesScreen extends StatelessWidget {
                             ),
                             SizedBox(height: height * 0.005),
                             Text(
-                              'We DELIVER your drop-off from the laundromat to your house once it is ready',
+                              'We PICK UP your laundry from your house to the selected laundromat and you will pick it up once it is ready',
                               style: TextStyle(
                                 fontSize: width * 0.035,
                                 color: Colors.grey,

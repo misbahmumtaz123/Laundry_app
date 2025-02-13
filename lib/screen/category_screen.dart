@@ -7,9 +7,9 @@ import 'package:laundry/Api/data_store.dart';
 import 'package:laundry/controller/catdetails_controller.dart';
 import 'package:laundry/controller/home_controller.dart';
 import 'package:laundry/controller/stordata_controller.dart';
-
 import 'package:laundry/model/fontfamily_model.dart';
 import 'package:laundry/screen/categorydetails_screen.dart';
+
 import 'package:laundry/utils/Colors.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -20,6 +20,7 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+
   CatDetailsController catDetailsController = Get.find();
   StoreDataContoller storeDataContoller = Get.find();
   HomePageController homePageController = Get.find();
@@ -84,6 +85,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ? ListView.builder(
                       itemCount: catDetailsController
                           .catWiseInfo?.catWiseStoreData.length,
+
                       physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
@@ -101,6 +103,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             );
                             save("changeIndex", true);
                             homePageController.isback = "1";
+                            // category detial ...
                             Get.to(CategoryDetailsScreen());
                           },
                           child: Container(

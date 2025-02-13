@@ -146,13 +146,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                             child: Text(
-                          "Edit",
-                          style: TextStyle(
-                            fontFamily: FontFamily.gilroyBold,
-                            fontSize: 15,
-                            color: WhiteColor,
-                          ),
-                        ))),
+                              "Edit",
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 15,
+                                color: WhiteColor,
+                              ),
+                            ))),
                   ),
                 ],
               ),
@@ -169,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: BoxDecoration(
                   color: WhiteColor,
                   borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(20))),
+                  BorderRadius.vertical(top: Radius.circular(20))),
               child: ListView.builder(
                 itemCount: model().profileList.length,
                 shrinkWrap: true,
@@ -195,148 +195,148 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: index == 3
                         ? GetBuilder<SignUpController>(builder: (context) {
-                            return signUpController.isLoading
-                                ? ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: signUpController
-                                        .pageListInfo?.pagelist.length,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Get.toNamed(Routes.loream,
-                                              arguments: {
-                                                "title": signUpController
-                                                        .pageListInfo
-                                                        ?.pagelist[index]
-                                                        .title ??
-                                                    "",
-                                                "discription": signUpController
-                                                        .pageListInfo
-                                                        ?.pagelist[index]
-                                                        .description ??
-                                                    "",
-                                              });
-                                        },
-                                        child: Container(
-                                          height: 50,
-                                          width: Get.size.width,
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 15, vertical: 5),
-                                          alignment: Alignment.center,
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 35,
-                                                width: 35,
-                                                padding: EdgeInsets.all(6),
-                                                alignment: Alignment.center,
-                                                child: Image.asset(
-                                                  "assets/ic_product.png",
-                                                  color: BlackColor,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Colors.grey.shade100,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  signUpController
-                                                          .pageListInfo
-                                                          ?.pagelist[index]
-                                                          .title ??
-                                                      "",
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        FontFamily.gilroyBold,
-                                                    fontSize: 15,
-                                                    color: BlackColor,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 50,
-                                                width: 50,
-                                                padding: EdgeInsets.all(15),
-                                                alignment: Alignment.center,
-                                                child: Image.asset(
-                                                  "assets/chevron-right.png",
-                                                  color: Colors.grey.shade300,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: WhiteColor,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                : Center(
-                                    child: CircularProgressIndicator(
-                                      color: gradient.defoultColor,
-                                    ),
-                                  );
-                          })
-                        : Container(
-                            height: 50,
-                            width: Get.size.width,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 35,
-                                  width: 35,
-                                  padding: EdgeInsets.all(6),
-                                  alignment: Alignment.center,
-                                  child: Image.asset(
-                                    model().profileImg[index],
-                                    color: BlackColor,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.grey.shade100,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    model().profileList[index],
-                                    style: TextStyle(
-                                      fontFamily: FontFamily.gilroyBold,
-                                      fontSize: 15,
+                      return signUpController.isLoading
+                          ? ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: signUpController
+                            .pageListInfo?.pagelist.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.loream,
+                                  arguments: {
+                                    "title": signUpController
+                                        .pageListInfo
+                                        ?.pagelist[index]
+                                        .title ??
+                                        "",
+                                    "discription": signUpController
+                                        .pageListInfo
+                                        ?.pagelist[index]
+                                        .description ??
+                                        "",
+                                  });
+                            },
+                            child: Container(
+                              height: 50,
+                              width: Get.size.width,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 5),
+                              alignment: Alignment.center,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 35,
+                                    width: 35,
+                                    padding: EdgeInsets.all(6),
+                                    alignment: Alignment.center,
+                                    child: Image.asset(
+                                      "assets/ic_product.png",
                                       color: BlackColor,
                                     ),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey.shade100,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  padding: EdgeInsets.all(15),
-                                  alignment: Alignment.center,
-                                  child: Image.asset(
-                                    "assets/chevron-right.png",
-                                    color: Colors.grey.shade300,
+                                  SizedBox(
+                                    width: 10,
                                   ),
-                                ),
-                              ],
+                                  Expanded(
+                                    child: Text(
+                                      signUpController
+                                          .pageListInfo
+                                          ?.pagelist[index]
+                                          .title ??
+                                          "",
+                                      style: TextStyle(
+                                        fontFamily:
+                                        FontFamily.gilroyBold,
+                                        fontSize: 15,
+                                        color: BlackColor,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    padding: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    child: Image.asset(
+                                      "assets/chevron-right.png",
+                                      color: Colors.grey.shade300,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                color: WhiteColor,
+                                borderRadius:
+                                BorderRadius.circular(10),
+                              ),
+                            ),
+                          );
+                        },
+                      )
+                          : Center(
+                        child: CircularProgressIndicator(
+                          color: gradient.defoultColor,
+                        ),
+                      );
+                    })
+                        : Container(
+                      height: 50,
+                      width: Get.size.width,
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 35,
+                            width: 35,
+                            padding: EdgeInsets.all(6),
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              model().profileImg[index],
+                              color: BlackColor,
                             ),
                             decoration: BoxDecoration(
-                              color: WhiteColor,
-                              borderRadius: BorderRadius.circular(10),
+                              shape: BoxShape.circle,
+                              color: Colors.grey.shade100,
                             ),
                           ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Text(
+                              model().profileList[index],
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 15,
+                                color: BlackColor,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 50,
+                            width: 50,
+                            padding: EdgeInsets.all(15),
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              "assets/chevron-right.png",
+                              color: Colors.grey.shade300,
+                            ),
+                          ),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        color: WhiteColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   );
                 },
               ),

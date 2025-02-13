@@ -606,14 +606,14 @@ class _AllCartState extends State<AllCart> {
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    "Total : $currency${getCartLangth(strId: "${storeList[index].storeID}").toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: BlackColor,
-                                        fontFamily:
-                                        FontFamily.gilroyBlack),
-                                  ),
+                                  // Text(
+                                  //   "Total : $currency${getCartLangth(strId: "${storeList[index].storeID}").toStringAsFixed(2)}",
+                                  //   style: TextStyle(
+                                  //       fontSize: 16,
+                                  //       color: BlackColor,
+                                  //       fontFamily:
+                                  //       FontFamily.gilroyBlack),
+                                  // ),
                                   ElevatedButton(
                                       style:
                                       ElevatedButton.styleFrom(

@@ -71,7 +71,9 @@ class LoginController extends GetxController implements GetxService {
         resultCheck = result["Result"];
         showToastMessage(userMessage);
         if (resultCheck == "true") {
-          Get.offAllNamed(Routes.homeScreen);
+          // added code....
+           Get.offAllNamed(Routes.homeScreen);
+        //  Get.offAllNamed(Routes.searchLaundroment);
           number.text = "";
           password.text = "";
           isChecked = false;

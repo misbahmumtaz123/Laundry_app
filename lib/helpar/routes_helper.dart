@@ -29,6 +29,8 @@ import '../screen/prescription/prescription order/mysubscriptioninfo_screen.dart
 
 class Routes {
   static String initial = "/";
+  //added code
+  // static String DeliverDropOff = "/DeliverDropOff";
   static String homeScreen = "/homeScreen";
   static String categoryScreen = "/categoryScreen";
   static String categoryDetailsScreen = "/categoryDetailsScreen";
@@ -40,6 +42,7 @@ class Routes {
   static String prescriptionDetails = "/prescriptionDetails";
   static String profileScreen = "/profileScreen";
   static String myBookingScreen = "/myBookingScreen";
+
   //! ----------- Login And Signup -----------!//
   static String loginScreen = "/loginScreen";
   static String signUpScreen = "/signUpScreen";
@@ -58,7 +61,7 @@ class Routes {
   static String notificationScreen = "/notificationScreen";
 
   static String subScribeScreen = "/subScribeScreen";
-  static String DropOffScreen = "/DropOffScreen()";
+  static String DropOffScreen = "/DropOffScreen";
 }
 
 final getPages = [
@@ -66,6 +69,10 @@ final getPages = [
     name: Routes.initial,
     page: () => onbording(),
   ),
+  // GetPage(
+  //   name: Routes.DeliverDropOff,
+  //   page: () => DeliverYourDropOff(), // Correct mapping
+  // ),
   GetPage(
     name: Routes.homeScreen,
     page: () => BottombarProScreen(),
@@ -158,8 +165,10 @@ final getPages = [
     name: Routes.subScribeScreen,
     page: () => SubScribeScreen(),
   ),
-  GetPage(
-    name: Routes.subScribeScreen,
-    page: () => DropOffScreen(),
-  ),
+  // GetPage(
+  //   name: Routes.subScribeScreen,
+  //   page: () => DeliverYourDropOff(),
+  // ),
 ];
+
+
