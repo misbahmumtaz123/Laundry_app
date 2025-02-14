@@ -16,6 +16,8 @@ import 'package:laundry/controller/subscribe_controller.dart';
 import 'package:laundry/controller/wallet_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../controller/c_orderScreenController.dart';
+import '../controller/h_orderScreenController.dart';
 import '../controller/selectlocation_controller.dart';
 
 init() async {
@@ -38,4 +40,6 @@ init() async {
   Get.lazyPut(() => NotificationController());
   Get.lazyPut(() => SubScibeController());
   Get.lazyPut(() => SelectLocatonController());
+  // Get.lazyPut(() => CurrentOrderController());
+  // Get.lazyPut(() => HistoryOrderController());
 }

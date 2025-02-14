@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laundry/screen/placeorder/addAdressInstructions.dart';
-import 'package:laundry/screen/placeorder/orderDetail.dart';
+import 'package:laundry/screen/placeorder/orderDetailsend.dart';
 
 class PlaceOrderScreen extends StatefulWidget {
   final String laundryName;

@@ -60,6 +60,7 @@ import 'package:laundry/localstring.dart';
 import 'package:laundry/utils/Custom_widget.dart';
 import 'package:laundry/utils/cart_item.dart';
 import 'package:laundry/utils/cartitem_adapter.dart';
+import 'controller/c_orderScreenController.dart';
 import 'helpar/get_di.dart' as di;
 
 void main() async {
@@ -72,6 +73,8 @@ void main() async {
   await Hive.openBox<CartItem>('cart');
   await di.init();
   initPlatformState();
+  // // 🔹 Register the controller globally so it's not disposed
+  // Get.put(CurrentOrderController(), permanent: true);
   runApp(
     GetMaterialApp(
       title: "Fast Laundry",
