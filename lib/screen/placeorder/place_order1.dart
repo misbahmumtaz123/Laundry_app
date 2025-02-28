@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:laundry/screen/placeorder/addAdressInstructions.dart';
 import 'package:laundry/screen/placeorder/orderDetailsend.dart';
 
+import '../../utils/Colors.dart';
+
 class PlaceOrderScreen extends StatefulWidget {
   final String laundryName;
   final String laundryAddress;
@@ -100,7 +102,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Place Order"),
-        backgroundColor: Colors.blue,
+        backgroundColor: primeryColor,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -113,7 +115,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.shade300, width: 1.5),
+                border: Border.all(color: primeryColor, width: 1.5),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,6 +191,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 const Text("Address & Instruction",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primeryColor, // Customize button color
+                  ),
                   onPressed: _navigateToAddressScreen,
                   child: const Text("Add"),
                 ),
@@ -196,6 +201,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             ),
             const SizedBox(height: 16),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primeryColor, // Customize button color
+              ),
               onPressed: _validateAndProceed,
               child: const Text("Proceed"),
             ),

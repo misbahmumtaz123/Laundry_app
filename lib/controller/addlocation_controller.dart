@@ -51,7 +51,7 @@ class AddLocationController extends GetxController implements GetxService {
           showToastMessage(result["ResponseMsg"]);
           catDetailsController.changeIndex(3);
           Get.close(3);
-          // Get.offAndToNamed(Routes.bottombarProScreen);
+           Get.offAndToNamed(Routes.bottombarProScreen);
           completeAddress.text = "";
           landMark.text = "";
           reach.text = "";

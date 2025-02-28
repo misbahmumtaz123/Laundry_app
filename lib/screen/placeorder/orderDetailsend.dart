@@ -75,7 +75,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laundry/controller/orderController.dart';
 import 'package:laundry/model/order_model.dart';
-import 'package:laundry/screen/placeorder/c_h_ordersScreen.dart';
+import 'package:laundry/screen/ordersScreens/c_h_ordersScreen.dart';
+
+import '../../utils/Colors.dart';
 
 
 class OrderSummaryScreen extends StatelessWidget {
@@ -90,6 +92,7 @@ class OrderSummaryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primeryColor,
         title: const Text("Order Summary"),
       ),
       body: Padding(
@@ -108,6 +111,9 @@ class OrderSummaryScreen extends StatelessWidget {
 
             // Send Order Button
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primeryColor, // Customize button color
+              ),
               onPressed: () async {
                 final order = OrderModel(
                   customerId: "12345",
@@ -131,6 +137,7 @@ class OrderSummaryScreen extends StatelessWidget {
                   weight: [null, null],
                 );
 
+
                 try {
                   final response = await controller.placeOrder(order);
                   if (response.result) {
@@ -151,7 +158,7 @@ class OrderSummaryScreen extends StatelessWidget {
                 Get.to(() =>OrderScreen()); // Navigate to OrdersScreen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Customize button color
+                backgroundColor: primeryColor, // Customize button color
               ),
               child: const Text("View Orders"),
             ),

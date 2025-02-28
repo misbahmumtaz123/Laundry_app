@@ -162,7 +162,8 @@ class ServicesScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Pickup and Delivery',
+
+                              'Pickup to laundromat only',
                               style: TextStyle(
                                 fontSize: width * 0.04,
                                 fontWeight: FontWeight.bold,
@@ -171,7 +172,7 @@ class ServicesScreen extends StatelessWidget {
                             ),
                             SizedBox(height: height * 0.005),
                             Text(
-                              'We PICKUP your laundry from your house to the selected laundromat and DELIVER it to you once it is ready',
+                              'We PICK UP your laundry from your house to the selected laundromat and you will pick it up once it is ready',
                               style: TextStyle(
                                 fontSize: width * 0.035,
                                 color: Colors.grey,
@@ -232,7 +233,7 @@ class ServicesScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Pickup to laundromat only',
+                              'Pickup and Delivery',
                               style: TextStyle(
                                 fontSize: width * 0.04,
                                 fontWeight: FontWeight.bold,
@@ -241,7 +242,7 @@ class ServicesScreen extends StatelessWidget {
                             ),
                             SizedBox(height: height * 0.005),
                             Text(
-                              'We PICK UP your laundry from your house to the selected laundromat and you will pick it up once it is ready',
+                              'We PICKUP your laundry from your house to the selected laundromat and DELIVER it to you once it is ready',
                               style: TextStyle(
                                 fontSize: width * 0.035,
                                 color: Colors.grey,

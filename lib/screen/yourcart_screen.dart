@@ -212,2626 +212,2626 @@ class _YourCartScreenState extends State<YourCartScreen> {
         body: GetBuilder<CartController>(builder: (context) {
           return !cartController.isOrderLoading
               ? cartViewList.isNotEmpty
-                  ? Column(
-                      children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Container(
-                                  // height: 280,
-                                  width: Get.size.width,
-                                  margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            height: 55,
-                                            width: 55,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: FadeInImage.assetNetwork(
-                                                placeholder:
-                                                    "assets/ezgif.com-crop.gif",
-                                                placeholderCacheHeight: 55,
-                                                placeholderCacheWidth: 55,
-                                                placeholderFit: BoxFit.cover,
-                                                image:
-                                                    "${Config.imageUrl}${storeDataContoller.storeDataInfo?.storeInfo.storeLogo ?? ""}",
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: WhiteColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              border: Border.all(
-                                                  color: Colors.grey.shade300),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  storeDataContoller
-                                                          .storeDataInfo
-                                                          ?.storeInfo
-                                                          .storeTitle ??
-                                                      "",
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                    color: BlackColor,
-                                                    fontFamily:
-                                                        FontFamily.gilroyBold,
-                                                    fontSize: 17,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  storeDataContoller
-                                                          .storeDataInfo
-                                                          ?.storeInfo
-                                                          .storeAddress ??
-                                                      "",
-                                                  style: TextStyle(
-                                                    color: BlackColor,
-                                                    fontSize: 14,
-                                                    fontFamily:
-                                                        FontFamily.gilroyMedium,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      GetBuilder<CartController>(
-                                          builder: (context) {
-                                        return ListView.builder(
-                                          itemCount: cartViewList.length,
-                                          shrinkWrap: true,
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          itemBuilder: (context, index) {
-                                            return cartViewList[index]
-                                                        .cartCheck !=
-                                                    "0"
-                                                ? Container(
-                                                    height: 190,
-                                                    width: Get.size.width,
-                                                    margin:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 5,
-                                                            vertical: 5),
-                                                    child: Column(
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            Image.asset(
-                                                              "assets/calendar-check-alt.png",
-                                                              height: 22,
-                                                              width: 22,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            Text(
-                                                              "${"Starting on".tr} ${cartViewList[index].startDate}",
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    FontFamily
-                                                                        .gilroyBold,
-                                                                color: greytext,
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                            Spacer(),
-                                                            InkWell(
-                                                              onTap: () {
-                                                                save("subClc",
-                                                                    true);
-                                                                cart.delete(
-                                                                    cartViewList[
-                                                                            index]
-                                                                        .id);
-                                                                cartController
-                                                                    .subTotal = 0;
-
-                                                                cartViewList =
-                                                                    listOfCart();
-
-                                                                getTotal =
-                                                                    total;
-
-                                                                setState(() {});
-                                                              },
-                                                              child:
-                                                                  Image.asset(
-                                                                "assets/Thrash.png",
-                                                                color: RedColor,
-                                                                height: 20,
-                                                                width: 20,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 8,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              height: 100,
-                                                              width: 120,
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          10,
-                                                                      vertical:
-                                                                          5),
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10),
-                                                                child: FadeInImage
-                                                                    .assetNetwork(
-                                                                  placeholder:
-                                                                      "assets/ezgif.com-crop.gif",
-                                                                  placeholderCacheHeight:
-                                                                      100,
-                                                                  placeholderCacheWidth:
-                                                                      120,
-                                                                  height: 100,
-                                                                  width: 120,
-                                                                  image:
-                                                                      "${Config.imageUrl}${cartViewList[index].img}",
-                                                                  placeholderFit:
-                                                                      BoxFit
-                                                                          .cover,
-                                                                ),
-                                                              ),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10),
-                                                                color:
-                                                                    WhiteColor,
-                                                                boxShadow: [
-                                                                  BoxShadow(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300,
-                                                                    offset:
-                                                                        const Offset(
-                                                                      0.4,
-                                                                      0.4,
-                                                                    ),
-                                                                    blurRadius:
-                                                                        0.4,
-                                                                    spreadRadius:
-                                                                        0.4,
-                                                                  ), //BoxShadow
-                                                                  BoxShadow(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    offset:
-                                                                        const Offset(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    blurRadius:
-                                                                        0.0,
-                                                                    spreadRadius:
-                                                                        0.0,
-                                                                  ), //BoxShadow
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .end,
-                                                                    children: [
-                                                                      InkWell(
-                                                                        onTap:
-                                                                            () {
-                                                                          status =
-                                                                              false;
-                                                                          walletCalculation(
-                                                                              false);
-                                                                          total =
-                                                                              cartController.couponAmt;
-                                                                          cartController.couponAmt =
-                                                                              0;
-                                                                          couponCode =
-                                                                              "";
-                                                                          productDetailsController.getProductDetailsApi(
-                                                                              pId: cartViewList[index].productID);
-                                                                          setState(
-                                                                              () {});
-                                                                          subScibeController
-                                                                              .getSelectedItemEditValue(
-                                                                            selectDay1:
-                                                                                cartViewList[index].daysList,
-                                                                            selectDeliveris1:
-                                                                                cartViewList[index].selectDelivery,
-                                                                            selectTime1:
-                                                                                cartViewList[index].startTime,
-                                                                            selectDate1:
-                                                                                cartViewList[index].startDate,
-                                                                          );
-
-                                                                          Get.toNamed(Routes.subScribeScreen, arguments: {
-                                                                            "img":
-                                                                                cartViewList[index].img,
-                                                                            "name":
-                                                                                cartViewList[index].strTitle,
-                                                                            "sprice":
-                                                                                cartViewList[index].sPrice.toString(),
-                                                                            "aprice":
-                                                                                cartViewList[index].productPrice.toString(),
-                                                                            "per":
-                                                                                cartViewList[index].per,
-                                                                            "attributeId":
-                                                                                cartViewList[index].id,
-                                                                            "productTitle":
-                                                                                cartViewList[index].productTitle,
-                                                                            "isEmpty":
-                                                                                "1",
-                                                                            "productId":
-                                                                                cartViewList[index].productID,
-                                                                          })!
-                                                                              .then((value) => {
-                                                                                    save("subClc", true),
-                                                                                    cartController.subTotal = 0,
-                                                                                    cartViewList = listOfCart(),
-                                                                                    (int.parse(cartController.cartDataInfo?.storeData.storeCharge ?? "") * getMaxDelivery) + (int.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery),
-                                                                                    getTotal = total,
-                                                                                    setState(() {}),
-                                                                                  });
-                                                                        },
-                                                                        child: Image
-                                                                            .asset(
-                                                                          "assets/Editpen.png",
-                                                                          color:
-                                                                              BlackColor,
-                                                                          height:
-                                                                              20,
-                                                                          width:
-                                                                              20,
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                            8,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 5,
-                                                                  ),
-                                                                  Text(
-                                                                    "${cartViewList[index].strTitle}",
-                                                                    maxLines: 1,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          FontFamily
-                                                                              .gilroyBold,
-                                                                      fontSize:
-                                                                          15,
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      color:
-                                                                          BlackColor,
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 10,
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      Text(
-                                                                        cartViewList[index].productTitle ??
-                                                                            "",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontFamily:
-                                                                              FontFamily.gilroyMedium,
-                                                                          fontSize:
-                                                                              13,
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                          color:
-                                                                              BlackColor,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        " x " +
-                                                                            isItem(cartViewList[index].id).toString(),
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontFamily:
-                                                                              FontFamily.gilroyMedium,
-                                                                          fontSize:
-                                                                              13,
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                          color:
-                                                                              BlackColor,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 5,
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 5,
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      Text(
-                                                                        cartViewList[index].selectDelivery ??
-                                                                            "",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontFamily:
-                                                                              FontFamily.gilroyMedium,
-                                                                          fontSize:
-                                                                              13,
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                          color:
-                                                                              BlackColor,
-                                                                        ),
-                                                                      ),
-                                                                      Spacer(),
-                                                                      Text(
-                                                                        "${double.parse(cartViewList[index].productPrice?.toStringAsFixed(2).toString() ?? "") * int.parse(isItem(cartViewList[index].id).toString())}${currency}",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              gradient.defoultColor,
-                                                                          fontSize:
-                                                                              15,
-                                                                          fontFamily:
-                                                                              FontFamily.gilroyBold,
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        width:
-                                                                            5,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 5,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 8,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            Image.asset(
-                                                              "assets/calendar-minus-alt.png",
-                                                              height: 22,
-                                                              width: 22,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            Text(
-                                                              "${"Starting time on".tr} ${cartViewList[index].startTime}",
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    FontFamily
-                                                                        .gilroyBold,
-                                                                color: greytext,
-                                                                fontSize: 15,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      border: Border.all(
-                                                          color: Colors
-                                                              .grey.shade300),
-                                                    ),
-                                                  )
-                                                : Container(
-                                                    height: 50,
-                                                    width: Get.size.width,
-                                                    alignment: Alignment.center,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            SizedBox(
-                                                              width: Get.size
-                                                                      .width *
-                                                                  0.4,
-                                                              child: Text(
-                                                                "${cartViewList[index].strTitle}",
-                                                                maxLines: 2,
-                                                                style:
-                                                                    TextStyle(
-                                                                  color:
-                                                                      BlackColor,
-                                                                  fontSize: 13,
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyBold,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 2,
-                                                            ),
-                                                            Text(
-                                                              "${cartViewList[index].productTitle}",
-                                                              maxLines: 2,
-                                                              style: TextStyle(
-                                                                color:
-                                                                    BlackColor,
-                                                                fontSize: 10,
-                                                                fontFamily:
-                                                                    FontFamily
-                                                                        .gilroyBold,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        Container(
-                                                          height: 30,
-                                                          width: 100,
-                                                          margin:
-                                                              EdgeInsets.all(5),
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: Row(
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 5,
-                                                              ),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  status =
-                                                                      false;
-                                                                  walletCalculation(
-                                                                      false);
-                                                                  total = cartController
-                                                                      .couponAmt;
-                                                                  cartController
-                                                                      .couponAmt = 0;
-                                                                  couponCode =
-                                                                      "";
-                                                                  setState(
-                                                                      () {});
-                                                                  if (widget
-                                                                          .CartStatus ==
-                                                                      "1") {
-                                                                    setState(
-                                                                        () {
-                                                                      onRemoveItem(
-                                                                          index,
-                                                                          isItem(cartViewList[index]
-                                                                              .id
-                                                                              .toString()));
-                                                                    });
-                                                                  }
-                                                                  if (cartController
-                                                                          .cartDataInfo
-                                                                          ?.storeData
-                                                                          .storeIsPickup ==
-                                                                      "1") {
-                                                                    if (groupValue ==
-                                                                        1) {
-                                                                      total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
-                                                                              "") +
-                                                                          int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
-                                                                              "")) as double;
-                                                                      getTotal =
-                                                                          total;
-                                                                    } else {
-                                                                      total = int.parse(cartController
-                                                                              .cartDataInfo
-                                                                              ?.storeData
-                                                                              .storeCharge ??
-                                                                          "") as double;
-                                                                      getTotal =
-                                                                          total;
-                                                                    }
-                                                                    setState(
-                                                                        () {});
-                                                                  } else {
-                                                                    total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
-                                                                            "") +
-                                                                        int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
-                                                                            "")) as double;
-                                                                  }
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  height: 25,
-                                                                  width: 25,
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .remove,
-                                                                    color: gradient
-                                                                        .defoultColor,
-                                                                    size: 18,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child:
-                                                                    Container(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Text(
-                                                                    isItem(cartViewList[index]
-                                                                            .id)
-                                                                        .toString(),
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: gradient
-                                                                          .defoultColor,
-                                                                      fontFamily:
-                                                                          FontFamily
-                                                                              .gilroyBold,
-                                                                      fontSize:
-                                                                          15,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  if (widget
-                                                                          .CartStatus ==
-                                                                      "1") {
-                                                                    status =
-                                                                        false;
-
-                                                                    walletCalculation(
-                                                                        false);
-
-                                                                    total = cartController
-                                                                        .couponAmt;
-                                                                    cartController
-                                                                        .couponAmt = 0;
-                                                                    couponCode =
-                                                                        "";
-
-                                                                    setState(
-                                                                        () {});
-
-                                                                    if (widget
-                                                                            .CartStatus ==
-                                                                        "1") {
-                                                                      setState(
-                                                                          () {
-                                                                        onAddItem(
-                                                                          index,
-                                                                          isItem(
-                                                                              cartViewList[index].id),
-                                                                        );
-                                                                      });
-
-                                                                      cartController.getSubTotalClc(
-                                                                          pPrice: cartViewList[index]
-                                                                              .price,
-                                                                          subdiv:
-                                                                              "pluse");
-                                                                    }
-                                                                    if (cartController
-                                                                            .cartDataInfo
-                                                                            ?.storeData
-                                                                            .storeIsPickup ==
-                                                                        "1") {
-                                                                      if (groupValue ==
-                                                                          1) {
-                                                                        total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
-                                                                                "") +
-                                                                            int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
-                                                                                "")) as double;
-                                                                        getTotal =
-                                                                            total;
-                                                                      } else {
-                                                                        total = int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
-                                                                                "")
-                                                                            as double;
-                                                                        getTotal =
-                                                                            total;
-                                                                      }
-                                                                    } else {
-                                                                      total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
-                                                                              "") +
-                                                                          int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
-                                                                              "")) as double;
-
-                                                                      getTotal =
-                                                                          total;
-                                                                    }
-                                                                  } else {
-                                                                    showToastMessage(
-                                                                        "The quantity cannot be modified as it has been prescribed by the doctors."
-                                                                            .tr);
-                                                                  }
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  height: 25,
-                                                                  width: 25,
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Icon(
-                                                                    Icons.add,
-                                                                    color: gradient
-                                                                        .defoultColor,
-                                                                    size: 18,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 5,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            border: Border.all(
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade300),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "${double.parse(cartViewList[index].productPrice?.toStringAsFixed(2).toString() ?? "") * int.parse(isItem(cartViewList[index].id).toString())}${currency}",
-                                                          style: TextStyle(
-                                                            color: BlackColor,
-                                                            fontSize: 15,
-                                                            fontFamily:
-                                                                FontFamily
-                                                                    .gilroyBold,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                          },
-                                        );
-                                      }),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      DottedLine(dashColor: greyColor),
-                                      TextFormField(
-                                        controller: writeinstruction,
-                                        minLines: 1,
-                                        maxLines: 5,
-                                        decoration: InputDecoration(
-                                          contentPadding:
-                                              EdgeInsets.only(left: 8, top: 5),
-                                          hintText:
-                                              "Write instructions, gifting ideas etc.."
-                                                  .tr,
-                                          border: InputBorder.none,
-                                          enabledBorder: InputBorder.none,
-                                          focusedBorder: InputBorder.none,
-                                          hintStyle: TextStyle(
-                                            color: greyColor,
-                                            fontSize: 15,
-                                            fontFamily: FontFamily.gilroyMedium,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: WhiteColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                cartController.cartDataInfo?.storeData
-                                            .storeIsPickup ==
-                                        "1"
-                                    ? cartViewList[0].cartCheck == "0"
-                                        ? Container(
-                                            height: 110,
-                                            width: Get.size.width,
-                                            margin: EdgeInsets.all(10),
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 10),
-                                                  child: Text(
-                                                    "Delivery Type".tr,
-                                                    style: TextStyle(
-                                                      color: BlackColor,
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 17,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        status = false;
-                                                        walletCalculation(
-                                                            false);
-                                                        setState(() {});
-                                                        // status = false;
-                                                        // total = total + useWallet;
-                                                        // useWallet = 0;
-                                                        total = cartController
-                                                            .couponAmt;
-                                                        cartController
-                                                            .couponAmt = 0;
-                                                        couponCode = "";
-                                                        print(
-                                                            "-------*******------" +
-                                                                total
-                                                                    .toString());
-                                                        if (groupValue == 1) {
-                                                          setState(() {
-                                                            total = total -
-                                                                double.parse(cartController
-                                                                        .cartDataInfo
-                                                                        ?.storeData
-                                                                        .restDcharge ??
-                                                                    "0");
-                                                            getTotal = total;
-                                                          });
-                                                          print("+++++=====++++" +
-                                                              cartController
-                                                                  .subTotal
-                                                                  .toString());
-                                                          print("-------*******------" +
-                                                              total.toString());
-                                                        }
-                                                        setState(() {
-                                                          groupValue = 0;
-                                                        });
-                                                      },
-                                                      child: Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor:
-                                                                groupValue == 0
-                                                                    ? gradient
-                                                                        .defoultColor
-                                                                    : greyColor,
-                                                            value: 0,
-                                                            groupValue:
-                                                                groupValue,
-                                                            onChanged: (value) {
-                                                              status = false;
-                                                              walletCalculation(
-                                                                  false);
-                                                              setState(() {});
-                                                              // status = false;
-                                                              // total = total + useWallet;
-                                                              // useWallet = 0;
-                                                              total = total +
-                                                                  cartController
-                                                                      .couponAmt;
-                                                              cartController
-                                                                  .couponAmt = 0;
-                                                              couponCode = "";
-                                                              print("-------*******------" +
-                                                                  total
-                                                                      .toString());
-                                                              if (groupValue ==
-                                                                  1) {
-                                                                setState(() {
-                                                                  total = total -
-                                                                      double.parse(cartController
-                                                                              .cartDataInfo
-                                                                              ?.storeData
-                                                                              .restDcharge ??
-                                                                          "0");
-                                                                  getTotal =
-                                                                      total;
-                                                                });
-                                                                print("+++++=====++++" +
-                                                                    cartController
-                                                                        .subTotal
-                                                                        .toString());
-                                                                print("-------*******------" +
-                                                                    total
-                                                                        .toString());
-                                                              }
-                                                              setState(() {
-                                                                groupValue =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text(
-                                                            "Self Pickup".tr,
-                                                            style: TextStyle(
-                                                              color: groupValue ==
-                                                                      0
-                                                                  ? gradient
-                                                                      .defoultColor
-                                                                  : greyColor,
-                                                              fontFamily: FontFamily
-                                                                  .gilroyMedium,
-                                                              fontSize: 17,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 25,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        status = false;
-                                                        walletCalculation(
-                                                            false);
-                                                        setState(() {});
-                                                        // total = total + useWallet;
-                                                        // useWallet = 0;
-                                                        total = total +
-                                                            cartController
-                                                                .couponAmt;
-                                                        cartController
-                                                            .couponAmt = 0;
-                                                        couponCode = "";
-                                                        print(
-                                                            "-------*******------" +
-                                                                total
-                                                                    .toString());
-                                                        setState(() {
-                                                          groupValue = 1;
-                                                          total = cartController
-                                                                  .subTotal +
-                                                              double.parse(cartController
-                                                                      .cartDataInfo
-                                                                      ?.storeData
-                                                                      .restDcharge ??
-                                                                  "0") +
-                                                              double.parse(cartController
-                                                                      .cartDataInfo
-                                                                      ?.storeData
-                                                                      .storeCharge ??
-                                                                  "0");
-                                                          print("+++++=====++++" +
-                                                              cartController
-                                                                  .subTotal
-                                                                  .toString());
-                                                          print("-------*******------" +
-                                                              total.toString());
-                                                          getTotal = total;
-                                                        });
-                                                      },
-                                                      child: Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor:
-                                                                groupValue == 1
-                                                                    ? gradient
-                                                                        .defoultColor
-                                                                    : greyColor,
-                                                            value: 1,
-                                                            groupValue:
-                                                                groupValue,
-                                                            onChanged: (value) {
-                                                              status = false;
-                                                              walletCalculation(
-                                                                  false);
-                                                              setState(() {});
-                                                              // total = total + useWallet;
-                                                              // useWallet = 0;
-                                                              total = total +
-                                                                  cartController
-                                                                      .couponAmt;
-                                                              cartController
-                                                                  .couponAmt = 0;
-                                                              couponCode = "";
-                                                              print("-------*******------" +
-                                                                  total
-                                                                      .toString());
-                                                              setState(() {
-                                                                groupValue = 1;
-                                                                total = cartController
-                                                                        .subTotal +
-                                                                    double.parse(cartController
-                                                                            .cartDataInfo
-                                                                            ?.storeData
-                                                                            .restDcharge ??
-                                                                        "0") +
-                                                                    double.parse(cartController
-                                                                            .cartDataInfo
-                                                                            ?.storeData
-                                                                            .storeCharge ??
-                                                                        "0");
-                                                                print("+++++=====++++" +
-                                                                    cartController
-                                                                        .subTotal
-                                                                        .toString());
-                                                                print("-------*******------" +
-                                                                    total
-                                                                        .toString());
-                                                                getTotal =
-                                                                    total;
-                                                              });
-                                                              setState(() {
-                                                                groupValue =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text(
-                                                            "Delivery".tr,
-                                                            style: TextStyle(
-                                                              color: groupValue ==
-                                                                      1
-                                                                  ? gradient
-                                                                      .defoultColor
-                                                                  : greyColor,
-                                                              fontFamily: FontFamily
-                                                                  .gilroyMedium,
-                                                              fontSize: 17,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: WhiteColor,
-                                            ),
-                                          )
-                                        : SizedBox()
-                                    : SizedBox(),
-                                //! ---------- Pickup Address ----------!//
-                                Container(
-                                  width: Get.size.width,
-                                  margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "PickUp Date".tr,
-                                        style: TextStyle(
-                                          fontFamily: FontFamily.gilroyBold,
-                                          fontSize: 15,
-                                          color: BlackColor,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          selectStartDate().then((value) => {
-                                                if (subScibeController
-                                                        .selectDay !=
-                                                    "")
-                                                  {
-                                                    formattedDate =
-                                                        "${subScibeController.selectDay}-${subScibeController.selectMonth}-${subScibeController.selectYear}",
-                                                    setState(() {})
-                                                  },
-                                              });
-                                        },
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Radio(
-                                              value: 0,
-                                              groupValue: 0,
-                                              activeColor:
-                                                  gradient.defoultColor,
-                                              onChanged: (value) {},
-                                            ),
-                                            Text(
-                                              formattedDate,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyMedium,
-                                                fontSize: 15,
-                                                color: BlackColor,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            Image.asset(
-                                              "assets/calendar1.png",
-                                              height: 25,
-                                              width: 25,
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "PickUp Timeslot".tr,
-                                        style: TextStyle(
-                                          fontFamily: FontFamily.gilroyBold,
-                                          fontSize: 15,
-                                          color: BlackColor,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        child: cartController.isLoading
-                                            ? cartController.cartDataInfo!
-                                                    .timeslotlist.isEmpty
-                                                ? Text("Not Available")
-                                                : ListView.builder(
-                                                    itemCount: cartController
-                                                        .cartDataInfo
-                                                        ?.timeslotlist
-                                                        .length,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      String maxTime =
-                                                          "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].maxtime}";
-                                                      String minTime =
-                                                          "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].mintime}";
-                                                      return InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            timeSlotValue =
-                                                                index;
-                                                            timeSlot =
-                                                                "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          height: 50,
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  right: 10),
-                                                          margin:
-                                                              EdgeInsets.all(5),
-                                                          child: Row(
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 8,
-                                                              ),
-                                                              Radio(
-                                                                activeColor:
-                                                                    gradient
-                                                                        .defoultColor,
-                                                                value: index,
-                                                                groupValue:
-                                                                    timeSlotValue,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  setState(() {
-                                                                    timeSlot =
-                                                                        "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
-                                                                    timeSlotValue =
-                                                                        index;
-                                                                  });
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Text(
-                                                                DateFormat.jm()
-                                                                    .format(DateTime
-                                                                        .parse(
-                                                                            minTime)),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 2,
-                                                              ),
-                                                              Text(
-                                                                "to",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 2,
-                                                              ),
-                                                              Text(
-                                                                DateFormat.jm()
-                                                                    .format(DateTime
-                                                                        .parse(
-                                                                            maxTime)),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            border: Border.all(
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade300),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                            : Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: gradient.defoultColor,
-                                                ),
-                                              ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Text(
-                                        "Drop Timeslot".tr,
-                                        style: TextStyle(
-                                          fontFamily: FontFamily.gilroyBold,
-                                          fontSize: 15,
-                                          color: BlackColor,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        child: cartController.isLoading
-                                            ? cartController.cartDataInfo!
-                                                    .timeslotlist.isEmpty
-                                                ? Text("Not Available")
-                                                : ListView.builder(
-                                                    itemCount: cartController
-                                                        .cartDataInfo
-                                                        ?.timeslotlist
-                                                        .length,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      String maxTime =
-                                                          "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].maxtime}";
-                                                      String minTime =
-                                                          "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].mintime}";
-                                                      return InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            droptimeSlotValue =
-                                                                index;
-                                                            dropSlot =
-                                                                "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          height: 50,
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  right: 10),
-                                                          margin:
-                                                              EdgeInsets.all(5),
-                                                          child: Row(
-                                                            children: [
-                                                              SizedBox(
-                                                                width: 8,
-                                                              ),
-                                                              Radio(
-                                                                activeColor:
-                                                                    gradient
-                                                                        .defoultColor,
-                                                                value: index,
-                                                                groupValue:
-                                                                    droptimeSlotValue,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  setState(() {
-                                                                    dropSlot =
-                                                                        "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
-                                                                    droptimeSlotValue =
-                                                                        index;
-                                                                  });
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Text(
-                                                                DateFormat.jm()
-                                                                    .format(DateTime
-                                                                        .parse(
-                                                                            minTime)),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 2,
-                                                              ),
-                                                              Text(
-                                                                "to",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 2,
-                                                              ),
-                                                              Text(
-                                                                DateFormat.jm()
-                                                                    .format(DateTime
-                                                                        .parse(
-                                                                            maxTime)),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      FontFamily
-                                                                          .gilroyMedium,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            border: Border.all(
-                                                                color: Colors
-                                                                    .grey
-                                                                    .shade300),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                            : Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: gradient.defoultColor,
-                                                ),
-                                              ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: WhiteColor,
-                                  ),
-                                ),
-
-                                wallet != "0"
-                                    ? Container(
-                                        height: 140,
-                                        width: Get.size.width,
-                                        margin: EdgeInsets.all(10),
-                                        alignment: Alignment.center,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  "Wallet information".tr,
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        FontFamily.gilroyBold,
-                                                    fontSize: 17,
-                                                    color: BlackColor,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 15,
-                                            ),
-                                            Container(
-                                              height: 60,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  SizedBox(
-                                                    width: 15,
-                                                  ),
-                                                  Image.asset(
-                                                    "assets/wallet.png",
-                                                    height: 30,
-                                                    width: 30,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  ),
-                                                  Text(
-                                                    "${"Balance".tr} $currency${tempWallet.toStringAsFixed(2)}",
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 17,
-                                                    ),
-                                                  ),
-                                                  Spacer(),
-                                                  Transform.scale(
-                                                    scale: 0.8,
-                                                    child: CupertinoSwitch(
-                                                      activeColor:
-                                                          gradient.defoultColor,
-                                                      value: status,
-                                                      onChanged: (value) {
-                                                        setState(() {
-                                                          status = value;
-                                                          walletCalculation(
-                                                              value);
-                                                        });
-                                                      },
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                ],
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        Colors.grey.shade300),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: WhiteColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                      )
-                                    : SizedBox(),
-
-                                //! ---------- Coupon Widget -----------!//
-                                Container(
-                                  height: 150,
-                                  width: Get.size.width,
-                                  margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: InkWell(
-                                    onTap: () {
-                                      if (couponCode == "") {
-                                        status = false;
-                                        walletCalculation(false);
-                                        setState(() {});
-                                        Get.toNamed(Routes.couponScreen,
-                                                arguments: {
-                                              "price": cartController.subTotal
-                                            })!
-                                            .then((value) {
-                                          setState(() {
-                                            couponCode = value;
-                                          });
-                                          couponSucsessFullyApplyed();
-                                        });
-                                      } else {
-                                        status = false;
-                                        walletCalculation(false);
-                                        setState(() {});
-                                        // total = total + useWallet;
-                                        // useWallet = 0;
-                                        total =
-                                            total + cartController.couponAmt;
-                                        cartController.couponAmt = 0;
-                                        couponCode = "";
-                                        setState(() {});
-                                      }
-                                    },
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Container(
-                                          height: 60,
-                                          alignment: Alignment.center,
-                                          child: InkWell(
-                                            child: Row(
-                                              children: [
-                                                Image.asset(
-                                                  "assets/badge-discount.png",
-                                                  height: 40,
-                                                  width: 40,
-                                                  color: gradient.defoultColor,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        "Apply Coupon".tr,
-                                                        style: TextStyle(
-                                                          color: gradient
-                                                              .defoultColor,
-                                                          fontFamily: FontFamily
-                                                              .gilroyBold,
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      couponCode != ""
-                                                          ? Row(
-                                                              children: [
-                                                                Text(
-                                                                  "Use code:"
-                                                                      .tr,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        FontFamily
-                                                                            .gilroyMedium,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  couponCode,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        FontFamily
-                                                                            .gilroyBold,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            )
-                                                          : SizedBox(),
-                                                    ],
-                                                  ),
-                                                ),
-                                                couponCode != ""
-                                                    ? InkWell(
-                                                        onTap: () {
-                                                          status = false;
-                                                          walletCalculation(
-                                                              false);
-                                                          setState(() {});
-                                                          // total = total + useWallet;
-                                                          // useWallet = 0;
-                                                          total = total +
-                                                              cartController
-                                                                  .couponAmt;
-                                                          cartController
-                                                              .couponAmt = 0;
-                                                          couponCode = "";
-                                                          setState(() {});
-                                                        },
-                                                        child: Text(
-                                                          "Remove".tr,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                FontFamily
-                                                                    .gilroyBold,
-                                                            color: RedColor,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : InkWell(
-                                                        onTap: () {
-                                                          status = false;
-                                                          walletCalculation(
-                                                              false);
-                                                          setState(() {});
-
-                                                          Get.toNamed(
-                                                                  Routes
-                                                                      .couponScreen,
-                                                                  arguments: {
-                                                                "price":
-                                                                    cartController
-                                                                        .subTotal
-                                                              })!
-                                                              .then((value) {
-                                                            setState(() {
-                                                              couponCode =
-                                                                  value;
-                                                            });
-                                                            couponSucsessFullyApplyed();
-                                                          });
-                                                        },
-                                                        child: Text(
-                                                          "Apply".tr,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                FontFamily
-                                                                    .gilroyBold,
-                                                            color: gradient
-                                                                .defoultColor,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                      ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Divider(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                "View all coupons".tr,
-                                                style: TextStyle(
-                                                  color: greyColor,
-                                                  fontSize: 15,
-                                                  fontFamily:
-                                                      FontFamily.gilroyMedium,
-                                                ),
-                                              ),
-                                              Spacer(),
-                                              Icon(
-                                                Icons.arrow_forward_ios,
-                                                size: 15,
-                                                color: greyColor,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: WhiteColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-
-                                //! ---------- Select Pickup ----------!//
-                                Container(
-                                  width: Get.size.width,
-                                  margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: GetBuilder<CartController>(
-                                                builder: (context) {
-                                              return Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  cartController.addresTitle ==
-                                                          ""
-                                                      ? Text(
-                                                          "Select pickup & drop address"
-                                                              .tr,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                FontFamily
-                                                                    .gilroyBold,
-                                                            fontSize: 17,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          cartController
-                                                              .addresTitle,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                FontFamily
-                                                                    .gilroyBold,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Text(
-                                                    "We pickup & drop items to this address."
-                                                        .tr,
-                                                    style: TextStyle(
-                                                      fontFamily: FontFamily
-                                                          .gilroyMedium,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            }),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              cartController.addressListApi();
-                                              addressShit(isCheck: "0");
-                                            },
-                                            child: Container(
-                                              height: 50,
-                                              width: 90,
-                                              alignment: Alignment.center,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/location-pin.png",
-                                                    height: 25,
-                                                    width: 25,
-                                                    color:
-                                                        gradient.defoultColor,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Image.asset(
-                                                    "assets/angle-down.png",
-                                                    height: 15,
-                                                    width: 15,
-                                                    color:
-                                                        gradient.defoultColor,
-                                                  )
-                                                ],
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                border: Border.all(
-                                                    color:
-                                                        Colors.grey.shade300),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: WhiteColor,
-                                  ),
-                                ),
-
-                                GetBuilder<CartController>(builder: (context) {
-                                  return Container(
-                                    width: Get.size.width,
-                                    margin: EdgeInsets.all(10),
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          "Bill details".tr,
-                                          style: TextStyle(
-                                            fontFamily: FontFamily.gilroyBold,
-                                            color: BlackColor,
-                                            fontSize: 17,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Cart total".tr,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyMedium,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            Text(
-                                              "${cartController.subTotal.toStringAsFixed(2)}${currency}",
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyBold,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        DottedLine(
-                                          dashColor: greyColor,
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Store Charge".tr,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyMedium,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            cartController.isLoading
-                                                ? Text(
-                                                    "${double.parse(cartController.cartDataInfo?.storeData.storeCharge ?? "") * getMaxDelivery}${currency}",
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 15,
-                                                    ),
-                                                  )
-                                                : SizedBox(),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        status
-                                            ? Row(
-                                                children: [
-                                                  Text(
-                                                    "Wallet".tr,
-                                                    style: TextStyle(
-                                                      fontFamily: FontFamily
-                                                          .gilroyMedium,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                  Spacer(),
-                                                  Text(
-                                                    "${useWallet.toStringAsFixed(2)}${currency}",
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                ],
-                                              )
-                                            : SizedBox(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        couponCode != ""
-                                            ? Row(
-                                                children: [
-                                                  Text(
-                                                    "Coupon".tr,
-                                                    style: TextStyle(
-                                                      fontFamily: FontFamily
-                                                          .gilroyMedium,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                  Spacer(),
-                                                  Text(
-                                                    "${cartController.couponAmt}${currency}",
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                ],
-                                              )
-                                            : SizedBox(),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        DottedLine(
-                                          dashColor: greyColor,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Delivery Fee".tr,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyMedium,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            cartController.isLoading
-                                                ? Text(
-                                                    cartController
-                                                                .cartDataInfo
-                                                                ?.storeData
-                                                                .storeIsPickup ==
-                                                            "1"
-                                                        ? groupValue == 1
-                                                            ? "${double.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery}${currency}"
-                                                            : "Free"
-                                                        : "${double.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery}${currency}",
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      fontSize: 15,
-                                                    ),
-                                                  )
-                                                : SizedBox(),
-                                            SizedBox(
-                                              width: 10,
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        DottedLine(
-                                          dashColor: greyColor,
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "To pay".tr,
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyBold,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            Spacer(),
-                                            Text(
-                                              "${total.toStringAsFixed(2)}${currency}",
-                                              style: TextStyle(
-                                                fontFamily:
-                                                    FontFamily.gilroyBold,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                      ],
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: WhiteColor,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  );
-                                }),
-
-                                // cartController.cartDataInfo?.storeData
-                                //             .storeIsPickup ==
-                                //         "1"
-                                //     ? groupValue == 0
-                                //         ? selfPickUpWidget()
-                                //         : deliveryWidget()
-                                //     : deliveryWidget(),
-                              ],
+              ? Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        // height: 280,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                        ),
-                        GetBuilder<CartController>(builder: (context) {
-                          return Container(
-                            width: Get.size.width,
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
+                            Row(
                               children: [
+                                Container(
+                                  height: 55,
+                                  width: 55,
+                                  child: ClipRRect(
+                                    borderRadius:
+                                    BorderRadius.circular(8),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder:
+                                      "assets/ezgif.com-crop.gif",
+                                      placeholderCacheHeight: 55,
+                                      placeholderCacheWidth: 55,
+                                      placeholderFit: BoxFit.cover,
+                                      image:
+                                      "${Config.imageUrl}${storeDataContoller.storeDataInfo?.storeInfo.storeLogo ?? ""}",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: WhiteColor,
+                                    borderRadius:
+                                    BorderRadius.circular(8),
+                                    border: Border.all(
+                                        color: Colors.grey.shade300),
+                                  ),
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${currency}${total.toStringAsFixed(2)}",
+                                        storeDataContoller
+                                            .storeDataInfo
+                                            ?.storeInfo
+                                            .storeTitle ??
+                                            "",
+                                        maxLines: 1,
                                         style: TextStyle(
-                                          fontFamily: FontFamily.gilroyBold,
-                                          fontSize: 16,
+                                          color: BlackColor,
+                                          fontFamily:
+                                          FontFamily.gilroyBold,
+                                          fontSize: 17,
+                                          overflow:
+                                          TextOverflow.ellipsis,
                                         ),
                                       ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
                                       Text(
-                                        "View Detailed Bill".tr,
+                                        storeDataContoller
+                                            .storeDataInfo
+                                            ?.storeInfo
+                                            .storeAddress ??
+                                            "",
                                         style: TextStyle(
-                                          fontFamily: FontFamily.gilroyMedium,
-                                          fontSize: 15,
-                                          color: gradient.defoultColor,
+                                          color: BlackColor,
+                                          fontSize: 14,
+                                          fontFamily:
+                                          FontFamily.gilroyMedium,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                GetBuilder<CartController>(builder: (context) {
-                                  return cartController.isLoading
-                                      ? groupValue == 1
-                                          ? InkWell(
-                                              onTap: () {
-                                                if (widget.CartStatus == "1") {
-                                                  if (cartViewList[0]
-                                                          .cartCheck ==
-                                                      "0") {
-                                                    if (int.parse(
-                                                            "${cartController.cartDataInfo?.storeData.storeMorder}") <=
-                                                        cartController
-                                                            .subTotal) {
-                                                      if (timeSlot != "") {
-                                                        if (cartController
-                                                                .addresTitle ==
-                                                            "") {
-                                                          cartController
-                                                              .addressListApi();
-                                                          addressShit();
-                                                        } else {
-                                                          if (cartController
-                                                                  .cartDataInfo
-                                                                  ?.storeData
-                                                                  .storeIsDeliver ==
-                                                              "1") {
-                                                            if (status ==
-                                                                true) {
-                                                              if (double.parse(total
-                                                                      .toString()) >
-                                                                  0) {
-                                                                print("object");
-                                                                paymentSheett();
-                                                              } else {
-                                                                if (cartViewList[
-                                                                            0]
-                                                                        .cartCheck ==
-                                                                    "0") {
-                                                                  buyNormalOrderInStore(
-                                                                      "0");
-                                                                } else {
-                                                                  subScriptionOrderInStore(
-                                                                      "0");
-                                                                }
-                                                              }
-                                                            } else {
-                                                              paymentSheett();
-                                                            }
-                                                          } else {
-                                                            setState(() {
-                                                              cartController
-                                                                  .addresTitle = "";
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            GetBuilder<CartController>(
+                                builder: (context) {
+                                  return ListView.builder(
+                                    itemCount: cartViewList.length,
+                                    shrinkWrap: true,
+                                    physics:
+                                    NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return cartViewList[index]
+                                          .cartCheck !=
+                                          "0"
+                                          ? Container(
+                                        height: 190,
+                                        width: Get.size.width,
+                                        margin:
+                                        EdgeInsets.symmetric(
+                                            horizontal: 5,
+                                            vertical: 5),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Image.asset(
+                                                  "assets/calendar-check-alt.png",
+                                                  height: 22,
+                                                  width: 22,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  "${"Starting on".tr} ${cartViewList[index].startDate}",
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyBold,
+                                                    color: greytext,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                                Spacer(),
+                                                InkWell(
+                                                  onTap: () {
+                                                    save("subClc",
+                                                        true);
+                                                    cart.delete(
+                                                        cartViewList[
+                                                        index]
+                                                            .id);
+                                                    cartController
+                                                        .subTotal = 0;
+
+                                                    cartViewList =
+                                                        listOfCart();
+
+                                                    getTotal =
+                                                        total;
+
+                                                    setState(() {});
+                                                  },
+                                                  child:
+                                                  Image.asset(
+                                                    "assets/Thrash.png",
+                                                    color: RedColor,
+                                                    height: 20,
+                                                    width: 20,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 100,
+                                                  width: 120,
+                                                  margin: EdgeInsets
+                                                      .symmetric(
+                                                      horizontal:
+                                                      10,
+                                                      vertical:
+                                                      5),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                    BorderRadius
+                                                        .circular(
+                                                        10),
+                                                    child: FadeInImage
+                                                        .assetNetwork(
+                                                      placeholder:
+                                                      "assets/ezgif.com-crop.gif",
+                                                      placeholderCacheHeight:
+                                                      100,
+                                                      placeholderCacheWidth:
+                                                      120,
+                                                      height: 100,
+                                                      width: 120,
+                                                      image:
+                                                      "${Config.imageUrl}${cartViewList[index].img}",
+                                                      placeholderFit:
+                                                      BoxFit
+                                                          .cover,
+                                                    ),
+                                                  ),
+                                                  decoration:
+                                                  BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius
+                                                        .circular(
+                                                        10),
+                                                    color:
+                                                    WhiteColor,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors
+                                                            .grey
+                                                            .shade300,
+                                                        offset:
+                                                        const Offset(
+                                                          0.4,
+                                                          0.4,
+                                                        ),
+                                                        blurRadius:
+                                                        0.4,
+                                                        spreadRadius:
+                                                        0.4,
+                                                      ), //BoxShadow
+                                                      BoxShadow(
+                                                        color: Colors
+                                                            .white,
+                                                        offset:
+                                                        const Offset(
+                                                            0.0,
+                                                            0.0),
+                                                        blurRadius:
+                                                        0.0,
+                                                        spreadRadius:
+                                                        0.0,
+                                                      ), //BoxShadow
+                                                    ],
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .end,
+                                                        children: [
+                                                          InkWell(
+                                                            onTap:
+                                                                () {
+                                                              status =
+                                                              false;
+                                                              walletCalculation(
+                                                                  false);
+                                                              total =
+                                                                  cartController.couponAmt;
+                                                              cartController.couponAmt =
+                                                              0;
+                                                              couponCode =
+                                                              "";
+                                                              productDetailsController.getProductDetailsApi(
+                                                                  pId: cartViewList[index].productID);
+                                                              setState(
+                                                                      () {});
+                                                              subScibeController
+                                                                  .getSelectedItemEditValue(
+                                                                selectDay1:
+                                                                cartViewList[index].daysList,
+                                                                selectDeliveris1:
+                                                                cartViewList[index].selectDelivery,
+                                                                selectTime1:
+                                                                cartViewList[index].startTime,
+                                                                selectDate1:
+                                                                cartViewList[index].startDate,
+                                                              );
+
+                                                              Get.toNamed(Routes.subScribeScreen, arguments: {
+                                                                "img":
+                                                                cartViewList[index].img,
+                                                                "name":
+                                                                cartViewList[index].strTitle,
+                                                                "sprice":
+                                                                cartViewList[index].sPrice.toString(),
+                                                                "aprice":
+                                                                cartViewList[index].productPrice.toString(),
+                                                                "per":
+                                                                cartViewList[index].per,
+                                                                "attributeId":
+                                                                cartViewList[index].id,
+                                                                "productTitle":
+                                                                cartViewList[index].productTitle,
+                                                                "isEmpty":
+                                                                "1",
+                                                                "productId":
+                                                                cartViewList[index].productID,
+                                                              })!
+                                                                  .then((value) => {
+                                                                save("subClc", true),
+                                                                cartController.subTotal = 0,
+                                                                cartViewList = listOfCart(),
+                                                                (int.parse(cartController.cartDataInfo?.storeData.storeCharge ?? "") * getMaxDelivery) + (int.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery),
+                                                                getTotal = total,
+                                                                setState(() {}),
+                                                              });
+                                                            },
+                                                            child: Image
+                                                                .asset(
+                                                              "assets/Editpen.png",
+                                                              color:
+                                                              BlackColor,
+                                                              height:
+                                                              20,
+                                                              width:
+                                                              20,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            8,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Text(
+                                                        "${cartViewList[index].strTitle}",
+                                                        maxLines: 1,
+                                                        style:
+                                                        TextStyle(
+                                                          fontFamily:
+                                                          FontFamily
+                                                              .gilroyBold,
+                                                          fontSize:
+                                                          15,
+                                                          overflow:
+                                                          TextOverflow
+                                                              .ellipsis,
+                                                          color:
+                                                          BlackColor,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            cartViewList[index].productTitle ??
+                                                                "",
+                                                            style:
+                                                            TextStyle(
+                                                              fontFamily:
+                                                              FontFamily.gilroyMedium,
+                                                              fontSize:
+                                                              13,
+                                                              overflow:
+                                                              TextOverflow.ellipsis,
+                                                              color:
+                                                              BlackColor,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            " x " +
+                                                                isItem(cartViewList[index].id).toString(),
+                                                            style:
+                                                            TextStyle(
+                                                              fontFamily:
+                                                              FontFamily.gilroyMedium,
+                                                              fontSize:
+                                                              13,
+                                                              overflow:
+                                                              TextOverflow.ellipsis,
+                                                              color:
+                                                              BlackColor,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            cartViewList[index].selectDelivery ??
+                                                                "",
+                                                            style:
+                                                            TextStyle(
+                                                              fontFamily:
+                                                              FontFamily.gilroyMedium,
+                                                              fontSize:
+                                                              13,
+                                                              overflow:
+                                                              TextOverflow.ellipsis,
+                                                              color:
+                                                              BlackColor,
+                                                            ),
+                                                          ),
+                                                          Spacer(),
+                                                          Text(
+                                                            "${double.parse(cartViewList[index].productPrice?.toStringAsFixed(2).toString() ?? "") * int.parse(isItem(cartViewList[index].id).toString())}${currency}",
+                                                            style:
+                                                            TextStyle(
+                                                              color:
+                                                              gradient.defoultColor,
+                                                              fontSize:
+                                                              15,
+                                                              fontFamily:
+                                                              FontFamily.gilroyBold,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                            5,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Image.asset(
+                                                  "assets/calendar-minus-alt.png",
+                                                  height: 22,
+                                                  width: 22,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  "${"Starting time on".tr} ${cartViewList[index].startTime}",
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyBold,
+                                                    color: greytext,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              10),
+                                          border: Border.all(
+                                              color: Colors
+                                                  .grey.shade300),
+                                        ),
+                                      )
+                                          : Container(
+                                        height: 50,
+                                        width: Get.size.width,
+                                        alignment: Alignment.center,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .spaceBetween,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment
+                                                  .start,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                SizedBox(
+                                                  width: Get.size
+                                                      .width *
+                                                      0.4,
+                                                  child: Text(
+                                                    "${cartViewList[index].strTitle}",
+                                                    maxLines: 2,
+                                                    style:
+                                                    TextStyle(
+                                                      color:
+                                                      BlackColor,
+                                                      fontSize: 13,
+                                                      fontFamily:
+                                                      FontFamily
+                                                          .gilroyBold,
+                                                      overflow:
+                                                      TextOverflow
+                                                          .ellipsis,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 2,
+                                                ),
+                                                Text(
+                                                  "${cartViewList[index].productTitle}",
+                                                  maxLines: 2,
+                                                  style: TextStyle(
+                                                    color:
+                                                    BlackColor,
+                                                    fontSize: 10,
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyBold,
+                                                    overflow:
+                                                    TextOverflow
+                                                        .ellipsis,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Container(
+                                              height: 30,
+                                              width: 100,
+                                              margin:
+                                              EdgeInsets.all(5),
+                                              alignment:
+                                              Alignment.center,
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      status =
+                                                      false;
+                                                      walletCalculation(
+                                                          false);
+                                                      total = cartController
+                                                          .couponAmt;
+                                                      cartController
+                                                          .couponAmt = 0;
+                                                      couponCode =
+                                                      "";
+                                                      setState(
+                                                              () {});
+                                                      if (widget
+                                                          .CartStatus ==
+                                                          "1") {
+                                                        setState(
+                                                                () {
+                                                              onRemoveItem(
+                                                                  index,
+                                                                  isItem(cartViewList[index]
+                                                                      .id
+                                                                      .toString()));
                                                             });
-                                                            showToastMessage(
-                                                                "Please Change Address"
-                                                                    .tr);
+                                                      }
+                                                      if (cartController
+                                                          .cartDataInfo
+                                                          ?.storeData
+                                                          .storeIsPickup ==
+                                                          "1") {
+                                                        if (groupValue ==
+                                                            1) {
+                                                          total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
+                                                              "") +
+                                                              int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
+                                                                  "")) as double;
+                                                          getTotal =
+                                                              total;
+                                                        } else {
+                                                          total = int.parse(cartController
+                                                              .cartDataInfo
+                                                              ?.storeData
+                                                              .storeCharge ??
+                                                              "") as double;
+                                                          getTotal =
+                                                              total;
+                                                        }
+                                                        setState(
+                                                                () {});
+                                                      } else {
+                                                        total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
+                                                            "") +
+                                                            int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
+                                                                "")) as double;
+                                                      }
+                                                    },
+                                                    child:
+                                                    Container(
+                                                      height: 25,
+                                                      width: 25,
+                                                      alignment:
+                                                      Alignment
+                                                          .center,
+                                                      child: Icon(
+                                                        Icons
+                                                            .remove,
+                                                        color: gradient
+                                                            .defoultColor,
+                                                        size: 18,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child:
+                                                    Container(
+                                                      alignment:
+                                                      Alignment
+                                                          .center,
+                                                      child: Text(
+                                                        isItem(cartViewList[index]
+                                                            .id)
+                                                            .toString(),
+                                                        style:
+                                                        TextStyle(
+                                                          color: gradient
+                                                              .defoultColor,
+                                                          fontFamily:
+                                                          FontFamily
+                                                              .gilroyBold,
+                                                          fontSize:
+                                                          15,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (widget
+                                                          .CartStatus ==
+                                                          "1") {
+                                                        status =
+                                                        false;
+
+                                                        walletCalculation(
+                                                            false);
+
+                                                        total = cartController
+                                                            .couponAmt;
+                                                        cartController
+                                                            .couponAmt = 0;
+                                                        couponCode =
+                                                        "";
+
+                                                        setState(
+                                                                () {});
+
+                                                        if (widget
+                                                            .CartStatus ==
+                                                            "1") {
+                                                          setState(
+                                                                  () {
+                                                                onAddItem(
+                                                                  index,
+                                                                  isItem(
+                                                                      cartViewList[index].id),
+                                                                );
+                                                              });
+
+                                                          cartController.getSubTotalClc(
+                                                              pPrice: cartViewList[index]
+                                                                  .price,
+                                                              subdiv:
+                                                              "pluse");
+                                                        }
+                                                        if (cartController
+                                                            .cartDataInfo
+                                                            ?.storeData
+                                                            .storeIsPickup ==
+                                                            "1") {
+                                                          if (groupValue ==
+                                                              1) {
+                                                            total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
+                                                                "") +
+                                                                int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
+                                                                    "")) as double;
+                                                            getTotal =
+                                                                total;
+                                                          } else {
+                                                            total = int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
+                                                                "")
+                                                            as double;
+                                                            getTotal =
+                                                                total;
                                                           }
+                                                        } else {
+                                                          total = (int.parse(cartController.cartDataInfo?.storeData.storeCharge ??
+                                                              "") +
+                                                              int.parse(cartController.cartDataInfo?.storeData.restDcharge ??
+                                                                  "")) as double;
+
+                                                          getTotal =
+                                                              total;
                                                         }
                                                       } else {
                                                         showToastMessage(
-                                                            "Please Select Timeslot"
+                                                            "The quantity cannot be modified as it has been prescribed by the doctors."
                                                                 .tr);
                                                       }
-                                                    } else {
-                                                      showToastMessage(
-                                                          "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
-                                                    }
-                                                  } else {
-                                                    if (int.parse(
-                                                            "${cartController.cartDataInfo?.storeData.storeMorder}") <=
-                                                        cartController
-                                                            .subTotal) {
-                                                      if (cartController
-                                                              .addresTitle ==
-                                                          "") {
-                                                        cartController
-                                                            .addressListApi();
-                                                        addressShit();
-                                                      } else {
-                                                        if (cartController
-                                                                .cartDataInfo
-                                                                ?.storeData
-                                                                .storeIsDeliver ==
-                                                            "1") {
-                                                          if (status == true) {
-                                                            if (double.parse(total
-                                                                    .toString()) >
-                                                                0) {
-                                                              paymentSheett();
-                                                            } else {
-                                                              if (cartViewList[
-                                                                          0]
-                                                                      .cartCheck ==
-                                                                  "0") {
-                                                                buyNormalOrderInStore(
-                                                                    "0");
-                                                              } else {
-                                                                subScriptionOrderInStore(
-                                                                    "0");
-                                                              }
-                                                            }
-                                                          } else {
-                                                            paymentSheett();
-                                                          }
-                                                        } else {
-                                                          setState(() {
-                                                            cartController
-                                                                .addresTitle = "";
-                                                          });
-                                                          showToastMessage(
-                                                              "Please Change Address"
-                                                                  .tr);
-                                                        }
-                                                      }
-                                                    } else {
-                                                      showToastMessage(
-                                                          "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
-                                                    }
-                                                  }
-                                                } else {
-                                                  if (cartController
-                                                          .addresTitle ==
-                                                      "") {
-                                                    cartController
-                                                        .addressListApi();
-                                                    addressShit();
-                                                  } else {
-                                                    if (cartController
-                                                            .cartDataInfo
-                                                            ?.storeData
-                                                            .storeIsDeliver ==
-                                                        "1") {
-                                                      if (status == true) {
-                                                        if (double.parse(total
-                                                                .toString()) >
-                                                            0) {
-                                                          paymentSheett();
-                                                        } else {}
-                                                      } else {
-                                                        paymentSheett();
-                                                      }
-                                                    } else {
-                                                      setState(() {
-                                                        cartController
-                                                            .addresTitle = "";
-                                                      });
-                                                      showToastMessage(
-                                                          "Please Change Address"
-                                                              .tr);
-                                                    }
-                                                  }
-                                                }
-                                              },
-                                              child: Container(
-                                                height: 45,
-                                                margin: EdgeInsets.all(8),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 10,
-                                                    vertical: 5),
-                                                alignment: Alignment.center,
-                                                child: cartController
-                                                            .addresTitle ==
-                                                        ""
-                                                    ? Text(
-                                                        "Select Address".tr,
-                                                        style: TextStyle(
-                                                          fontFamily: FontFamily
-                                                              .gilroyBold,
-                                                          color: WhiteColor,
-                                                        ),
-                                                      )
-                                                    : Text(
-                                                        "Continue".tr,
-                                                        style: TextStyle(
-                                                          fontFamily: FontFamily
-                                                              .gilroyBold,
-                                                          color: WhiteColor,
-                                                        ),
+                                                    },
+                                                    child:
+                                                    Container(
+                                                      height: 25,
+                                                      width: 25,
+                                                      alignment:
+                                                      Alignment
+                                                          .center,
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: gradient
+                                                            .defoultColor,
+                                                        size: 18,
                                                       ),
-                                                decoration: BoxDecoration(
-                                                  gradient:
-                                                      gradient.btnGradient,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                ],
                                               ),
-                                            )
-                                          : cartController
-                                                      .cartDataInfo!
-                                                      .storeData
-                                                      .storeIsDeliver ==
-                                                  "0"
-                                              ? Container(
-                                                  height: 40,
-                                                  width: 120,
-                                                  padding: EdgeInsets.all(10),
-                                                  margin: EdgeInsets.all(8),
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    "Not Avalable".tr,
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          FontFamily.gilroyBold,
-                                                      color: WhiteColor,
-                                                    ),
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    gradient:
-                                                        gradient.btnGradient,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                )
-                                              : InkWell(
-                                                  onTap: () {
-                                                    print(double.parse(
-                                                            total.toString()) >
-                                                        0);
-                                                    if (dropSlot.isNotEmpty &&
-                                                        timeSlot.isNotEmpty) {
-                                                      if (widget.CartStatus ==
-                                                          "1") {
-                                                        // if (cartController.isRq.isEmpty) {
-                                                        if (int.parse(
-                                                                "${cartController.cartDataInfo?.storeData.storeMorder}") <=
-                                                            cartController
-                                                                .subTotal) {
-                                                          if (cartController
-                                                                  .cartDataInfo
-                                                                  ?.storeData
-                                                                  .storeIsPickup ==
-                                                              "1") {
-                                                            if (timeSlot
-                                                                    .isNotEmpty &&
-                                                                dropSlot
-                                                                    .isNotEmpty) {
-                                                              if (status ==
-                                                                  true) {
-                                                                if (double.parse(
-                                                                        total
-                                                                            .toString()) >
-                                                                    0) {
-                                                                  print(
-                                                                      "object");
-                                                                  paymentSheett();
-                                                                } else {
-                                                                  if (cartViewList[
-                                                                              0]
-                                                                          .cartCheck ==
-                                                                      "0") {
-                                                                    buyNormalOrderInStore(
-                                                                        "0");
-                                                                  } else {
-                                                                    subScriptionOrderInStore(
-                                                                        "0");
-                                                                  }
-                                                                }
-                                                              } else {
-                                                                print(
-                                                                    "object12");
-                                                                paymentSheett();
-                                                              }
-                                                            } else {
-                                                              showToastMessage(
-                                                                  "Please Select Timeslot"
-                                                                      .tr);
-                                                            }
-                                                          } else {
-                                                            if (cartController
-                                                                    .addresTitle !=
-                                                                "") {
-                                                              if (status ==
-                                                                  true) {
-                                                                if (double.parse(
-                                                                        total
-                                                                            .toString()) >
-                                                                    0) {
-                                                                  paymentSheett();
-                                                                } else {
-                                                                  if (cartViewList[
-                                                                              0]
-                                                                          .cartCheck ==
-                                                                      "0") {
-                                                                    buyNormalOrderInStore(
-                                                                        "0");
-                                                                  } else {
-                                                                    subScriptionOrderInStore(
-                                                                        "0");
-                                                                  }
-                                                                }
-                                                              } else {
-                                                                print(
-                                                                    "object29");
-                                                                paymentSheett();
-                                                              }
-                                                            } else {
-                                                              showToastMessage(
-                                                                  "Please Select Address"
-                                                                      .tr);
-                                                            }
-                                                          }
-                                                        } else {
-                                                          showToastMessage(
-                                                              "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
-                                                        }
-                                                        //!-------
-                                                      } else {
-                                                        if (cartController
-                                                                .cartDataInfo
-                                                                ?.storeData
-                                                                .storeIsPickup ==
-                                                            "1") {
-                                                          if (timeSlot != "") {
-                                                            if (status ==
-                                                                true) {
-                                                              if (double.parse(total
-                                                                      .toString()) >
-                                                                  0) {
-                                                                paymentSheett();
-                                                              } else {
-                                                                // priscriptionOrderComplete(
-                                                                //     "0");
-                                                              }
-                                                            } else {
-                                                              paymentSheett();
-                                                            }
-                                                          } else {
-                                                            showToastMessage(
-                                                                "Please Select Timeslot"
-                                                                    .tr);
-                                                          }
-                                                        } else {
-                                                          if (cartController
-                                                                  .addresTitle !=
-                                                              "") {
-                                                            if (status ==
-                                                                true) {
-                                                              if (double.parse(total
-                                                                      .toString()) >
-                                                                  0) {
-                                                                paymentSheett();
-                                                              } else {
-                                                                // priscriptionOrderComplete(
-                                                                //     "0");
-                                                              }
-                                                            } else {
-                                                              paymentSheett();
-                                                            }
-                                                          } else {
-                                                            showToastMessage(
-                                                                "Please Select Address"
-                                                                    .tr);
-                                                          }
-                                                        }
-                                                      }
-                                                    } else {
-                                                      showToastMessage(
-                                                          "Please Select Timeslot"
-                                                              .tr);
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: 40,
-                                                    width: 120,
-                                                    padding: EdgeInsets.all(10),
-                                                    margin: EdgeInsets.all(8),
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      "Proceed".tr,
-                                                      style: TextStyle(
-                                                        fontFamily: FontFamily
-                                                            .gilroyBold,
-                                                        color: WhiteColor,
-                                                      ),
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      gradient:
-                                                          gradient.btnGradient,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                  ),
-                                                )
-                                      : SizedBox();
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(
+                                                    10),
+                                                border: Border.all(
+                                                    color: Colors
+                                                        .grey
+                                                        .shade300),
+                                              ),
+                                            ),
+                                            Text(
+                                              "${double.parse(cartViewList[index].productPrice?.toStringAsFixed(2).toString() ?? "") * int.parse(isItem(cartViewList[index].id).toString())}${currency}",
+                                              style: TextStyle(
+                                                color: BlackColor,
+                                                fontSize: 15,
+                                                fontFamily:
+                                                FontFamily
+                                                    .gilroyBold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
                                 }),
-                              ],
+                            SizedBox(
+                              height: 10,
                             ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                              color: WhiteColor,
-                            ),
-                          );
-                        }),
-                      ],
-                    )
-                  : Container(
-                      height: Get.size.height,
-                      width: Get.size.width,
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Container(
-                          //   height: Get.size.height * 0.2,
-                          //   width: Get.size.width * 0.4,
-                          //   decoration: BoxDecoration(
-                          //     image: DecorationImage(
-                          //       image: AssetImage('assets/cartEmpty.png'),
-                          //     ),
-                          //   ),
-                          // ),
-
-                          Lottie.asset(
-                            "assets/lotties/7204393.json",
-                          ),
-
-                          Text(
-                            "Is's Lonely in here...".tr,
-                            style: TextStyle(
-                              fontFamily: FontFamily.gilroyBold,
-                              fontSize: 17,
-                              color: BlackColor,
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 15,
-                          ),
-
-                          Text(
-                            "Why don't you check some products on our \n Fast Laundry"
-                                .tr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: FontFamily.gilroyMedium,
-                              fontSize: 15,
-                              height: 1.2,
-                              color: BlackColor,
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 40,
-                          ),
-
-                          InkWell(
-                            onTap: () {
-                              catDetailsController.changeIndex(0);
-                            },
-                            child: Container(
-                              height: 50,
-                              width: Get.size.width,
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.all(15),
-                              child: Text(
-                                "Explore more".tr,
-                                style: TextStyle(
-                                  fontFamily: FontFamily.gilroyBold,
+                            DottedLine(dashColor: greyColor),
+                            TextFormField(
+                              controller: writeinstruction,
+                              minLines: 1,
+                              maxLines: 5,
+                              decoration: InputDecoration(
+                                contentPadding:
+                                EdgeInsets.only(left: 8, top: 5),
+                                hintText:
+                                "Write instructions, gifting ideas etc.."
+                                    .tr,
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                hintStyle: TextStyle(
+                                  color: greyColor,
                                   fontSize: 15,
-                                  color: WhiteColor,
+                                  fontFamily: FontFamily.gilroyMedium,
                                 ),
                               ),
-                              decoration: BoxDecoration(
-                                gradient: gradient.btnGradient,
-                                borderRadius: BorderRadius.circular(10),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      cartController.cartDataInfo?.storeData
+                          .storeIsPickup ==
+                          "1"
+                          ? cartViewList[0].cartCheck == "0"
+                          ? Container(
+                        height: 110,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding:
+                              EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Delivery Type".tr,
+                                style: TextStyle(
+                                  color: BlackColor,
+                                  fontFamily:
+                                  FontFamily.gilroyBold,
+                                  fontSize: 17,
+                                ),
                               ),
                             ),
-                          )
-                        ],
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    status = false;
+                                    walletCalculation(
+                                        false);
+                                    setState(() {});
+                                    // status = false;
+                                    // total = total + useWallet;
+                                    // useWallet = 0;
+                                    total = cartController
+                                        .couponAmt;
+                                    cartController
+                                        .couponAmt = 0;
+                                    couponCode = "";
+                                    print(
+                                        "-------*******------" +
+                                            total
+                                                .toString());
+                                    if (groupValue == 1) {
+                                      setState(() {
+                                        total = total -
+                                            double.parse(cartController
+                                                .cartDataInfo
+                                                ?.storeData
+                                                .restDcharge ??
+                                                "0");
+                                        getTotal = total;
+                                      });
+                                      print("+++++=====++++" +
+                                          cartController
+                                              .subTotal
+                                              .toString());
+                                      print("-------*******------" +
+                                          total.toString());
+                                    }
+                                    setState(() {
+                                      groupValue = 0;
+                                    });
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Radio(
+                                        activeColor:
+                                        groupValue == 0
+                                            ? gradient
+                                            .defoultColor
+                                            : greyColor,
+                                        value: 0,
+                                        groupValue:
+                                        groupValue,
+                                        onChanged: (value) {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+                                          // status = false;
+                                          // total = total + useWallet;
+                                          // useWallet = 0;
+                                          total = total +
+                                              cartController
+                                                  .couponAmt;
+                                          cartController
+                                              .couponAmt = 0;
+                                          couponCode = "";
+                                          print("-------*******------" +
+                                              total
+                                                  .toString());
+                                          if (groupValue ==
+                                              1) {
+                                            setState(() {
+                                              total = total -
+                                                  double.parse(cartController
+                                                      .cartDataInfo
+                                                      ?.storeData
+                                                      .restDcharge ??
+                                                      "0");
+                                              getTotal =
+                                                  total;
+                                            });
+                                            print("+++++=====++++" +
+                                                cartController
+                                                    .subTotal
+                                                    .toString());
+                                            print("-------*******------" +
+                                                total
+                                                    .toString());
+                                          }
+                                          setState(() {
+                                            groupValue =
+                                            value!;
+                                          });
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Self Pickup".tr,
+                                        style: TextStyle(
+                                          color: groupValue ==
+                                              0
+                                              ? gradient
+                                              .defoultColor
+                                              : greyColor,
+                                          fontFamily: FontFamily
+                                              .gilroyMedium,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 25,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    status = false;
+                                    walletCalculation(
+                                        false);
+                                    setState(() {});
+                                    // total = total + useWallet;
+                                    // useWallet = 0;
+                                    total = total +
+                                        cartController
+                                            .couponAmt;
+                                    cartController
+                                        .couponAmt = 0;
+                                    couponCode = "";
+                                    print(
+                                        "-------*******------" +
+                                            total
+                                                .toString());
+                                    setState(() {
+                                      groupValue = 1;
+                                      total = cartController
+                                          .subTotal +
+                                          double.parse(cartController
+                                              .cartDataInfo
+                                              ?.storeData
+                                              .restDcharge ??
+                                              "0") +
+                                          double.parse(cartController
+                                              .cartDataInfo
+                                              ?.storeData
+                                              .storeCharge ??
+                                              "0");
+                                      print("+++++=====++++" +
+                                          cartController
+                                              .subTotal
+                                              .toString());
+                                      print("-------*******------" +
+                                          total.toString());
+                                      getTotal = total;
+                                    });
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Radio(
+                                        activeColor:
+                                        groupValue == 1
+                                            ? gradient
+                                            .defoultColor
+                                            : greyColor,
+                                        value: 1,
+                                        groupValue:
+                                        groupValue,
+                                        onChanged: (value) {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+                                          // total = total + useWallet;
+                                          // useWallet = 0;
+                                          total = total +
+                                              cartController
+                                                  .couponAmt;
+                                          cartController
+                                              .couponAmt = 0;
+                                          couponCode = "";
+                                          print("-------*******------" +
+                                              total
+                                                  .toString());
+                                          setState(() {
+                                            groupValue = 1;
+                                            total = cartController
+                                                .subTotal +
+                                                double.parse(cartController
+                                                    .cartDataInfo
+                                                    ?.storeData
+                                                    .restDcharge ??
+                                                    "0") +
+                                                double.parse(cartController
+                                                    .cartDataInfo
+                                                    ?.storeData
+                                                    .storeCharge ??
+                                                    "0");
+                                            print("+++++=====++++" +
+                                                cartController
+                                                    .subTotal
+                                                    .toString());
+                                            print("-------*******------" +
+                                                total
+                                                    .toString());
+                                            getTotal =
+                                                total;
+                                          });
+                                          setState(() {
+                                            groupValue =
+                                            value!;
+                                          });
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Delivery".tr,
+                                        style: TextStyle(
+                                          color: groupValue ==
+                                              1
+                                              ? gradient
+                                              .defoultColor
+                                              : greyColor,
+                                          fontFamily: FontFamily
+                                              .gilroyMedium,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          BorderRadius.circular(20),
+                          color: WhiteColor,
+                        ),
+                      )
+                          : SizedBox()
+                          : SizedBox(),
+                      //! ---------- Pickup Address ----------!//
+                      Container(
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "PickUp Date".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 15,
+                                color: BlackColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                selectStartDate().then((value) => {
+                                  if (subScibeController
+                                      .selectDay !=
+                                      "")
+                                    {
+                                      formattedDate =
+                                      "${subScibeController.selectDay}-${subScibeController.selectMonth}-${subScibeController.selectYear}",
+                                      setState(() {})
+                                    },
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Radio(
+                                    value: 0,
+                                    groupValue: 0,
+                                    activeColor:
+                                    gradient.defoultColor,
+                                    onChanged: (value) {},
+                                  ),
+                                  Text(
+                                    formattedDate,
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyMedium,
+                                      fontSize: 15,
+                                      color: BlackColor,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Image.asset(
+                                    "assets/calendar1.png",
+                                    height: 25,
+                                    width: 25,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "PickUp Timeslot".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 15,
+                                color: BlackColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 50,
+                              child: cartController.isLoading
+                                  ? cartController.cartDataInfo!
+                                  .timeslotlist.isEmpty
+                                  ? Text("Not Available")
+                                  : ListView.builder(
+                                itemCount: cartController
+                                    .cartDataInfo
+                                    ?.timeslotlist
+                                    .length,
+                                scrollDirection:
+                                Axis.horizontal,
+                                itemBuilder:
+                                    (context, index) {
+                                  String maxTime =
+                                      "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].maxtime}";
+                                  String minTime =
+                                      "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].mintime}";
+                                  return InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        timeSlotValue =
+                                            index;
+                                        timeSlot =
+                                        "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      padding:
+                                      EdgeInsets.only(
+                                          right: 10),
+                                      margin:
+                                      EdgeInsets.all(5),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Radio(
+                                            activeColor:
+                                            gradient
+                                                .defoultColor,
+                                            value: index,
+                                            groupValue:
+                                            timeSlotValue,
+                                            onChanged:
+                                                (value) {
+                                              setState(() {
+                                                timeSlot =
+                                                "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
+                                                timeSlotValue =
+                                                    index;
+                                              });
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            DateFormat.jm()
+                                                .format(DateTime
+                                                .parse(
+                                                minTime)),
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text(
+                                            "to",
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text(
+                                            DateFormat.jm()
+                                                .format(DateTime
+                                                .parse(
+                                                maxTime)),
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      decoration:
+                                      BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors
+                                                .grey
+                                                .shade300),
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            10),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                                  : Center(
+                                child:
+                                CircularProgressIndicator(
+                                  color: gradient.defoultColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              "Drop Timeslot".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 15,
+                                color: BlackColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              height: 50,
+                              child: cartController.isLoading
+                                  ? cartController.cartDataInfo!
+                                  .timeslotlist.isEmpty
+                                  ? Text("Not Available")
+                                  : ListView.builder(
+                                itemCount: cartController
+                                    .cartDataInfo
+                                    ?.timeslotlist
+                                    .length,
+                                scrollDirection:
+                                Axis.horizontal,
+                                itemBuilder:
+                                    (context, index) {
+                                  String maxTime =
+                                      "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].maxtime}";
+                                  String minTime =
+                                      "2023-03-20T${cartController.cartDataInfo?.timeslotlist[index].mintime}";
+                                  return InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        droptimeSlotValue =
+                                            index;
+                                        dropSlot =
+                                        "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      padding:
+                                      EdgeInsets.only(
+                                          right: 10),
+                                      margin:
+                                      EdgeInsets.all(5),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Radio(
+                                            activeColor:
+                                            gradient
+                                                .defoultColor,
+                                            value: index,
+                                            groupValue:
+                                            droptimeSlotValue,
+                                            onChanged:
+                                                (value) {
+                                              setState(() {
+                                                dropSlot =
+                                                "${DateFormat.jm().format(DateTime.parse(minTime))} to ${DateFormat.jm().format(DateTime.parse(maxTime))}";
+                                                droptimeSlotValue =
+                                                    index;
+                                              });
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            DateFormat.jm()
+                                                .format(DateTime
+                                                .parse(
+                                                minTime)),
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text(
+                                            "to",
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text(
+                                            DateFormat.jm()
+                                                .format(DateTime
+                                                .parse(
+                                                maxTime)),
+                                            style:
+                                            TextStyle(
+                                              fontFamily:
+                                              FontFamily
+                                                  .gilroyMedium,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      decoration:
+                                      BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors
+                                                .grey
+                                                .shade300),
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            10),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                                  : Center(
+                                child:
+                                CircularProgressIndicator(
+                                  color: gradient.defoultColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: WhiteColor,
+                        ),
                       ),
-                    )
-              : Center(
-                  child: CircularProgressIndicator(
-                    color: gradient.defoultColor,
+
+                      wallet != "0"
+                          ? Container(
+                        height: 140,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment:
+                          MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Wallet information".tr,
+                                  style: TextStyle(
+                                    fontFamily:
+                                    FontFamily.gilroyBold,
+                                    fontSize: 17,
+                                    color: BlackColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              height: 60,
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Image.asset(
+                                    "assets/wallet.png",
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    "${"Balance".tr} $currency${tempWallet.toStringAsFixed(2)}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Transform.scale(
+                                    scale: 0.8,
+                                    child: CupertinoSwitch(
+                                      activeColor:
+                                      gradient.defoultColor,
+                                      value: status,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          status = value;
+                                          walletCalculation(
+                                              value);
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                border: Border.all(
+                                    color:
+                                    Colors.grey.shade300),
+                              ),
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          borderRadius:
+                          BorderRadius.circular(20),
+                        ),
+                      )
+                          : SizedBox(),
+
+                      //! ---------- Coupon Widget -----------!//
+                      Container(
+                        height: 150,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: InkWell(
+                          onTap: () {
+                            if (couponCode == "") {
+                              status = false;
+                              walletCalculation(false);
+                              setState(() {});
+                              Get.toNamed(Routes.couponScreen,
+                                  arguments: {
+                                    "price": cartController.subTotal
+                                  })!
+                                  .then((value) {
+                                setState(() {
+                                  couponCode = value;
+                                });
+                                couponSucsessFullyApplyed();
+                              });
+                            } else {
+                              status = false;
+                              walletCalculation(false);
+                              setState(() {});
+                              // total = total + useWallet;
+                              // useWallet = 0;
+                              total =
+                                  total + cartController.couponAmt;
+                              cartController.couponAmt = 0;
+                              couponCode = "";
+                              setState(() {});
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                height: 60,
+                                alignment: Alignment.center,
+                                child: InkWell(
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/badge-discount.png",
+                                        height: 40,
+                                        width: 40,
+                                        color: gradient.defoultColor,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            Text(
+                                              "Apply Coupon".tr,
+                                              style: TextStyle(
+                                                color: gradient
+                                                    .defoultColor,
+                                                fontFamily: FontFamily
+                                                    .gilroyBold,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 4,
+                                            ),
+                                            couponCode != ""
+                                                ? Row(
+                                              children: [
+                                                Text(
+                                                  "Use code:"
+                                                      .tr,
+                                                  style:
+                                                  TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyMedium,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  couponCode,
+                                                  style:
+                                                  TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                                : SizedBox(),
+                                          ],
+                                        ),
+                                      ),
+                                      couponCode != ""
+                                          ? InkWell(
+                                        onTap: () {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+                                          // total = total + useWallet;
+                                          // useWallet = 0;
+                                          total = total +
+                                              cartController
+                                                  .couponAmt;
+                                          cartController
+                                              .couponAmt = 0;
+                                          couponCode = "";
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          "Remove".tr,
+                                          style: TextStyle(
+                                            fontFamily:
+                                            FontFamily
+                                                .gilroyBold,
+                                            color: RedColor,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      )
+                                          : InkWell(
+                                        onTap: () {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+
+                                          Get.toNamed(
+                                              Routes
+                                                  .couponScreen,
+                                              arguments: {
+                                                "price":
+                                                cartController
+                                                    .subTotal
+                                              })!
+                                              .then((value) {
+                                            setState(() {
+                                              couponCode =
+                                                  value;
+                                            });
+                                            couponSucsessFullyApplyed();
+                                          });
+                                        },
+                                        child: Text(
+                                          "Apply".tr,
+                                          style: TextStyle(
+                                            fontFamily:
+                                            FontFamily
+                                                .gilroyBold,
+                                            color: gradient
+                                                .defoultColor,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Divider(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "View all coupons".tr,
+                                      style: TextStyle(
+                                        color: greyColor,
+                                        fontSize: 15,
+                                        fontFamily:
+                                        FontFamily.gilroyMedium,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 15,
+                                      color: greyColor,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+
+                      //! ---------- Select Pickup ----------!//
+                      Container(
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: GetBuilder<CartController>(
+                                      builder: (context) {
+                                        return Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            cartController.addresTitle ==
+                                                ""
+                                                ? Text(
+                                              "Select pickup & drop address"
+                                                  .tr,
+                                              style: TextStyle(
+                                                fontFamily:
+                                                FontFamily
+                                                    .gilroyBold,
+                                                fontSize: 17,
+                                              ),
+                                            )
+                                                : Text(
+                                              cartController
+                                                  .addresTitle,
+                                              style: TextStyle(
+                                                fontFamily:
+                                                FontFamily
+                                                    .gilroyBold,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              "We pickup & drop items to this address."
+                                                  .tr,
+                                              style: TextStyle(
+                                                fontFamily: FontFamily
+                                                    .gilroyMedium,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      }),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    cartController.addressListApi();
+                                    addressShit(isCheck: "0");
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 90,
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/location-pin.png",
+                                          height: 25,
+                                          width: 25,
+                                          color:
+                                          gradient.defoultColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Image.asset(
+                                          "assets/angle-down.png",
+                                          height: 15,
+                                          width: 15,
+                                          color:
+                                          gradient.defoultColor,
+                                        )
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color:
+                                          Colors.grey.shade300),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: WhiteColor,
+                        ),
+                      ),
+
+                      GetBuilder<CartController>(builder: (context) {
+                        return Container(
+                          width: Get.size.width,
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "Bill details".tr,
+                                style: TextStyle(
+                                  fontFamily: FontFamily.gilroyBold,
+                                  color: BlackColor,
+                                  fontSize: 17,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Cart total".tr,
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyMedium,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "${cartController.subTotal.toStringAsFixed(2)}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              DottedLine(
+                                dashColor: greyColor,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Store Charge".tr,
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyMedium,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  cartController.isLoading
+                                      ? Text(
+                                    "${double.parse(cartController.cartDataInfo?.storeData.storeCharge ?? "") * getMaxDelivery}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  )
+                                      : SizedBox(),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              status
+                                  ? Row(
+                                children: [
+                                  Text(
+                                    "Wallet".tr,
+                                    style: TextStyle(
+                                      fontFamily: FontFamily
+                                          .gilroyMedium,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "${useWallet.toStringAsFixed(2)}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              )
+                                  : SizedBox(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              couponCode != ""
+                                  ? Row(
+                                children: [
+                                  Text(
+                                    "Coupon".tr,
+                                    style: TextStyle(
+                                      fontFamily: FontFamily
+                                          .gilroyMedium,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "${cartController.couponAmt}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              )
+                                  : SizedBox(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              DottedLine(
+                                dashColor: greyColor,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Delivery Fee".tr,
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyMedium,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  cartController.isLoading
+                                      ? Text(
+                                    cartController
+                                        .cartDataInfo
+                                        ?.storeData
+                                        .storeIsPickup ==
+                                        "1"
+                                        ? groupValue == 1
+                                        ? "${double.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery}${currency}"
+                                        : "Free"
+                                        : "${double.parse(cartController.cartDataInfo?.storeData.restDcharge ?? "") * getMaxDelivery}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  )
+                                      : SizedBox(),
+                                  SizedBox(
+                                    width: 10,
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              DottedLine(
+                                dashColor: greyColor,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "To pay".tr,
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "${total.toStringAsFixed(2)}${currency}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            color: WhiteColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        );
+                      }),
+
+                      // cartController.cartDataInfo?.storeData
+                      //             .storeIsPickup ==
+                      //         "1"
+                      //     ? groupValue == 0
+                      //         ? selfPickUpWidget()
+                      //         : deliveryWidget()
+                      //     : deliveryWidget(),
+                    ],
+                  ),
+                ),
+              ),
+              GetBuilder<CartController>(builder: (context) {
+                return Container(
+                  width: Get.size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${currency}${total.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyBold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              "View Detailed Bill".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily.gilroyMedium,
+                                fontSize: 15,
+                                color: gradient.defoultColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GetBuilder<CartController>(builder: (context) {
+                        return cartController.isLoading
+                            ? groupValue == 1
+                            ? InkWell(
+                          onTap: () {
+                            if (widget.CartStatus == "1") {
+                              if (cartViewList[0]
+                                  .cartCheck ==
+                                  "0") {
+                                if (int.parse(
+                                    "${cartController.cartDataInfo?.storeData.storeMorder}") <=
+                                    cartController
+                                        .subTotal) {
+                                  if (timeSlot != "") {
+                                    if (cartController
+                                        .addresTitle ==
+                                        "") {
+                                      cartController
+                                          .addressListApi();
+                                      addressShit();
+                                    } else {
+                                      if (cartController
+                                          .cartDataInfo
+                                          ?.storeData
+                                          .storeIsDeliver ==
+                                          "1") {
+                                        if (status ==
+                                            true) {
+                                          if (double.parse(total
+                                              .toString()) >
+                                              0) {
+                                            print("object");
+                                            paymentSheett();
+                                          } else {
+                                            if (cartViewList[
+                                            0]
+                                                .cartCheck ==
+                                                "0") {
+                                              buyNormalOrderInStore(
+                                                  "0");
+                                            } else {
+                                              subScriptionOrderInStore(
+                                                  "0");
+                                            }
+                                          }
+                                        } else {
+                                          paymentSheett();
+                                        }
+                                      } else {
+                                        setState(() {
+                                          cartController
+                                              .addresTitle = "";
+                                        });
+                                        showToastMessage(
+                                            "Please Change Address"
+                                                .tr);
+                                      }
+                                    }
+                                  } else {
+                                    showToastMessage(
+                                        "Please Select Timeslot"
+                                            .tr);
+                                  }
+                                } else {
+                                  showToastMessage(
+                                      "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
+                                }
+                              } else {
+                                if (int.parse(
+                                    "${cartController.cartDataInfo?.storeData.storeMorder}") <=
+                                    cartController
+                                        .subTotal) {
+                                  if (cartController
+                                      .addresTitle ==
+                                      "") {
+                                    cartController
+                                        .addressListApi();
+                                    addressShit();
+                                  } else {
+                                    if (cartController
+                                        .cartDataInfo
+                                        ?.storeData
+                                        .storeIsDeliver ==
+                                        "1") {
+                                      if (status == true) {
+                                        if (double.parse(total
+                                            .toString()) >
+                                            0) {
+                                          paymentSheett();
+                                        } else {
+                                          if (cartViewList[
+                                          0]
+                                              .cartCheck ==
+                                              "0") {
+                                            buyNormalOrderInStore(
+                                                "0");
+                                          } else {
+                                            subScriptionOrderInStore(
+                                                "0");
+                                          }
+                                        }
+                                      } else {
+                                        paymentSheett();
+                                      }
+                                    } else {
+                                      setState(() {
+                                        cartController
+                                            .addresTitle = "";
+                                      });
+                                      showToastMessage(
+                                          "Please Change Address"
+                                              .tr);
+                                    }
+                                  }
+                                } else {
+                                  showToastMessage(
+                                      "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
+                                }
+                              }
+                            } else {
+                              if (cartController
+                                  .addresTitle ==
+                                  "") {
+                                cartController
+                                    .addressListApi();
+                                addressShit();
+                              } else {
+                                if (cartController
+                                    .cartDataInfo
+                                    ?.storeData
+                                    .storeIsDeliver ==
+                                    "1") {
+                                  if (status == true) {
+                                    if (double.parse(total
+                                        .toString()) >
+                                        0) {
+                                      paymentSheett();
+                                    } else {}
+                                  } else {
+                                    paymentSheett();
+                                  }
+                                } else {
+                                  setState(() {
+                                    cartController
+                                        .addresTitle = "";
+                                  });
+                                  showToastMessage(
+                                      "Please Change Address"
+                                          .tr);
+                                }
+                              }
+                            }
+                          },
+                          child: Container(
+                            height: 45,
+                            margin: EdgeInsets.all(8),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5),
+                            alignment: Alignment.center,
+                            child: cartController
+                                .addresTitle ==
+                                ""
+                                ? Text(
+                              "Select Address".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily
+                                    .gilroyBold,
+                                color: WhiteColor,
+                              ),
+                            )
+                                : Text(
+                              "Continue".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily
+                                    .gilroyBold,
+                                color: WhiteColor,
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              gradient:
+                              gradient.btnGradient,
+                              borderRadius:
+                              BorderRadius.circular(10),
+                            ),
+                          ),
+                        )
+                            : cartController
+                            .cartDataInfo!
+                            .storeData
+                            .storeIsDeliver ==
+                            "0"
+                            ? Container(
+                          height: 40,
+                          width: 120,
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.all(8),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Not Avalable".tr,
+                            style: TextStyle(
+                              fontFamily:
+                              FontFamily.gilroyBold,
+                              color: WhiteColor,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            gradient:
+                            gradient.btnGradient,
+                            borderRadius:
+                            BorderRadius.circular(
+                                10),
+                          ),
+                        )
+                            : InkWell(
+                          onTap: () {
+                            print(double.parse(
+                                total.toString()) >
+                                0);
+                            if (dropSlot.isNotEmpty &&
+                                timeSlot.isNotEmpty) {
+                              if (widget.CartStatus ==
+                                  "1") {
+                                // if (cartController.isRq.isEmpty) {
+                                if (int.parse(
+                                    "${cartController.cartDataInfo?.storeData.storeMorder}") <=
+                                    cartController
+                                        .subTotal) {
+                                  if (cartController
+                                      .cartDataInfo
+                                      ?.storeData
+                                      .storeIsPickup ==
+                                      "1") {
+                                    if (timeSlot
+                                        .isNotEmpty &&
+                                        dropSlot
+                                            .isNotEmpty) {
+                                      if (status ==
+                                          true) {
+                                        if (double.parse(
+                                            total
+                                                .toString()) >
+                                            0) {
+                                          print(
+                                              "object");
+                                          paymentSheett();
+                                        } else {
+                                          if (cartViewList[
+                                          0]
+                                              .cartCheck ==
+                                              "0") {
+                                            buyNormalOrderInStore(
+                                                "0");
+                                          } else {
+                                            subScriptionOrderInStore(
+                                                "0");
+                                          }
+                                        }
+                                      } else {
+                                        print(
+                                            "object12");
+                                        paymentSheett();
+                                      }
+                                    } else {
+                                      showToastMessage(
+                                          "Please Select Timeslot"
+                                              .tr);
+                                    }
+                                  } else {
+                                    if (cartController
+                                        .addresTitle !=
+                                        "") {
+                                      if (status ==
+                                          true) {
+                                        if (double.parse(
+                                            total
+                                                .toString()) >
+                                            0) {
+                                          paymentSheett();
+                                        } else {
+                                          if (cartViewList[
+                                          0]
+                                              .cartCheck ==
+                                              "0") {
+                                            buyNormalOrderInStore(
+                                                "0");
+                                          } else {
+                                            subScriptionOrderInStore(
+                                                "0");
+                                          }
+                                        }
+                                      } else {
+                                        print(
+                                            "object29");
+                                        paymentSheett();
+                                      }
+                                    } else {
+                                      showToastMessage(
+                                          "Please Select Address"
+                                              .tr);
+                                    }
+                                  }
+                                } else {
+                                  showToastMessage(
+                                      "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
+                                }
+                                //!-------
+                              } else {
+                                if (cartController
+                                    .cartDataInfo
+                                    ?.storeData
+                                    .storeIsPickup ==
+                                    "1") {
+                                  if (timeSlot != "") {
+                                    if (status ==
+                                        true) {
+                                      if (double.parse(total
+                                          .toString()) >
+                                          0) {
+                                        paymentSheett();
+                                      } else {
+                                        // priscriptionOrderComplete(
+                                        //     "0");
+                                      }
+                                    } else {
+                                      paymentSheett();
+                                    }
+                                  } else {
+                                    showToastMessage(
+                                        "Please Select Timeslot"
+                                            .tr);
+                                  }
+                                } else {
+                                  if (cartController
+                                      .addresTitle !=
+                                      "") {
+                                    if (status ==
+                                        true) {
+                                      if (double.parse(total
+                                          .toString()) >
+                                          0) {
+                                        paymentSheett();
+                                      } else {
+                                        // priscriptionOrderComplete(
+                                        //     "0");
+                                      }
+                                    } else {
+                                      paymentSheett();
+                                    }
+                                  } else {
+                                    showToastMessage(
+                                        "Please Select Address"
+                                            .tr);
+                                  }
+                                }
+                              }
+                            } else {
+                              showToastMessage(
+                                  "Please Select Timeslot"
+                                      .tr);
+                            }
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 120,
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.all(8),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Proceed".tr,
+                              style: TextStyle(
+                                fontFamily: FontFamily
+                                    .gilroyBold,
+                                color: WhiteColor,
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              gradient:
+                              gradient.btnGradient,
+                              borderRadius:
+                              BorderRadius.circular(
+                                  10),
+                            ),
+                          ),
+                        )
+                            : SizedBox();
+                      }),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    color: WhiteColor,
                   ),
                 );
+              }),
+            ],
+          )
+              : Container(
+            height: Get.size.height,
+            width: Get.size.width,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Container(
+                //   height: Get.size.height * 0.2,
+                //   width: Get.size.width * 0.4,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: AssetImage('assets/cartEmpty.png'),
+                //     ),
+                //   ),
+                // ),
+
+                Lottie.asset(
+                  "assets/lotties/7204393.json",
+                ),
+
+                Text(
+                  "Is's Lonely in here...".tr,
+                  style: TextStyle(
+                    fontFamily: FontFamily.gilroyBold,
+                    fontSize: 17,
+                    color: BlackColor,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 15,
+                ),
+
+                Text(
+                  "Why don't you check some products on our \n Fast Laundry"
+                      .tr,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: FontFamily.gilroyMedium,
+                    fontSize: 15,
+                    height: 1.2,
+                    color: BlackColor,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 40,
+                ),
+
+                InkWell(
+                  onTap: () {
+                    catDetailsController.changeIndex(0);
+                  },
+                  child: Container(
+                    height: 50,
+                    width: Get.size.width,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(15),
+                    child: Text(
+                      "Explore more".tr,
+                      style: TextStyle(
+                        fontFamily: FontFamily.gilroyBold,
+                        fontSize: 15,
+                        color: WhiteColor,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: gradient.btnGradient,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+              : Center(
+            child: CircularProgressIndicator(
+              color: gradient.defoultColor,
+            ),
+          );
         }),
       ),
     );
@@ -2914,7 +2914,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                     },
                     onDaySelected: (selectedDay, focusedDay) {
                       formattedDate =
-                          "${subScibeController.selectDay}-${subScibeController.selectMonth}-${subScibeController.selectYear}";
+                      "${subScibeController.selectDay}-${subScibeController.selectMonth}-${subScibeController.selectYear}";
                       setState(() {});
                       subScibeController.getDate(
                         day1: selectedDay.day.toString(),
@@ -3205,202 +3205,202 @@ class _YourCartScreenState extends State<YourCartScreen> {
                     return Expanded(
                       child: cartController.isLoading
                           ? cartController.addressInfo!.addressList.isNotEmpty
-                              ? ListView.builder(
-                                  itemCount: cartController
-                                      .addressInfo?.addressList.length,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            status = false;
-                                            walletCalculation(false);
-                                            setState(() {});
-                                            total = total +
-                                                cartController.couponAmt;
-                                            cartController.couponAmt = 0;
-                                            couponCode = "";
-                                            save("clc", true);
-                                            setState(() {});
-                                            if (isCheck == "0") {
-                                              cartController.getAddress(
-                                                aLat: cartController.addressInfo
-                                                    ?.addressList[index].aLat,
-                                                aLong: cartController
-                                                    .addressInfo
-                                                    ?.addressList[index]
-                                                    .aLong,
-                                                aTitle: cartController
-                                                        .addressInfo
-                                                        ?.addressList[index]
-                                                        .address ??
-                                                    "",
-                                                aType1: cartController
-                                                        .addressInfo
-                                                        ?.addressList[index]
-                                                        .aType ??
-                                                    "",
-                                                isCheck: "0",
-                                              );
-                                              if (cartController
-                                                      .pickupAddresTitle ==
-                                                  cartController.addresTitle) {
-                                                setState(() {
-                                                  cartController.addresTitle =
-                                                      "";
-                                                });
-                                                showToastMessage(
-                                                    "Please select unother address");
-                                              }
-                                            } else if (isCheck == "1") {
-                                              cartController.getAddress(
-                                                aLat: cartController.addressInfo
-                                                    ?.addressList[index].aLat,
-                                                aLong: cartController
-                                                    .addressInfo
-                                                    ?.addressList[index]
-                                                    .aLong,
-                                                aTitle: cartController
-                                                        .addressInfo
-                                                        ?.addressList[index]
-                                                        .address ??
-                                                    "",
-                                                aType1: cartController
-                                                        .addressInfo
-                                                        ?.addressList[index]
-                                                        .aType ??
-                                                    "",
-                                                isCheck: "1",
-                                              );
-                                              if (cartController
-                                                      .pickupAddresTitle ==
-                                                  cartController.addresTitle) {
-                                                setState(() {
-                                                  cartController
-                                                      .pickupAddresTitle = "";
-                                                });
-                                                showToastMessage(
-                                                    "Please select unother address");
-                                              }
-                                            }
-                                            cartController.getCartDataApi(
-                                                storeID:
-                                                    storeDataContoller.storeid);
-                                            print("========+++++++++========" +
-                                                cartController.cartDataInfo!
-                                                    .storeData.restDcharge
-                                                    .toString());
-                                            Get.back();
-                                          },
-                                          child: Container(
-                                            // height: 70,
-                                            width: Get.size.width,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 15, vertical: 8),
-                                            padding: EdgeInsets.all(10),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  alignment: Alignment.center,
-                                                  child: Image.asset(
-                                                    "assets/location-pin.png",
-                                                    height: 25,
-                                                    width: 25,
-                                                    color:
-                                                        gradient.defoultColor,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    border: Border.all(
-                                                        color: Colors
-                                                            .grey.shade300),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        cartController
-                                                                .addressInfo
-                                                                ?.addressList[
-                                                                    index]
-                                                                .aType ??
-                                                            "",
-                                                        style: TextStyle(
-                                                          fontFamily: FontFamily
-                                                              .gilroyBold,
-                                                          fontSize: 17,
-                                                          color: BlackColor,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        cartController
-                                                                .addressInfo
-                                                                ?.addressList[
-                                                                    index]
-                                                                .address ??
-                                                            "",
-                                                        maxLines: 3,
-                                                        style: TextStyle(
-                                                          fontFamily: FontFamily
-                                                              .gilroyMedium,
-                                                          color: greycolor,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          child: Divider(),
-                                        ),
-                                      ],
+                          ? ListView.builder(
+                        itemCount: cartController
+                            .addressInfo?.addressList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  status = false;
+                                  walletCalculation(false);
+                                  setState(() {});
+                                  total = total +
+                                      cartController.couponAmt;
+                                  cartController.couponAmt = 0;
+                                  couponCode = "";
+                                  save("clc", true);
+                                  setState(() {});
+                                  if (isCheck == "0") {
+                                    cartController.getAddress(
+                                      aLat: cartController.addressInfo
+                                          ?.addressList[index].aLat,
+                                      aLong: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .aLong,
+                                      aTitle: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .address ??
+                                          "",
+                                      aType1: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .aType ??
+                                          "",
+                                      isCheck: "0",
                                     );
-                                  },
-                                )
-                              : Center(
-                                  child: Text(
-                                    "Add Your Address".tr,
-                                    style: TextStyle(
-                                      fontFamily: FontFamily.gilroyBold,
-                                      fontSize: 15,
-                                      color: BlackColor,
-                                    ),
+                                    if (cartController
+                                        .pickupAddresTitle ==
+                                        cartController.addresTitle) {
+                                      setState(() {
+                                        cartController.addresTitle =
+                                        "";
+                                      });
+                                      showToastMessage(
+                                          "Please select unother address");
+                                    }
+                                  } else if (isCheck == "1") {
+                                    cartController.getAddress(
+                                      aLat: cartController.addressInfo
+                                          ?.addressList[index].aLat,
+                                      aLong: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .aLong,
+                                      aTitle: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .address ??
+                                          "",
+                                      aType1: cartController
+                                          .addressInfo
+                                          ?.addressList[index]
+                                          .aType ??
+                                          "",
+                                      isCheck: "1",
+                                    );
+                                    if (cartController
+                                        .pickupAddresTitle ==
+                                        cartController.addresTitle) {
+                                      setState(() {
+                                        cartController
+                                            .pickupAddresTitle = "";
+                                      });
+                                      showToastMessage(
+                                          "Please select unother address");
+                                    }
+                                  }
+                                  cartController.getCartDataApi(
+                                      storeID:
+                                      storeDataContoller.storeid);
+                                  print("========+++++++++========" +
+                                      cartController.cartDataInfo!
+                                          .storeData.restDcharge
+                                          .toString());
+                                  Get.back();
+                                },
+                                child: Container(
+                                  // height: 70,
+                                  width: Get.size.width,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        alignment: Alignment.center,
+                                        child: Image.asset(
+                                          "assets/location-pin.png",
+                                          height: 25,
+                                          width: 25,
+                                          color:
+                                          gradient.defoultColor,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              10),
+                                          border: Border.all(
+                                              color: Colors
+                                                  .grey.shade300),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            Text(
+                                              cartController
+                                                  .addressInfo
+                                                  ?.addressList[
+                                              index]
+                                                  .aType ??
+                                                  "",
+                                              style: TextStyle(
+                                                fontFamily: FontFamily
+                                                    .gilroyBold,
+                                                fontSize: 17,
+                                                color: BlackColor,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              cartController
+                                                  .addressInfo
+                                                  ?.addressList[
+                                              index]
+                                                  .address ??
+                                                  "",
+                                              maxLines: 3,
+                                              style: TextStyle(
+                                                fontFamily: FontFamily
+                                                    .gilroyMedium,
+                                                color: greycolor,
+                                                overflow: TextOverflow
+                                                    .ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                )
-                          : Center(
-                              child: CircularProgressIndicator(
-                                color: gradient.defoultColor,
+                                ),
                               ),
-                            ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15),
+                                child: Divider(),
+                              ),
+                            ],
+                          );
+                        },
+                      )
+                          : Center(
+                        child: Text(
+                          "Add Your Address".tr,
+                          style: TextStyle(
+                            fontFamily: FontFamily.gilroyBold,
+                            fontSize: 15,
+                            color: BlackColor,
+                          ),
+                        ),
+                      )
+                          : Center(
+                        child: CircularProgressIndicator(
+                          color: gradient.defoultColor,
+                        ),
+                      ),
                     );
                   }),
                 ],
@@ -3441,19 +3441,19 @@ class _YourCartScreenState extends State<YourCartScreen> {
                     children: [
                       cartController.addresTitle == ""
                           ? Text(
-                              "Select delivery address".tr,
-                              style: TextStyle(
-                                fontFamily: FontFamily.gilroyBold,
-                                fontSize: 17,
-                              ),
-                            )
+                        "Select delivery address".tr,
+                        style: TextStyle(
+                          fontFamily: FontFamily.gilroyBold,
+                          fontSize: 17,
+                        ),
+                      )
                           : Text(
-                              cartController.addresTitle,
-                              style: TextStyle(
-                                fontFamily: FontFamily.gilroyBold,
-                                fontSize: 15,
-                              ),
-                            ),
+                        cartController.addresTitle,
+                        style: TextStyle(
+                          fontFamily: FontFamily.gilroyBold,
+                          fontSize: 15,
+                        ),
+                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -3619,7 +3619,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                     return Expanded(
                       child: Text(
                         cartController
-                                .cartDataInfo?.storeData.storeFullAddress ??
+                            .cartDataInfo?.storeData.storeFullAddress ??
                             "",
                         maxLines: 2,
                         style: TextStyle(
@@ -3753,7 +3753,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
 
   void _openCamera(BuildContext context) async {
     final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       preScriptionControllre.path.add(pickedFile.path);
       setState(() {});
@@ -3833,8 +3833,8 @@ class _YourCartScreenState extends State<YourCartScreen> {
             setState(() {
               cartController.subTotal = cartController.subTotal +
                   (double.parse(
-                          element.productPrice?.toStringAsFixed(2).toString() ??
-                              "") *
+                      element.productPrice?.toStringAsFixed(2).toString() ??
+                          "") *
                       int.parse(element.quantity.toString()));
             });
           } else if (element.cartCheck == "1") {
@@ -3842,10 +3842,10 @@ class _YourCartScreenState extends State<YourCartScreen> {
             setState(() {
               cartController.subTotal = cartController.subTotal +
                   (double.parse(element.productPrice
-                                  ?.toStringAsFixed(2)
-                                  .toString() ??
-                              "") *
-                          int.parse(element.quantity.toString())) *
+                      ?.toStringAsFixed(2)
+                      .toString() ??
+                      "") *
+                      int.parse(element.quantity.toString())) *
                       int.parse(
                           element.selectDelivery.toString().split(" ").first);
             });
@@ -3882,7 +3882,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
             double.parse(total.toString()) - double.parse(wallet.toString());
         useWallet = double.parse(wallet.toString());
         total =
-            (double.parse(total.toString()) - double.parse(wallet.toString()));
+        (double.parse(total.toString()) - double.parse(wallet.toString()));
         tempWallet = 0;
         setState(() {});
       } else {
@@ -3916,416 +3916,416 @@ class _YourCartScreenState extends State<YourCartScreen> {
         return Wrap(children: [
           StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: Get.height / 80,
-                    width: Get.width / 5,
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                  ),
-                ),
-                SizedBox(height: Get.height / 50),
-                Row(children: [
-                  SizedBox(width: Get.width / 14),
-                  Text("Select Payment Method".tr,
-                      style: TextStyle(
-                          color: BlackColor,
-                          fontSize: Get.height / 40,
-                          fontFamily: FontFamily.gilroyBold)),
-                ]),
-                SizedBox(height: Get.height / 50),
-                //! --------- List view paymente ----------
-                SizedBox(
-                  height: Get.height * 0.50,
-                  child: GetBuilder<CartController>(builder: (context) {
-                    return cartController.isLoading
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            itemCount:
-                                cartController.cartDataInfo?.paymentData.length,
-                            itemBuilder: (ctx, i) {
-                              return cartViewList[0].cartCheck == "1" &&
-                                      cartController.cartDataInfo
-                                              ?.paymentData[i].title ==
-                                          "Cash On Delivery"
-                                  ? SizedBox()
-                                  : Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8),
-                                      child: sugestlocationtype(
-                                        borderColor: selectidPay ==
-                                                cartController.cartDataInfo
-                                                    ?.paymentData[i].id
-                                            ? gradient.defoultColor
-                                            : const Color(0xffD6D6D6),
-                                        title: cartController.cartDataInfo
-                                                    ?.storeData.storeIsPickup ==
-                                                "1"
-                                            ? groupValue == 0
-                                                ? cartController
-                                                            .cartDataInfo
-                                                            ?.paymentData[i]
-                                                            .title ==
-                                                        "Cash On Delivery"
-                                                    ? "Pay at Store"
-                                                    : cartController
-                                                            .cartDataInfo
-                                                            ?.paymentData[i]
-                                                            .title ??
-                                                        ""
-                                                : cartController
-                                                        .cartDataInfo
-                                                        ?.paymentData[i]
-                                                        .title ??
-                                                    ""
-                                            : cartController.cartDataInfo
-                                                    ?.paymentData[i].title ??
-                                                "",
-                                        titleColor: BlackColor,
-                                        val: 0,
-                                        image: Config.imageUrl +
-                                            cartController.cartDataInfo!
-                                                .paymentData[i].img,
-                                        adress: cartController.cartDataInfo
-                                                    ?.storeData.storeIsPickup ==
-                                                "1"
-                                            ? groupValue == 0
-                                                ? cartController
-                                                            .cartDataInfo
-                                                            ?.paymentData[i]
-                                                            .title ==
-                                                        "Cash On Delivery"
-                                                    ? "Stores may also accept personal checks or money orders as payment."
-                                                    : cartController
-                                                            .cartDataInfo
-                                                            ?.paymentData[i]
-                                                            .subtitle ??
-                                                        ""
-                                                : cartController
-                                                        .cartDataInfo
-                                                        ?.paymentData[i]
-                                                        .subtitle ??
-                                                    ""
-                                            : cartController.cartDataInfo
-                                                    ?.paymentData[i].subtitle ??
-                                                "",
-                                        ontap: () async {
-                                          setState(() {
-                                            razorpaykey = cartController
-                                                .cartDataInfo!
-                                                .paymentData[i]
-                                                .attributes;
-                                            paymenttital = cartController
-                                                .cartDataInfo!
-                                                .paymentData[i]
-                                                .title;
-                                            selectidPay = cartController
-                                                .cartDataInfo!
-                                                .paymentData[i]
-                                                .id;
-                                            _groupValue = i;
-                                          });
-                                        },
-                                        radio: Radio(
-                                          activeColor: gradient.defoultColor,
-                                          value: i,
-                                          groupValue: _groupValue,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                        ),
-                                      ),
-                                    );
-                            },
-                          )
-                        : Center(
-                            child: CircularProgressIndicator(
-                              color: gradient.defoultColor,
-                            ),
-                          );
-                  }),
-                ),
-                Container(
-                  height: 80,
-                  width: Get.size.width,
-                  alignment: Alignment.center,
-                  child: GestButton(
-                    Width: Get.size.width,
-                    height: 50,
-                    margin: EdgeInsets.only(top: 10, left: 30, right: 30),
-                    buttontext: "Continue".tr,
-                    style: TextStyle(
-                      fontFamily: FontFamily.gilroyBold,
-                      color: WhiteColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 10),
+                    Center(
+                      child: Container(
+                        height: Get.height / 80,
+                        width: Get.width / 5,
+                        decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                      ),
                     ),
-                    onclick: () async {
-                      // //!---- Stripe Payment ------
-                      if (paymenttital == "Razorpay") {
-                        cartController.setOrderLoading();
-                        Get.back();
-                        openCheckout();
-                      } else if (paymenttital == "Cash On Delivery") {
-                        cartController.setOrderLoading();
-                        Get.back();
-                        if (widget.CartStatus == "1") {
-                          if (cartViewList[0].cartCheck == "0") {
-                            buyNormalOrderInStore("0");
-                          } else {
-                            subScriptionOrderInStore("0");
-                          }
-                        } else {
-                          // priscriptionOrderComplete("0");
-                        }
-                      } else if (paymenttital == "Paypal") {
-                        cartController.setOrderLoading();
-                        List<String> keyList = razorpaykey.split(",");
-                        paypalPayment(
-                          total.toString(),
-                          keyList[0],
-                          keyList[1],
+                    SizedBox(height: Get.height / 50),
+                    Row(children: [
+                      SizedBox(width: Get.width / 14),
+                      Text("Select Payment Method".tr,
+                          style: TextStyle(
+                              color: BlackColor,
+                              fontSize: Get.height / 40,
+                              fontFamily: FontFamily.gilroyBold)),
+                    ]),
+                    SizedBox(height: Get.height / 50),
+                    //! --------- List view paymente ----------
+                    SizedBox(
+                      height: Get.height * 0.50,
+                      child: GetBuilder<CartController>(builder: (context) {
+                        return cartController.isLoading
+                            ? ListView.builder(
+                          shrinkWrap: true,
+                          itemCount:
+                          cartController.cartDataInfo?.paymentData.length,
+                          itemBuilder: (ctx, i) {
+                            return cartViewList[0].cartCheck == "1" &&
+                                cartController.cartDataInfo
+                                    ?.paymentData[i].title ==
+                                    "Cash On Delivery"
+                                ? SizedBox()
+                                : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8),
+                              child: sugestlocationtype(
+                                borderColor: selectidPay ==
+                                    cartController.cartDataInfo
+                                        ?.paymentData[i].id
+                                    ? gradient.defoultColor
+                                    : const Color(0xffD6D6D6),
+                                title: cartController.cartDataInfo
+                                    ?.storeData.storeIsPickup ==
+                                    "1"
+                                    ? groupValue == 0
+                                    ? cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .title ==
+                                    "Cash On Delivery"
+                                    ? "Pay at Store"
+                                    : cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .title ??
+                                    ""
+                                    : cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .title ??
+                                    ""
+                                    : cartController.cartDataInfo
+                                    ?.paymentData[i].title ??
+                                    "",
+                                titleColor: BlackColor,
+                                val: 0,
+                                image: Config.imageUrl +
+                                    cartController.cartDataInfo!
+                                        .paymentData[i].img,
+                                adress: cartController.cartDataInfo
+                                    ?.storeData.storeIsPickup ==
+                                    "1"
+                                    ? groupValue == 0
+                                    ? cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .title ==
+                                    "Cash On Delivery"
+                                    ? "Stores may also accept personal checks or money orders as payment."
+                                    : cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .subtitle ??
+                                    ""
+                                    : cartController
+                                    .cartDataInfo
+                                    ?.paymentData[i]
+                                    .subtitle ??
+                                    ""
+                                    : cartController.cartDataInfo
+                                    ?.paymentData[i].subtitle ??
+                                    "",
+                                ontap: () async {
+                                  setState(() {
+                                    razorpaykey = cartController
+                                        .cartDataInfo!
+                                        .paymentData[i]
+                                        .attributes;
+                                    paymenttital = cartController
+                                        .cartDataInfo!
+                                        .paymentData[i]
+                                        .title;
+                                    selectidPay = cartController
+                                        .cartDataInfo!
+                                        .paymentData[i]
+                                        .id;
+                                    _groupValue = i;
+                                  });
+                                },
+                                radio: Radio(
+                                  activeColor: gradient.defoultColor,
+                                  value: i,
+                                  groupValue: _groupValue,
+                                  onChanged: (value) {
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                            : Center(
+                          child: CircularProgressIndicator(
+                            color: gradient.defoultColor,
+                          ),
                         );
-                      } else if (paymenttital == "Stripe") {
-                        Get.back();
-                        stripePayment();
-                      } else if (paymenttital == "Paystack") {
-                        String key = razorpaykey.split(",").first;
-                        // print("**********(Key)*********" + key.toString());
-                        // await plugin.initialize(publicKey: key);
-                        // cartController.setOrderLoading();
-                        // chargeCard(
-                        //   int.parse(total.toString().split(".").first),
-                        //   getData.read("UserLogin")["email"],
-                        // );
-                        Get.back();
-                        payStackController
-                            .paystackApi(
+                      }),
+                    ),
+                    Container(
+                      height: 80,
+                      width: Get.size.width,
+                      alignment: Alignment.center,
+                      child: GestButton(
+                        Width: Get.size.width,
+                        height: 50,
+                        margin: EdgeInsets.only(top: 10, left: 30, right: 30),
+                        buttontext: "Continue".tr,
+                        style: TextStyle(
+                          fontFamily: FontFamily.gilroyBold,
+                          color: WhiteColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        onclick: () async {
+                          // //!---- Stripe Payment ------
+                          if (paymenttital == "Razorpay") {
+                            cartController.setOrderLoading();
+                            Get.back();
+                            openCheckout();
+                          } else if (paymenttital == "Cash On Delivery") {
+                            cartController.setOrderLoading();
+                            Get.back();
+                            if (widget.CartStatus == "1") {
+                              if (cartViewList[0].cartCheck == "0") {
+                                buyNormalOrderInStore("0");
+                              } else {
+                                subScriptionOrderInStore("0");
+                              }
+                            } else {
+                              // priscriptionOrderComplete("0");
+                            }
+                          } else if (paymenttital == "Paypal") {
+                            cartController.setOrderLoading();
+                            List<String> keyList = razorpaykey.split(",");
+                            paypalPayment(
+                              total.toString(),
+                              keyList[0],
+                              keyList[1],
+                            );
+                          } else if (paymenttital == "Stripe") {
+                            Get.back();
+                            stripePayment();
+                          } else if (paymenttital == "Paystack") {
+                            String key = razorpaykey.split(",").first;
+                            // print("**********(Key)*********" + key.toString());
+                            // await plugin.initialize(publicKey: key);
+                            // cartController.setOrderLoading();
+                            // chargeCard(
+                            //   int.parse(total.toString().split(".").first),
+                            //   getData.read("UserLogin")["email"],
+                            // );
+                            Get.back();
+                            payStackController
+                                .paystackApi(
                                 context: context,
                                 email: getData
                                     .read("UserLogin")["email"]
                                     .toString(),
                                 amount: total.toString())
-                            .then(
-                          (value) {
-                            Get.to(Paystackweb(
+                                .then(
+                                  (value) {
+                                Get.to(Paystackweb(
                                     url: payStackController
                                         .payStackModel!.data.authorizationUrl,
                                     skID: key))!
-                                .then(
-                              (value) {
-                                if (verifyPaystack == 1) {
-                                  if (widget.CartStatus == "1") {
-                                    if (cartViewList[0].cartCheck == "0") {
-                                      buyNormalOrderInStore(value);
+                                    .then(
+                                      (value) {
+                                    if (verifyPaystack == 1) {
+                                      if (widget.CartStatus == "1") {
+                                        if (cartViewList[0].cartCheck == "0") {
+                                          buyNormalOrderInStore(value);
+                                        } else {
+                                          subScriptionOrderInStore(value);
+                                        }
+                                      } else {
+                                        // priscriptionOrderComplete(otid);
+                                      }
+                                      Fluttertoast.showToast(
+                                          msg: 'Payment Successfully',
+                                          timeInSecForIosWeb: 4);
                                     } else {
-                                      subScriptionOrderInStore(value);
+                                      Get.back();
                                     }
-                                  } else {
-                                    // priscriptionOrderComplete(otid);
-                                  }
-                                  Fluttertoast.showToast(
-                                      msg: 'Payment Successfully',
-                                      timeInSecForIosWeb: 4);
-                                } else {
-                                  Get.back();
-                                }
+                                  },
+                                );
                               },
                             );
-                          },
-                        );
-                      } else if (paymenttital == "Flutterwave") {
-                        cartController.setOrderLoading();
-                        Get.to(() => Flutterwave(
-                                  totalAmount: total.toString(),
-                                  email: getData
-                                      .read("UserLogin")["email"]
-                                      .toString(),
-                                ))!
-                            .then((otid) {
-                          if (otid != null) {
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
+                          } else if (paymenttital == "Flutterwave") {
+                            cartController.setOrderLoading();
+                            Get.to(() => Flutterwave(
+                              totalAmount: total.toString(),
+                              email: getData
+                                  .read("UserLogin")["email"]
+                                  .toString(),
+                            ))!
+                                .then((otid) {
+                              if (otid != null) {
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
                               } else {
-                                subScriptionOrderInStore(otid);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                          } else {
-                            Get.back();
-                          }
-                        });
-                      } else if (paymenttital == "Paytm") {
-                        cartController.setOrderLoading();
-                        Get.to(() => PayTmPayment(
-                                  totalAmount: total.toString(),
-                                  uid: getData
-                                      .read("UserLogin")["id"]
-                                      .toString(),
-                                ))!
-                            .then((otid) {
-                          if (otid != null) {
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
+                            });
+                          } else if (paymenttital == "Paytm") {
+                            cartController.setOrderLoading();
+                            Get.to(() => PayTmPayment(
+                              totalAmount: total.toString(),
+                              uid: getData
+                                  .read("UserLogin")["id"]
+                                  .toString(),
+                            ))!
+                                .then((otid) {
+                              if (otid != null) {
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
                               } else {
-                                subScriptionOrderInStore(otid);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                          } else {
-                            Get.back();
-                          }
-                        });
-                      } else if (paymenttital == "SenangPay") {
-                        Get.to(SenangPay(
+                            });
+                          } else if (paymenttital == "SenangPay") {
+                            Get.to(SenangPay(
                                 email: getData.read("UserLogin")["email"],
                                 totalAmount: total.toString(),
                                 name: getData.read("UserLogin")["name"],
                                 phon: getData.read("UserLogin")["mobile"]))!
-                            .then((otid) {
-                          if (otid != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
+                                .then((otid) {
+                              if (otid != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
                               } else {
-                                subScriptionOrderInStore(otid);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                          } else {
-                            Get.back();
-                          }
-                        });
-                      } else if (paymenttital == "Payfast") {
-                        Get.to(() => PayFast(
-                                  totalAmount: total.toString(),
-                                  email: getData.read("UserLogin")["email"],
-                                ))!
-                            .then((otid) {
-                          if (otid != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
+                            });
+                          } else if (paymenttital == "Payfast") {
+                            Get.to(() => PayFast(
+                              totalAmount: total.toString(),
+                              email: getData.read("UserLogin")["email"],
+                            ))!
+                                .then((otid) {
+                              if (otid != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
                               } else {
-                                subScriptionOrderInStore(otid);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                          } else {
-                            Get.back();
-                          }
-                        });
-                      } else if (paymenttital == "Midtrans") {
-                        Get.to(MidTrans(
+                            });
+                          } else if (paymenttital == "Midtrans") {
+                            Get.to(MidTrans(
                                 email: getData.read("UserLogin")["email"],
                                 totalAmount: total.toString(),
                                 mobilenumber:
-                                    getData.read("UserLogin")["mobile"]))
-                            ?.then((value) {
-                          if (value != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(value);
+                                getData.read("UserLogin")["mobile"]))
+                                ?.then((value) {
+                              if (value != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(value);
+                                  } else {
+                                    subScriptionOrderInStore(value);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
+                              } else {}
+                            });
+                          } else if (paymenttital == "2checkout") {
+                            Get.to(() => CheckOutPayment(
+                              totalAmount: total.toString(),
+                              email: getData.read("UserLogin")["email"],
+                            ))!
+                                .then((otid) {
+                              if (otid != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
+                                Fluttertoast.showToast(
+                                    msg: 'Payment Successfully',
+                                    timeInSecForIosWeb: 4);
                               } else {
-                                subScriptionOrderInStore(value);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                          } else {}
-                        });
-                      } else if (paymenttital == "2checkout") {
-                        Get.to(() => CheckOutPayment(
-                                  totalAmount: total.toString(),
-                                  email: getData.read("UserLogin")["email"],
-                                ))!
-                            .then((otid) {
-                          if (otid != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
+                            });
+                          } else if (paymenttital == "Khalti Payment") {
+                            Get.to(() => Khalti(
+                              totalAmount: total.toString(),
+                              email: getData.read("UserLogin")["email"],
+                            ))!
+                                .then((otid) {
+                              if (otid != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(otid);
+                                  } else {
+                                    subScriptionOrderInStore(otid);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
+                                Fluttertoast.showToast(
+                                    msg: 'Payment Successfully',
+                                    timeInSecForIosWeb: 4);
                               } else {
-                                subScriptionOrderInStore(otid);
+                                Get.back();
                               }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                            Fluttertoast.showToast(
-                                msg: 'Payment Successfully',
-                                timeInSecForIosWeb: 4);
-                          } else {
-                            Get.back();
+                            });
+                          } else if (paymenttital == "MercadoPago") {
+                            Get.to(merpago(
+                              totalAmount: total.toString(),
+                            ))?.then((value) {
+                              if (value != null) {
+                                Get.back();
+                                if (widget.CartStatus == "1") {
+                                  if (cartViewList[0].cartCheck == "0") {
+                                    buyNormalOrderInStore(value);
+                                  } else {
+                                    subScriptionOrderInStore(value);
+                                  }
+                                } else {
+                                  // priscriptionOrderComplete(otid);
+                                }
+                                Fluttertoast.showToast(
+                                    msg: 'Payment Successfully',
+                                    timeInSecForIosWeb: 4);
+                              } else {}
+                            });
                           }
-                        });
-                      } else if (paymenttital == "Khalti Payment") {
-                        Get.to(() => Khalti(
-                                  totalAmount: total.toString(),
-                                  email: getData.read("UserLogin")["email"],
-                                ))!
-                            .then((otid) {
-                          if (otid != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(otid);
-                              } else {
-                                subScriptionOrderInStore(otid);
-                              }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                            Fluttertoast.showToast(
-                                msg: 'Payment Successfully',
-                                timeInSecForIosWeb: 4);
-                          } else {
-                            Get.back();
-                          }
-                        });
-                      } else if (paymenttital == "MercadoPago") {
-                        Get.to(merpago(
-                          totalAmount: total.toString(),
-                        ))?.then((value) {
-                          if (value != null) {
-                            Get.back();
-                            if (widget.CartStatus == "1") {
-                              if (cartViewList[0].cartCheck == "0") {
-                                buyNormalOrderInStore(value);
-                              } else {
-                                subScriptionOrderInStore(value);
-                              }
-                            } else {
-                              // priscriptionOrderComplete(otid);
-                            }
-                            Fluttertoast.showToast(
-                                msg: 'Payment Successfully',
-                                timeInSecForIosWeb: 4);
-                          } else {}
-                        });
-                      }
-                    },
-                  ),
-                  decoration: BoxDecoration(
-                    color: WhiteColor,
-                  ),
-                ),
-              ],
-            );
-          }),
+                        },
+                      ),
+                      decoration: BoxDecoration(
+                        color: WhiteColor,
+                      ),
+                    ),
+                  ],
+                );
+              }),
         ]);
       },
     );
@@ -4333,77 +4333,77 @@ class _YourCartScreenState extends State<YourCartScreen> {
 
   Widget sugestlocationtype(
       {Function()? ontap,
-      title,
-      val,
-      image,
-      adress,
-      radio,
-      Color? borderColor,
-      Color? titleColor}) {
+        title,
+        val,
+        image,
+        adress,
+        radio,
+        Color? borderColor,
+        Color? titleColor}) {
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-      return InkWell(
-        splashColor: Colors.transparent,
-        onTap: ontap,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width / 18),
-          child: Container(
-            // height: Get.height / 10,
-            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 8),
-            decoration: BoxDecoration(
-                border: Border.all(color: borderColor!, width: 1),
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(11)),
-            child: Row(
-              children: [
-                SizedBox(width: Get.width / 55),
-                Container(
-                    height: Get.height / 12,
-                    width: Get.width / 5.5,
-                    decoration: BoxDecoration(
-                        color: const Color(0xffF2F4F9),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: FadeInImage(
-                          placeholder: const AssetImage("assets/loading2.gif"),
-                          image: NetworkImage(image)),
-                      // Image.network(image, height: Get.height / 08)
-                    )),
-                SizedBox(width: Get.width / 30),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          return InkWell(
+            splashColor: Colors.transparent,
+            onTap: ontap,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Get.width / 18),
+              child: Container(
+                // height: Get.height / 10,
+                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+                decoration: BoxDecoration(
+                    border: Border.all(color: borderColor!, width: 1),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(11)),
+                child: Row(
                   children: [
-                    SizedBox(height: Get.height * 0.0001),
-                    Text(title,
-                        style: TextStyle(
-                          fontSize: Get.height / 55,
-                          fontFamily: FontFamily.gilroyBold,
-                          color: titleColor,
+                    SizedBox(width: Get.width / 55),
+                    Container(
+                        height: Get.height / 12,
+                        width: Get.width / 5.5,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffF2F4F9),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: FadeInImage(
+                              placeholder: const AssetImage("assets/loading2.gif"),
+                              image: NetworkImage(image)),
+                          // Image.network(image, height: Get.height / 08)
                         )),
-                    SizedBox(
-                      height: 6,
+                    SizedBox(width: Get.width / 30),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: Get.height * 0.0001),
+                        Text(title,
+                            style: TextStyle(
+                              fontSize: Get.height / 55,
+                              fontFamily: FontFamily.gilroyBold,
+                              color: titleColor,
+                            )),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.50,
+                          child: Text(adress,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: Get.height / 65,
+                                  fontFamily: 'Gilroy_Medium',
+                                  color: Colors.grey)),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: Get.width * 0.50,
-                      child: Text(adress,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: Get.height / 65,
-                              fontFamily: 'Gilroy_Medium',
-                              color: Colors.grey)),
-                    ),
+                    const Spacer(),
+                    radio,
                   ],
                 ),
-                const Spacer(),
-                radio,
-              ],
+              ),
             ),
-          ),
-        ),
-      );
-    });
+          );
+        });
   }
 
   buyNormalOrderInStore(otid) {
@@ -4412,14 +4412,14 @@ class _YourCartScreenState extends State<YourCartScreen> {
       storeId: storeDataContoller.storeid,
       orderType: cartController.cartDataInfo?.storeData.storeIsPickup == "1"
           ? groupValue == 0
-              ? "Self Pickup"
-              : "Delivery"
+          ? "Self Pickup"
+          : "Delivery"
           : "Delivery",
       mobile: getData.read("UserLogin")['mobile'],
       name: getData.read("UserLogin")['name'],
       anote: writeinstruction.text != "" ? writeinstruction.text : "",
       storeCharge:
-          cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "",
+      cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "",
       subTotal: cartController.subTotal.toString(),
       total: getTotal.toString(),
       otid: otid.toString(),
@@ -4433,14 +4433,14 @@ class _YourCartScreenState extends State<YourCartScreen> {
           : "0",
       dCharge: cartController.cartDataInfo?.storeData.storeIsPickup == "1"
           ? groupValue == 0
-              ? "0"
-              : cartController.cartDataInfo?.storeData.restDcharge.toString() ??
-                  ""
+          ? "0"
+          : cartController.cartDataInfo?.storeData.restDcharge.toString() ??
+          ""
           : cartController.cartDataInfo?.storeData.restDcharge.toString() ?? "",
       fullAddress: cartController.cartDataInfo?.storeData.storeIsPickup == "1"
           ? groupValue == 0
-              ? cartController.cartDataInfo?.storeData.storeFullAddress ?? ""
-              : cartController.addresTitle
+          ? cartController.cartDataInfo?.storeData.storeFullAddress ?? ""
+          : cartController.addresTitle
           : cartController.addresTitle,
       landMark: "",
       pMethod: double.parse(total.toString()) > 0 ? selectidPay ?? "" : "3",
@@ -4458,7 +4458,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
       name: getData.read("UserLogin")['name'],
       anote: writeinstruction.text != "" ? writeinstruction.text : "",
       storeCharge:
-          "${double.parse(cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "") * getMaxDelivery}",
+      "${double.parse(cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "") * getMaxDelivery}",
       subTotal: cartController.subTotal.toString(),
       total: getTotal.toString(),
       otid: otid.toString(),
@@ -4471,13 +4471,13 @@ class _YourCartScreenState extends State<YourCartScreen> {
           : "0",
       dCharge: cartController.cartDataInfo?.storeData.storeIsPickup == "1"
           ? groupValue == 0
-              ? "0"
-              : "${double.parse(cartController.cartDataInfo?.storeData.restDcharge.toString() ?? "") * getMaxDelivery}"
+          ? "0"
+          : "${double.parse(cartController.cartDataInfo?.storeData.restDcharge.toString() ?? "") * getMaxDelivery}"
           : "${double.parse(cartController.cartDataInfo?.storeData.restDcharge.toString() ?? "") * getMaxDelivery}",
       fullAddress: cartController.cartDataInfo?.storeData.storeIsPickup == "1"
           ? groupValue == 0
-              ? cartController.cartDataInfo?.storeData.storeFullAddress ?? ""
-              : cartController.addresTitle
+          ? cartController.cartDataInfo?.storeData.storeFullAddress ?? ""
+          : cartController.addresTitle
           : cartController.addresTitle,
       landMark: "",
       pMethodId: double.parse(total.toString()) > 0 ? selectidPay ?? "" : "3",
@@ -4541,10 +4541,10 @@ class _YourCartScreenState extends State<YourCartScreen> {
 
   //!--------- PayPal ----------//
   paypalPayment(
-    String amt,
-    String key,
-    String secretKey,
-  ) {
+      String amt,
+      String key,
+      String secretKey,
+      ) {
     print("(Key)----------->>" + key.toString());
     Get.back();
     Navigator.of(context).push(
@@ -4555,7 +4555,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
             clientId: key,
             secretKey: secretKey,
             returnURL:
-                "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-35S7886705514393E",
+            "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-35S7886705514393E",
             cancelURL: Config.paymentBaseUrl + "paypal/cancle.php",
             transactions: [
               {
@@ -4647,270 +4647,270 @@ class _YourCartScreenState extends State<YourCartScreen> {
       builder: (context) {
         return StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Ink(
-                child: Column(
-                  children: [
-                    SizedBox(height: Get.height / 45),
-                    Center(
-                      child: Container(
-                        height: Get.height / 85,
-                        width: Get.width / 5,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.4),
-                            borderRadius:
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Ink(
+                    child: Column(
+                      children: [
+                        SizedBox(height: Get.height / 45),
+                        Center(
+                          child: Container(
+                            height: Get.height / 85,
+                            width: Get.width / 5,
+                            decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.4),
+                                borderRadius:
                                 const BorderRadius.all(Radius.circular(20))),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(height: Get.height * 0.03),
-                          Text("Add Your payment information".tr,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  letterSpacing: 0.5)),
-                          SizedBox(height: Get.height * 0.02),
-                          Form(
-                            key: _formKey,
-                            autovalidateMode: _autoValidateMode,
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 16),
-                                TextFormField(
-                                  style: TextStyle(color: Colors.black),
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(19),
-                                    CardNumberInputFormatter()
-                                  ],
-                                  controller: numberController,
-                                  onSaved: (String? value) {
-                                    _paymentCard.number =
-                                        CardUtils.getCleanedNumber(value!);
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(height: Get.height * 0.03),
+                              Text("Add Your payment information".tr,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      letterSpacing: 0.5)),
+                              SizedBox(height: Get.height * 0.02),
+                              Form(
+                                key: _formKey,
+                                autovalidateMode: _autoValidateMode,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 16),
+                                    TextFormField(
+                                      style: TextStyle(color: Colors.black),
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(19),
+                                        CardNumberInputFormatter()
+                                      ],
+                                      controller: numberController,
+                                      onSaved: (String? value) {
+                                        _paymentCard.number =
+                                            CardUtils.getCleanedNumber(value!);
 
-                                    CardTypee cardType =
+                                        CardTypee cardType =
                                         CardUtils.getCardTypeFrmNumber(
                                             _paymentCard.number.toString());
-                                    setState(() {
-                                      _card.name = cardType.toString();
-                                      _paymentCard.type = cardType;
-                                    });
-                                  },
-                                  onChanged: (val) {
-                                    CardTypee cardType =
+                                        setState(() {
+                                          _card.name = cardType.toString();
+                                          _paymentCard.type = cardType;
+                                        });
+                                      },
+                                      onChanged: (val) {
+                                        CardTypee cardType =
                                         CardUtils.getCardTypeFrmNumber(val);
-                                    setState(() {
-                                      _card.name = cardType.toString();
-                                      _paymentCard.type = cardType;
-                                    });
-                                  },
-                                  validator: CardUtils.validateCardNum,
-                                  decoration: InputDecoration(
-                                    prefixIcon: SizedBox(
-                                      height: 10,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 14,
-                                          horizontal: 6,
+                                        setState(() {
+                                          _card.name = cardType.toString();
+                                          _paymentCard.type = cardType;
+                                        });
+                                      },
+                                      validator: CardUtils.validateCardNum,
+                                      decoration: InputDecoration(
+                                        prefixIcon: SizedBox(
+                                          height: 10,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 14,
+                                              horizontal: 6,
+                                            ),
+                                            child: CardUtils.getCardIcon(
+                                              _paymentCard.type,
+                                            ),
+                                          ),
                                         ),
-                                        child: CardUtils.getCardIcon(
-                                          _paymentCard.type,
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: gradient.defoultColor,
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: gradient.defoultColor,
-                                      ),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: gradient.defoultColor,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: gradient.defoultColor,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: gradient.defoultColor,
-                                      ),
-                                    ),
-                                    hintText:
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: gradient.defoultColor,
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: gradient.defoultColor,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: gradient.defoultColor,
+                                          ),
+                                        ),
+                                        hintText:
                                         "What number is written on card?".tr,
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    labelStyle: TextStyle(color: Colors.grey),
-                                    labelText: "Number".tr,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    Flexible(
-                                      flex: 4,
-                                      child: TextFormField(
-                                        style: TextStyle(color: Colors.grey),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter
-                                              .digitsOnly,
-                                          LengthLimitingTextInputFormatter(4),
-                                        ],
-                                        decoration: InputDecoration(
-                                            prefixIcon: SizedBox(
-                                              height: 10,
-                                              child: Padding(
-                                                padding:
+                                        hintStyle: TextStyle(color: Colors.grey),
+                                        labelStyle: TextStyle(color: Colors.grey),
+                                        labelText: "Number".tr,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      children: [
+                                        Flexible(
+                                          flex: 4,
+                                          child: TextFormField(
+                                            style: TextStyle(color: Colors.grey),
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly,
+                                              LengthLimitingTextInputFormatter(4),
+                                            ],
+                                            decoration: InputDecoration(
+                                                prefixIcon: SizedBox(
+                                                  height: 10,
+                                                  child: Padding(
+                                                    padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 14),
-                                                child: Image.asset(
-                                                  'assets/card_cvv.png',
-                                                  width: 6,
+                                                    child: Image.asset(
+                                                      'assets/card_cvv.png',
+                                                      width: 6,
+                                                      color: gradient.defoultColor,
+                                                    ),
+                                                  ),
+                                                ),
+                                                focusedErrorBorder:
+                                                OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: gradient.defoultColor,
+                                                  ),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: gradient.defoultColor,
+                                                  ),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: gradient.defoultColor,
+                                                  ),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                        gradient.defoultColor)),
+                                                hintText:
+                                                "Number behind the card".tr,
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                                labelStyle:
+                                                TextStyle(color: Colors.grey),
+                                                labelText: 'CVV'),
+                                            validator: CardUtils.validateCVV,
+                                            keyboardType: TextInputType.number,
+                                            onSaved: (value) {
+                                              _paymentCard.cvv = int.parse(value!);
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.width * 0.03),
+                                        Flexible(
+                                          flex: 4,
+                                          child: TextFormField(
+                                            style: TextStyle(color: Colors.black),
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly,
+                                              LengthLimitingTextInputFormatter(4),
+                                              CardMonthInputFormatter()
+                                            ],
+                                            decoration: InputDecoration(
+                                              prefixIcon: SizedBox(
+                                                height: 10,
+                                                child: Padding(
+                                                  padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 14),
+                                                  child: Image.asset(
+                                                    'assets/calender.png',
+                                                    width: 10,
+                                                    color: gradient.defoultColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
                                                   color: gradient.defoultColor,
                                                 ),
                                               ),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: gradient.defoultColor,
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: gradient.defoultColor,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: gradient.defoultColor,
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
+                                              focusedErrorBorder:
+                                              OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color:
-                                                        gradient.defoultColor)),
-                                            hintText:
-                                                "Number behind the card".tr,
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey),
-                                            labelStyle:
-                                                TextStyle(color: Colors.grey),
-                                            labelText: 'CVV'),
-                                        validator: CardUtils.validateCVV,
-                                        keyboardType: TextInputType.number,
-                                        onSaved: (value) {
-                                          _paymentCard.cvv = int.parse(value!);
-                                        },
+                                                  color: gradient.defoultColor,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: gradient.defoultColor,
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: gradient.defoultColor,
+                                                ),
+                                              ),
+                                              hintText: 'MM/YY',
+                                              hintStyle:
+                                              TextStyle(color: Colors.black),
+                                              labelStyle:
+                                              TextStyle(color: Colors.grey),
+                                              labelText: "Expiry Date".tr,
+                                            ),
+                                            validator: CardUtils.validateDate,
+                                            keyboardType: TextInputType.number,
+                                            onSaved: (value) {
+                                              List<int> expiryDate =
+                                              CardUtils.getExpiryDate(value!);
+                                              _paymentCard.month = expiryDate[0];
+                                              _paymentCard.year = expiryDate[1];
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: Get.height * 0.055),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                        width: Get.width,
+                                        child: CupertinoButton(
+                                          onPressed: () {
+                                            cartController.setOrderLoading();
+                                            _validateInputs();
+                                          },
+                                          color: gradient.defoultColor,
+                                          child: Text(
+                                            "Pay ${currency}${total}",
+                                            style: TextStyle(fontSize: 17.0),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(width: Get.width * 0.03),
-                                    Flexible(
-                                      flex: 4,
-                                      child: TextFormField(
-                                        style: TextStyle(color: Colors.black),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter
-                                              .digitsOnly,
-                                          LengthLimitingTextInputFormatter(4),
-                                          CardMonthInputFormatter()
-                                        ],
-                                        decoration: InputDecoration(
-                                          prefixIcon: SizedBox(
-                                            height: 10,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 14),
-                                              child: Image.asset(
-                                                'assets/calender.png',
-                                                width: 10,
-                                                color: gradient.defoultColor,
-                                              ),
-                                            ),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: gradient.defoultColor,
-                                            ),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: gradient.defoultColor,
-                                            ),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: gradient.defoultColor,
-                                            ),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: gradient.defoultColor,
-                                            ),
-                                          ),
-                                          hintText: 'MM/YY',
-                                          hintStyle:
-                                              TextStyle(color: Colors.black),
-                                          labelStyle:
-                                              TextStyle(color: Colors.grey),
-                                          labelText: "Expiry Date".tr,
-                                        ),
-                                        validator: CardUtils.validateDate,
-                                        keyboardType: TextInputType.number,
-                                        onSaved: (value) {
-                                          List<int> expiryDate =
-                                              CardUtils.getExpiryDate(value!);
-                                          _paymentCard.month = expiryDate[0];
-                                          _paymentCard.year = expiryDate[1];
-                                        },
-                                      ),
-                                    )
+                                    SizedBox(height: Get.height * 0.065),
                                   ],
                                 ),
-                                SizedBox(height: Get.height * 0.055),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: Get.width,
-                                    child: CupertinoButton(
-                                      onPressed: () {
-                                        cartController.setOrderLoading();
-                                        _validateInputs();
-                                      },
-                                      color: gradient.defoultColor,
-                                      child: Text(
-                                        "Pay ${currency}${total}",
-                                        style: TextStyle(fontSize: 17.0),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: Get.height * 0.065),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          );
-        });
+              );
+            });
       },
     );
   }

@@ -63,7 +63,7 @@ class _CouponScreenState extends State<CouponScreen> {
                       ),
                     ],
                   ),
-                
+
                 ],
               ),
               decoration: BoxDecoration(

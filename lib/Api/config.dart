@@ -6,7 +6,7 @@ class Config {
   static const String imageUrl = baseurl;
 
   // Correctly define the orderApi with the base URL
-  static const String orderApi = '${baseurl}order_api/order.php';
+  static const String orderApi = '${baseurl}user_api/u_new_order.php';
 
   static const paymentBaseUrl = baseurl;
 
@@ -86,4 +86,8 @@ class Config {
   // New API for fetching all completed laundry orders
   static const String getAllCompletedOrdersApi = '${path}get_all_completed_orders.php';
 }
+
+
+
+
 

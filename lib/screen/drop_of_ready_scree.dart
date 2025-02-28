@@ -194,22 +194,22 @@ class _DropofreadyscreenState extends State<Dropofreadyscreen> {
             SizedBox(
               height: 20,
             ),
-            GestButton(
-              Width: 400,
-              height: 50,
-              buttoncolor: blueColor,
-              margin: EdgeInsets.only(top: 15, left: 30, right: 30),
-              buttontext: "Proceed".tr,
-              style: TextStyle(
-                fontFamily: FontFamily.gilroyBold,
-                color: WhiteColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              onclick: () {
-                Get.to(MyBookingScreen());
-              },
-            ),
+            // GestButton(
+            //   Width: 400,
+            //   height: 50,
+            //   buttoncolor: blueColor,
+            //   margin: EdgeInsets.only(top: 15, left: 30, right: 30),
+            //   buttontext: "Proceed".tr,
+            //   style: TextStyle(
+            //     fontFamily: FontFamily.gilroyBold,
+            //     color: WhiteColor,
+            //     fontSize: 16,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            //   onclick: () {
+            //     Get.to(MyBookingScreen());
+            //   },
+            // ),
           ],
         ),
       ),

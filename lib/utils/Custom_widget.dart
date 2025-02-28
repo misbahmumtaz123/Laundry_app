@@ -18,9 +18,9 @@ import '../screen/bottombarpro_screen.dart';
 
 Button(
     {String? buttontext,
-    Function()? onclick,
-    double? Width,
-    Color? buttoncolor}) {
+      Function()? onclick,
+      double? Width,
+      Color? buttoncolor}) {
   return GestureDetector(
     onTap: onclick,
     child: Container(
@@ -148,7 +148,7 @@ Future<void> initPlatformState() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(Config.oneSignel);
   OneSignal.Notifications.requestPermission(true).then(
-    (value) {
+        (value) {
       print("Signal value:- $value");
     },
   );
@@ -406,13 +406,13 @@ ordermassage({String? massage}) {
 
 Widget passwordtextfield(
     {Widget? suffixIcon,
-    Widget? prefixIcon,
-    String? lebaltext,
-    double? width,
-    bool? obscureText,
-    TextInputType? keyboardType,
-    String? Function(String?)? validator,
-    TextEditingController? controller}) {
+      Widget? prefixIcon,
+      String? lebaltext,
+      double? width,
+      bool? obscureText,
+      TextInputType? keyboardType,
+      String? Function(String?)? validator,
+      TextEditingController? controller}) {
   return Container(
     width: width,
     // height: 50,

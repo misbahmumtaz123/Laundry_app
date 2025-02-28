@@ -18,41 +18,39 @@ class HistoryOrderController extends GetxController {
   Future<void> fetchHistoryOrders() async {
     isLoading(true);
     try {
-      print("Fetching current orders from: ${Config.getAllCompletedOrdersApi}");
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('auth_token');
+      String? token = prefs.getString('auth_token'); // ✅ Get correct token
+      String? customerId = prefs.getString('customer_id'); // ✅ Get customer ID
 
-      // Debugging: Print token before sending request
-      print("Token: $token");
-
-      if (token == null || token.isEmpty) {
-        print("Error: No authentication token found!");
+      if (token == null || customerId == null) {
+        print("❌ No authentication token or customer ID found!");
         isLoading(false);
         return;
       }
 
-      // Ensure the token is passed as "Bearer <token>" in the headers
-      final response = await _dio.get(
+      print("🚀 Fetching completed orders for Customer ID: $customerId");
+
+      // ✅ Ensure we send only the logged-in user's orders
+      final response = await _dio.post(
         Config.getAllCompletedOrdersApi,
-        options: Options(
-          headers: {
-            "security_token": "$token",
-            'Content-Type': 'application/json',
-          },
-        ),
+        data: {"customer_id": customerId}, // ✅ Send customer ID
+        options: Options(headers: {
+          "Security-Token": token, // ✅ Ensure token is correct
+          'Content-Type': 'application/json',
+        }),
       );
 
-      // Debugging: Print the full response data for inspection
-      print("Response: ${response.data}");
+      print("🔄 Response Status: ${response.statusCode}");
+      print("🔄 Response Data: ${response.data}");
 
       if (response.statusCode == 200 && response.data['ResponseCode'] == "200") {
         List orders = response.data['Orders'];
         historyOrders.assignAll(orders.map((json) => HistoryOrder.fromJson(json)).toList());
       } else {
-        print("Unexpected Response: ${response.data}");
+        print("⚠ Unexpected response: ${response.data}");
       }
     } catch (e) {
-      print("Error fetching history orders: $e");
+      print("🚨 Error fetching history orders: $e");
     } finally {
       isLoading(false);
     }

@@ -60,7 +60,6 @@ import 'package:laundry/localstring.dart';
 import 'package:laundry/utils/Custom_widget.dart';
 import 'package:laundry/utils/cart_item.dart';
 import 'package:laundry/utils/cartitem_adapter.dart';
-import 'controller/c_orderScreenController.dart';
 import 'helpar/get_di.dart' as di;
 
 void main() async {
@@ -102,13 +101,11 @@ void main() async {
 
 
 
-
-// import 'package:flutter/material.dart';
-// import 'package:laundry/screen/bottombarpro_screen.dart';
-// import 'package:laundry/screen/home_screen.dart';
-// import 'package:laundry/screen/laundrymentservices/laundryment_search.dart';
 //
-// import 'screen/placeorder/servicesPage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:laundry/screen/home_screen.dart';
+// import 'package:laundry/screen/searchScreen.dart';
+//
 //
 // void main() {
 //   runApp(MyApp());
@@ -123,9 +120,8 @@ void main() async {
 //       theme: ThemeData(
 //         primarySwatch: Colors.blue,
 //       ),
-//       home: LaundrySearchScreen(), // Set ServicesScreen as the first screen
+//       home: HomeScreen(), // Set ServicesScreen as the first screen
 //     );
 //   }
 // }
-
 

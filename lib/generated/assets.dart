@@ -116,6 +116,8 @@ class Assets {
   static const String assetsPhoneCall1 = 'assets/phone-call1.png';
   static const String assetsPrescription = 'assets/prescription.png';
   static const String assetsProfile = 'assets/Profile.png';
+  static const String assetsQrCode = 'assets/qr_code.png';
+  static const String assetsQrcodeimg = 'assets/qrcodeimg.png';
   static const String assetsR = 'assets/R.png';
   static const String assetsReceiptList = 'assets/receipt-list.png';
   static const String assetsReceiptText = 'assets/receipt-text.png';

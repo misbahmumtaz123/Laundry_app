@@ -327,99 +327,99 @@ class _CategoryViewAllState extends State<CategoryViewAll> {
                   ),
                 ),
 
-                // Expanded(
-                //   child: Container(
-                //     color: WhiteColor,
-                //     child: ListView.builder(
-                //       controller: scrollController,
-                //       itemCount:
-                //           storeDataContoller.storeDataInfo?.catwiseproduct.length,
-                //       shrinkWrap: true,
-                //       padding: EdgeInsets.zero,
-                //       itemBuilder: (context, index1) {
-                //         return storeDataContoller.storeDataInfo!
-                //                 .catwiseproduct[index1].productdata.isNotEmpty
-                //             ? Column(
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 children: [
-                //                   SizedBox(
-                //                     height: 10,
-                //                   ),
-                //                   Text(
-                //                     storeDataContoller.storeDataInfo
-                //                             ?.catwiseproduct[index1].catTitle ??
-                //                         "",
-                //                     style: TextStyle(
-                //                       color: BlackColor,
-                //                       fontFamily: FontFamily.gilroyBold,
-                //                       fontSize: 18,
-                //                     ),
-                //                   ),
-                //                   SizedBox(
-                //                     height: 10,
-                //                   ),
-                //                   ListView.builder(
-                //                     itemCount: storeDataContoller
-                //                         .storeDataInfo
-                //                         ?.catwiseproduct[index1]
-                //                         .productdata
-                //                         .length,
-                //                     shrinkWrap: true,
-                //                     padding: EdgeInsets.zero,
-                //                     physics: NeverScrollableScrollPhysics(),
-                //                     itemBuilder: (context, index) {
-                //                       return ProductWidget(
-                //                         index1: index1,
-                //                         index: index,
-                //                         productTitle: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productTitle,
-                //                         productImg: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productImg,
-                //                         normalPrice: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productInfo[0]
-                //                             .normalPrice,
-                //                         attributeId: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productInfo[0]
-                //                             .attributeId,
-                //                         productDiscount: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productInfo[0]
-                //                             .productDiscount,
-                //                         productId: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productId,
-                //                         title: storeDataContoller
-                //                             .storeDataInfo
-                //                             ?.catwiseproduct[index1]
-                //                             .productdata[index]
-                //                             .productInfo[0]
-                //                             .title,
-                //                       );
-                //                     },
-                //                   )
-                //                 ],
-                //               )
-                //             : SizedBox();
-                //       },
-                //     ),
-                //   ),
-                // ),
+                Expanded(
+                  child: Container(
+                    color: WhiteColor,
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount:
+                          storeDataContoller.storeDataInfo?.catwiseproduct.length,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (context, index1) {
+                        return storeDataContoller.storeDataInfo!
+                                .catwiseproduct[index1].productdata.isNotEmpty
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    storeDataContoller.storeDataInfo
+                                            ?.catwiseproduct[index1].catTitle ??
+                                        "",
+                                    style: TextStyle(
+                                      color: BlackColor,
+                                      fontFamily: FontFamily.gilroyBold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  ListView.builder(
+                                    itemCount: storeDataContoller
+                                        .storeDataInfo
+                                        ?.catwiseproduct[index1]
+                                        .productdata
+                                        .length,
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return ProductWidget(
+                                        index1: index1,
+                                        index: index,
+                                        productTitle: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productTitle,
+                                        productImg: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productImg,
+                                        normalPrice: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productInfo[0]
+                                            .normalPrice,
+                                        attributeId: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productInfo[0]
+                                            .attributeId,
+                                        productDiscount: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productInfo[0]
+                                            .productDiscount,
+                                        productId: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productId,
+                                        title: storeDataContoller
+                                            .storeDataInfo
+                                            ?.catwiseproduct[index1]
+                                            .productdata[index]
+                                            .productInfo[0]
+                                            .title,
+                                      );
+                                    },
+                                  )
+                                ],
+                              )
+                            : SizedBox();
+                      },
+                    ),
+                  ),
+                ),
 
                 SizedBox(
                   height: 10,

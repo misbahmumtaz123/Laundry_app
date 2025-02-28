@@ -39,6 +39,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   get: ^4.6.6
+
   fluttertoast: ^8.2.10
   http: ^0.13.6
   archive: ^4.0.2
@@ -93,6 +94,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   flutter_svg: ^2.0.17
   share_plus: ^10.1.3
+  pretty_qr_code: ^3.3.0
   # flutter_svg: ^2.0.7
   # share_plus: ^8.0.0
   # scroll_to_index: ^3.0.1
