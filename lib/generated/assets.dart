@@ -13,6 +13,7 @@ class Assets {
   static const String assetsBadgeCheck = 'assets/badge-check.png';
   static const String assetsBadgeDiscount = 'assets/badge-discount.png';
   static const String assetsBellOn = 'assets/bell-on.png';
+  static const String assetsBlanket = 'assets/blanket.jpg';
   static const String assetsBolt = 'assets/bolt.png';
   static const String assetsBolts = 'assets/bolts.png';
   static const String assetsBox = 'assets/box.png';
@@ -35,7 +36,9 @@ class Assets {
   static const String assetsClock = 'assets/clock.png';
   static const String assetsClock1 = 'assets/clock1.png';
   static const String assetsClockicon = 'assets/clockicon.png';
+  static const String assetsClothes = 'assets/clothes.jpg';
   static const String assetsCloudState = 'assets/cloud_state.png';
+  static const String assetsComforter = 'assets/comforter.jpg';
   static const String assetsComment = 'assets/comment.png';
   static const String assetsCopy = 'assets/copy.png';
   static const String assetsDinnersClub = 'assets/dinners_club.png';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laundry/model/laundryment_search_model.dart';
-import 'package:laundry/screen/placeorder/place_order1.dart';
+import 'package:laundry/screen/placeorder/place_order.dart';
+// import 'package:laundry/screen/placeorder/place_order1.dart';
 
 class ServicesScreen extends StatelessWidget {
   final Laundry laundry;
@@ -138,9 +139,9 @@ class ServicesScreen extends StatelessWidget {
                         // Navigate to PlaceOrderScreen and pass laundry details
                         Get.to(
                               () => PlaceOrderScreen(
-                            laundryName: laundry.name,
-                            laundryAddress: laundry.address,
-                            laundryDistance: laundry.distance,
+                            // laundryName: laundry.name,
+                            // laundryAddress: laundry.address,
+                            // laundryDistance: laundry.distance,
                             // pricePerPound: laundry.pricePerPound,
                           ),
                         );
