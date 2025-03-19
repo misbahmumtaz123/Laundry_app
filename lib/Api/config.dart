@@ -85,7 +85,12 @@ class Config {
 
   // New API for fetching all completed laundry orders
   static const String getAllCompletedOrdersApi = '${path}get_all_completed_orders.php';
+  // ✅ New API for fetching laundry products
+  static const String getProductsLaundryApi = '${path}get_products_laundry.php';
+  // New API for fetching laundry services
+  static const String getLaundryServicesApi = '${path}get_laundry_services.php';
 }
+
 
 
 

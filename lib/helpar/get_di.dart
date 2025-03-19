@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/c_orderScreenController.dart';
 import '../controller/h_orderScreenController.dart';
+import '../controller/product_controller.dart';
 import '../controller/selectlocation_controller.dart';
 
 init() async {
@@ -39,7 +40,8 @@ init() async {
   Get.lazyPut(() => SearchController1());
   Get.lazyPut(() => NotificationController());
   Get.lazyPut(() => SubScibeController());
-  Get.lazyPut(() => SelectLocatonController());
+  // Get.lazyPut(() => SelectLocatonController());
+  Get.lazyPut(() => ProductController());
   // Get.lazyPut(() => CurrentOrderController());
   // Get.lazyPut(() => HistoryOrderController());
 }

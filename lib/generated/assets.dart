@@ -7,8 +7,8 @@ class Assets {
   static const String assetsAppIcon = 'assets/AppIcon.svg';
   static const String assetsAppLogo = 'assets/appLogo.png';
   static const String assetsAppName = 'assets/AppName.svg';
-  static const String assetsArrow  Down = 'assets/Arrow - Down.png';
-  static const String assetsArrow  Down 2 = 'assets/Arrow - Down 2.svg';
+  // static const String assetsArrow  Down = 'assets/Arrow - Down.png';
+  // static const String assetsArrow  Down 2 = 'assets/Arrow - Down 2.svg';
   static const String assetsBack = 'assets/Back.png';
   static const String assetsBadgeCheck = 'assets/badge-check.png';
   static const String assetsBadgeDiscount = 'assets/badge-discount.png';
@@ -25,7 +25,7 @@ class Assets {
   static const String assetsCalendarMinusAlt = 'assets/calendar-minus-alt.png';
   static const String assetsCalender = 'assets/calender.png';
   static const String assetsCameraCircle = 'assets/camera-circle.png';
-  static const String assetsCard (7) = 'assets/Card (7).png';
+  // static const String assetsCard (7) = 'assets/Card (7).png';
   static const String assetsCardCvv = 'assets/card_cvv.png';
   static const String assetsCartEmpty = 'assets/cartEmpty.png';
   static const String assetsCategoryImage = 'assets/CategoryImage.png';
@@ -55,14 +55,14 @@ class Assets {
   static const String assetsEmptyOrder = 'assets/emptyOrder.png';
   static const String assetsEnvelopes = 'assets/envelopes.png';
   static const String assetsEnvelopes1 = 'assets/envelopes1.png';
-  static const String assetsEzgif.comCrop = 'assets/ezgif.com-crop.gif';
+  // static const String assetsEzgif.comCrop = 'assets/ezgif.com-crop.gif';
   static const String assetsFood4 = 'assets/food4.jpg';
   static const String assetsFoodimg = 'assets/foodimg.jpg';
   static const String assetsGift = 'assets/gift.png';
   static const String assetsGiftrewardsurprise = 'assets/Giftrewardsurprise.png';
   static const String assetsGlobe = 'assets/globe.png';
   static const String assetsGlobeweb = 'assets/Globeweb.png';
-  static const String assetsGroup 427320349 = 'assets/Group 427320349.png';
+  // static const String assetsGroup 427320349 = 'assets/Group 427320349.png';
   static const String assetsGroup5346 = 'assets/Group5346.png';
   static const String assetsHeadphones = 'assets/headphones.png';
   static const String assetsHeart = 'assets/heart.png';
@@ -115,7 +115,7 @@ class Assets {
   static const String assetsOtp1 = 'assets/otp1.png';
   static const String assetsPercentCircle = 'assets/percent-circle.svg';
   static const String assetsPhoneCall = 'assets/phone-call.png';
-  static const String assetsPhoneCall (2) = 'assets/phone-call (2).png';
+  // static const String assetsPhoneCall (2) = 'assets/phone-call (2).png';
   static const String assetsPhoneCall1 = 'assets/phone-call1.png';
   static const String assetsPrescription = 'assets/prescription.png';
   static const String assetsProfile = 'assets/Profile.png';
@@ -179,7 +179,7 @@ class Assets {
   static const String bottomIconsSearch1 = 'assets/bottomIcons/search-1.svg';
   static const String bottomIconsSearchfill = 'assets/bottomIcons/searchfill.svg';
   static const String bottomIconsShedule = 'assets/bottomIcons/shedule.svg';
-  static const String bottomIconsShopping Cartfill = 'assets/bottomIcons/Shopping Cartfill.svg';
+  // static const String bottomIconsShopping Cartfill = 'assets/bottomIcons/Shopping Cartfill.svg';
   static const String bottomIconsShoppingCart = 'assets/bottomIcons/Shopping-cart.svg';
   static const String bottomIconsUser = 'assets/bottomIcons/User.svg';
   static const String bottomIconsUserfill = 'assets/bottomIcons/Userfill.svg';
@@ -187,15 +187,15 @@ class Assets {
   static const String lotties2nd = 'assets/lotties/2nd.json';
   static const String lotties3rd = 'assets/lotties/3rd.json';
   static const String lotties7204393 = 'assets/lotties/7204393.json';
-  static const String lottiesOrder succfull = 'assets/lotties/order succfull.json';
+  // static const String lottiesOrder succfull = 'assets/lotties/order succfull.json';
   static const String lottiesReferandearn = 'assets/lotties/referandearn.json';
   static const String trakersIconsClothes = 'assets/trakersIcons/clothes.svg';
   static const String trakersIconsClothes1 = 'assets/trakersIcons/clothes-1.svg';
   static const String trakersIconsLaundryBasket = 'assets/trakersIcons/laundry-basket.svg';
   static const String trakersIconsTshirt = 'assets/trakersIcons/tshirt.svg';
   static const String trakersIconsTshirt1 = 'assets/trakersIcons/tshirt-1.svg';
-  static const String trakersIconsWashing 1 = 'assets/trakersIcons/washing 1.svg';
-  static const String trakersIconsWashing 2 = 'assets/trakersIcons/washing 2.svg';
+  // static const String trakersIconsWashing 1 = 'assets/trakersIcons/washing 1.svg';
+  // static const String trakersIconsWashing 2 = 'assets/trakersIcons/washing 2.svg';
   static const String userappAssetsNotification = 'assets/Notification.svg';
 
 }

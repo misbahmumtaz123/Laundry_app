@@ -30,17 +30,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
+  @override
   void initState() {
     super.initState();
-    setState(() {
-      name.text = getData.read("UserLogin")["name"];
-      number.text = getData.read("UserLogin")["mobile"];
-    });
+
+    // Check if "UserLogin" exists in getData
+    var userLogin = getData.read("UserLogin");
+
+    if (userLogin != null && userLogin is Map<String, dynamic>) {
+      setState(() {
+        name.text = userLogin["name"]?.toString() ?? "Guest"; // Default to "Guest"
+        number.text = userLogin["mobile"]?.toString() ?? "No number"; // Default if null
+      });
+    } else {
+      print("❌ No user data found in getData!");
+      setState(() {
+        name.text = "Guest";
+        number.text = "No number";
+      });
+    }
+
     signUpController.pageListApi();
   }
 
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: primeryColor,
       appBar: AppBar(
@@ -79,13 +96,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 55,
                     alignment: Alignment.center,
                     child: Text(
-                      getData.read("UserLogin")["name"][0],
+                      getData.read("UserLogin")?["name"]?.toString()[0] ?? "G", // Default initial letter
                       style: TextStyle(
                         fontFamily: FontFamily.gilroyBold,
                         fontSize: 22,
                         color: gradient.defoultColor,
                       ),
                     ),
+
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey.shade200,
@@ -100,13 +118,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          getData.read("UserLogin")["name"],
+                          getData.read("UserLogin")?["name"]?.toString() ?? "Guest",
                           style: TextStyle(
                             fontFamily: FontFamily.gilroyBold,
                             fontSize: 15,
                             color: WhiteColor,
                           ),
                         ),
+
                         SizedBox(
                           height: 8,
                         ),
@@ -122,11 +141,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 5,
                             ),
                             Text(
-                              "${getData.read("UserLogin")["ccode"]} ${getData.read("UserLogin")["mobile"]}",
+                              "${getData.read("UserLogin")?["ccode"] ?? ""} ${getData.read("UserLogin")?["mobile"] ?? "No number"}",
                               style: TextStyle(
-                                  fontFamily: FontFamily.gilroyMedium,
-                                  color: WhiteColor.withOpacity(0.8)),
+                                fontFamily: FontFamily.gilroyMedium,
+                                color: WhiteColor.withOpacity(0.8),
+                              ),
                             ),
+
                           ],
                         ),
                       ],

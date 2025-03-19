@@ -1,32 +1,37 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:laundry/Api/config.dart';
+
 import '../model/laundry_service_model.dart';
 
-class LaundryServiceController extends GetxController {
-  var isLoading = true.obs;
-  var servicesList = <LaundryService>[].obs;
 
-  final Dio _dio = Dio();
+class LaundryServicesController extends GetxController {
+  var services = <LaundryService>[].obs;
+  var isLoading = true.obs;
 
   Future<void> fetchLaundryServices() async {
-    try {
-      isLoading(true);
-      var response = await _dio.get('https://laundry.saleselevation.tech/user_api/get_laundry_services.php');
+    final String url = Config.getLaundryServicesApi;
 
-      if (response.statusCode == 200 && response.data['Result'] == "true") {
-        var services = response.data['Services'] as List;
-        servicesList.value = services.map((json) => LaundryService.fromJson(json)).toList();
+    try {
+      isLoading(true); // Start loading
+
+      var response = await Dio().get(url);
+
+      if (response.statusCode == 200) {
+        var data = LaundryServiceResponse.fromJson(response.data);
+
+        if (data.result) {
+          services.value = data.services; // Update the services list
+        } else {
+          print("Error: ${data.responseMsg}");
+        }
+      } else {
+        print("Failed to load services: ${response.statusMessage}");
       }
     } catch (e) {
-      print("Error fetching services: $e");
+      print('Error fetching laundry services: $e');
     } finally {
-      isLoading(false);
+      isLoading(false); // Stop loading
     }
-  }
-
-  @override
-  void onInit() {
-    fetchLaundryServices();
-    super.onInit();
   }
 }

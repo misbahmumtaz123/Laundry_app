@@ -17,7 +17,6 @@ import 'package:laundry/screen/my%20booking/mybooking_screen.dart';
 import 'package:laundry/screen/my%20booking/mybookinginfo_screen.dart';
 import 'package:laundry/screen/notification_screen.dart';
 import 'package:laundry/screen/onbording_screen.dart';
-import 'package:laundry/screen/placeorder/placeorder.dart';
 import 'package:laundry/screen/profile_screen.dart';
 import 'package:laundry/screen/refer&earn_screen.dart';
 import 'package:laundry/screen/subscribe/subscribe_screen.dart';

@@ -279,12 +279,23 @@ class _LaundrySearchScreenState extends State<LaundrySearchScreen> {
                                     ),
                                   ),
                                   SizedBox(height: screenHeight * 0.005),
-                                  Text(
-                                    "Open",
-                                    style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: screenWidth * 0.035,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: laundry.status.toLowerCase() == "open"
+                                          ? Colors.green.shade100
+                                          : Colors.red.shade100,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Text(
+                                      laundry.status.toUpperCase(),
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: laundry.status.toLowerCase() == "open"
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
                                     ),
                                   ),
                                 ],
