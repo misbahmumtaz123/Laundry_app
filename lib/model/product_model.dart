@@ -30,6 +30,8 @@ class Product {
     );
   }
 
+  get selectedWeight => null;
+
   void updateQuantity(String quantity) {
     selectedQuantity = quantity;
     totalPrice = quantity == 'Single' ? basePrice : basePrice * 2;

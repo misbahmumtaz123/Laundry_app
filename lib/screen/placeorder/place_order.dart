@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laundry/model/laundryment_search_model.dart';
 import 'package:laundry/controller/product_controller.dart';
+import '../../model/laundryment_search_model.dart';
 import '../../model/product_model.dart';
 
 class PlaceOrderScreen extends StatelessWidget {
@@ -34,13 +34,22 @@ class PlaceOrderScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(laundry.name, style: TextStyle(fontSize: screenWidth * 0.045, fontWeight: FontWeight.bold)),
-                  Text(laundry.address, style: TextStyle(fontSize: screenWidth * 0.035, color: Colors.grey[600])),
+                  Text(
+                    laundry.name,
+                    style: TextStyle(fontSize: screenWidth * 0.045, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    laundry.address,
+                    style: TextStyle(fontSize: screenWidth * 0.035, color: Colors.grey[600]),
+                  ),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${laundry.distance.toStringAsFixed(2)} km", style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.blue, fontWeight: FontWeight.bold)),
+                      Text(
+                        "${laundry.distance.toStringAsFixed(2)} km",
+                        style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.blue, fontWeight: FontWeight.bold),
+                      ),
                       Text(
                         laundry.status.toUpperCase(),
                         style: TextStyle(
@@ -54,21 +63,20 @@ class PlaceOrderScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
 
-            // Row for rating, distance, and time
+            // Dynamic Data Section for Rating, Distance, and Timing
             LayoutBuilder(
               builder: (context, constraints) {
                 bool isWideScreen = constraints.maxWidth > 600;
                 return isWideScreen
                     ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: _buildInfoWidgets(screenWidth),
+                  children: _buildDynamicInfoWidgets(screenWidth, laundry),
                 )
                     : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _buildInfoWidgets(screenWidth),
+                  children: _buildDynamicInfoWidgets(screenWidth, laundry),
                 );
               },
             ),
@@ -105,14 +113,15 @@ class PlaceOrderScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildInfoWidgets(double screenWidth) {
+  // Widget to build dynamic info for Rating, Distance, and Time
+  List<Widget> _buildDynamicInfoWidgets(double screenWidth, Laundry laundry) {
     return [
       Row(
         children: [
           const Icon(Icons.star, color: Colors.orange, size: 20),
           const SizedBox(width: 4),
           Text(
-            "4.5",
+            laundry.rating != null ? laundry.rating!.toStringAsFixed(1) : "N/A",
             style: TextStyle(fontSize: screenWidth * 0.035),
           ),
         ],
@@ -122,7 +131,7 @@ class PlaceOrderScreen extends StatelessWidget {
           const Icon(Icons.location_on, color: Colors.green, size: 20),
           const SizedBox(width: 4),
           Text(
-            "1.5 Km",
+            "${laundry.distance.toStringAsFixed(2)} Km",
             style: TextStyle(fontSize: screenWidth * 0.035),
           ),
         ],
@@ -132,7 +141,7 @@ class PlaceOrderScreen extends StatelessWidget {
           const Icon(Icons.access_time, color: Colors.blue, size: 20),
           const SizedBox(width: 4),
           Text(
-            "9:00 AM - 8:00 PM",
+            "${laundry.startTime} - ${laundry.endTime}",
             style: TextStyle(fontSize: screenWidth * 0.035),
           ),
         ],
@@ -153,37 +162,53 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   late int quantity;
+  bool isWeightUnknown = false;
   TextEditingController weightController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     quantity = widget.product.selectedQuantity == 'Single' ? 1 : 2;
+    if (widget.product.selectedWeight != null) {
+      weightController.text = widget.product.selectedWeight!.toString();
+    } else {
+      weightController.text = '';
+    }
   }
 
   void increaseQuantity() {
-    setState(() {
-      quantity++;
-      widget.product.updateQuantity(quantity == 1 ? 'Single' : 'Double');
-    });
+    if (!isWeightUnknown) {
+      setState(() {
+        quantity++;
+        widget.product.updateQuantity(quantity == 1 ? 'Single' : 'Double');
+        updatePrice();
+      });
+    }
   }
 
   void decreaseQuantity() {
-    if (quantity > 1) {
+    if (quantity > 1 && !isWeightUnknown) {
       setState(() {
         quantity--;
         widget.product.updateQuantity(quantity == 1 ? 'Single' : 'Double');
+        updatePrice();
       });
     }
   }
 
   void updatePrice() {
-    if (weightController.text.isNotEmpty) {
+    double price = widget.product.basePrice;
+
+    // If weight is provided, update price based on weight
+    if (weightController.text.isNotEmpty && !isWeightUnknown) {
       double weight = double.parse(weightController.text);
-      setState(() {
-        widget.product.totalPrice = widget.product.basePrice * weight;
-      });
+      price = widget.product.basePrice * weight;
     }
+
+    // Update the total price based on quantity and weight
+    setState(() {
+      widget.product.totalPrice = price * quantity;
+    });
   }
 
   @override
@@ -204,32 +229,93 @@ class _ProductCardState extends State<ProductCard> {
                     style: TextStyle(fontSize: widget.screenWidth * 0.04, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
+                  // Display price after quantity and weight are adjusted
                   Text(
-                    "\$${(widget.product.basePrice * quantity).toStringAsFixed(2)}",
+                    "\$${(widget.product.totalPrice).toStringAsFixed(2)}",
                     style: TextStyle(fontSize: widget.screenWidth * 0.035, color: Colors.green),
                   ),
                   const SizedBox(height: 8),
 
-                  // Dropdown for blankets/comforters
+                  // Show dropdown only for blankets and comforters
                   if (widget.product.productName.contains('Blanket') || widget.product.productName.contains('Comforter'))
-                    DropdownButton<String>(
-                      value: quantity == 1 ? 'Single' : 'Double',
-                      items: const [
-                        DropdownMenuItem<String>(value: 'Single', child: Text('Single')),
-                        DropdownMenuItem<String>(value: 'Double', child: Text('Double')),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() {
-                            quantity = value == 'Single' ? 1 : 2;
-                            widget.product.updateQuantity(value);
-                          });
-                        }
-                      },
-                    )
-                  else
                     Column(
                       children: [
+                        DropdownButton<String>(
+                          value: quantity == 1 ? 'Single' : 'Double',
+                          items: const [
+                            DropdownMenuItem<String>(value: 'Single', child: Text('Single')),
+                            DropdownMenuItem<String>(value: 'Double', child: Text('Double')),
+                          ],
+                          onChanged: (value) {
+                            if (value != null) {
+                              setState(() {
+                                quantity = value == 'Single' ? 1 : 2;
+                                widget.product.updateQuantity(value);
+                                updatePrice();
+                              });
+                            }
+                          },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Minus Button
+                            GestureDetector(
+                              onTap: decreaseQuantity,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.red,
+                                radius: 18,
+                                child: const Icon(Icons.remove, color: Colors.white),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            // Quantity
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                "$quantity",
+                                style: TextStyle(fontSize: widget.screenWidth * 0.04, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            // Plus Button
+                            GestureDetector(
+                              onTap: increaseQuantity,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.green,
+                                radius: 18,
+                                child: const Icon(Icons.add, color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  else
+                  // For other products, we don't show the quantity adjustment buttons
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: isWeightUnknown,
+                              onChanged: (value) {
+                                setState(() {
+                                  isWeightUnknown = value ?? false;
+                                  if (isWeightUnknown) {
+                                    weightController.text = '';
+                                  }
+                                  updatePrice();  // Update price when weight unknown status is changed
+                                });
+                              },
+                            ),
+                            Text("I don't know the weight"),
+                          ],
+                        ),
                         TextField(
                           controller: weightController,
                           decoration: const InputDecoration(
@@ -238,13 +324,11 @@ class _ProductCardState extends State<ProductCard> {
                           ),
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
-                            updatePrice();
+                            if (!isWeightUnknown) {
+                              updatePrice();
+                            }
                           },
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          "Total Price: \$${widget.product.totalPrice.toStringAsFixed(2)}",
-                          style: TextStyle(fontSize: widget.screenWidth * 0.035, fontWeight: FontWeight.bold, color: Colors.green),
+                          enabled: !isWeightUnknown,
                         ),
                       ],
                     ),
@@ -257,4 +341,3 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
-
