@@ -4,8 +4,19 @@ import 'package:laundry/controller/product_controller.dart';
 import '../../model/laundryment_search_model.dart';
 import '../../model/product_model.dart';
 
-class PlaceOrderScreen extends StatelessWidget {
+class PlaceOrderScreen extends StatefulWidget {
+  @override
+  _PlaceOrderScreenState createState() => _PlaceOrderScreenState();
+}
+
+class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   final ProductController productController = Get.put(ProductController());
+  List<Product> selectedProducts = []; // This will hold the selected products
+  String? selectedTemperature = 'Warm';
+  TimeOfDay? pickupTime;
+  TimeOfDay? deliveryTime;
+  String? selectedDeliveryType = 'Same Day';
+  TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +25,24 @@ class PlaceOrderScreen extends StatelessWidget {
     final String serviceName = data["serviceName"] ?? "Unknown Service";
     final double screenWidth = MediaQuery.of(context).size.width;
 
+    // Calculate the total price of all selected products
+    double totalPrice = selectedProducts.fold(0.0, (sum, product) {
+      // Assuming the price logic is based on product attributes
+      double weight = 0.0; // Default weight is 0
+      String selectedType = "Single"; // Default to Single
+      return sum + productController.calculateTotalPrice(product, 1, selectedType, weight); // Modify as needed
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Place Order"),
         backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -88,29 +113,174 @@ class PlaceOrderScreen extends StatelessWidget {
               style: TextStyle(fontSize: screenWidth * 0.045, fontWeight: FontWeight.bold, color: Colors.blue),
             ),
 
+            // Product Category Section (from Screen 2)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CategoryCard(label: "Clothes", icon: Icons.local_laundry_service, onTap: () {
+                  addProductToSelection("Clothes");
+                }),
+                CategoryCard(label: "Blanket", icon: Icons.bed, onTap: () {
+                  addProductToSelection("Blanket");
+                }),
+                CategoryCard(label: "Comforter", icon: Icons.bed, onTap: () {
+                  addProductToSelection("Comforter");
+                }),
+              ],
+            ),
             const SizedBox(height: 20),
 
-            // Product Selection Section
-            Obx(() {
-              if (productController.isLoading.value) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Select Products", style: TextStyle(fontSize: screenWidth * 0.04, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  for (var product in productController.products)
-                    ProductCard(product: product, screenWidth: screenWidth),
-                ],
-              );
-            }),
+            // Selected Products Section
+            for (var product in selectedProducts)
+              ProductCard(
+                product: product,
+                screenWidth: screenWidth,
+                removeProduct: removeProduct,
+              ),
 
             const SizedBox(height: 20),
+            const Text("Temperature", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                Radio<String>(
+                  value: 'Cold',
+                  groupValue: selectedTemperature,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTemperature = value;
+                    });
+                  },
+                ),
+                const Text('Cold'),
+                Radio<String>(
+                  value: 'Warm',
+                  groupValue: selectedTemperature,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTemperature = value;
+                    });
+                  },
+                ),
+                const Text('Warm'),
+                Radio<String>(
+                  value: 'Hot',
+                  groupValue: selectedTemperature,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedTemperature = value;
+                    });
+                  },
+                ),
+                const Text('Hot'),
+              ],
+            ),
+
+            // Pickup Time Selection (from Screen 2)
+            const SizedBox(height: 20),
+            const Text("Select Pickup Time", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            GestureDetector(
+              onTap: () async {
+                TimeOfDay? time = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+                if (time != null) {
+                  setState(() {
+                    pickupTime = time;
+                  });
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  pickupTime == null ? "Select Pickup Time" : pickupTime!.format(context),
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
+
+            // Delivery Type Selection (from Screen 2)
+            const SizedBox(height: 20),
+            const Text("Delivery Type", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            DropdownButton<String>(
+              value: selectedDeliveryType,
+              items: [
+                const DropdownMenuItem<String>(value: 'Same Day', child: Text('Same Day')),
+                const DropdownMenuItem<String>(value: 'Next Day', child: Text('Next Day')),
+                const DropdownMenuItem<String>(value: 'Scheduled', child: Text('Scheduled')),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  selectedDeliveryType = value;
+                });
+              },
+              isExpanded: true,
+            ),
+
+            // Address Section (from Screen 2)
+            const SizedBox(height: 20),
+            const Text("Address & Instruction", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            TextField(
+              controller: addressController,
+              decoration: const InputDecoration(
+                labelText: 'Enter address and instructions',
+                border: OutlineInputBorder(),
+              ),
+              maxLines: 3,
+            ),
+
+            // Display Total Price Section (from Screen 2)
+            const SizedBox(height: 20),
+            Text(
+              "Total Price: \$${totalPrice.toStringAsFixed(2)}",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Proceed Button (from Screen 2)
+            ElevatedButton(
+              onPressed: () {
+                // Proceed with the order
+                Get.snackbar("Order Proceeded", "Your order has been proceeded.");
+              },
+              child: const Text('Proceed'),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  // Function to add products to the selection
+  void addProductToSelection(String productType) async {
+    Product selectedProduct = productController.products.firstWhere(
+          (product) => product.productName == productType,
+      orElse: () => Product(
+        productEntryId: '',
+        laundromatId: '',
+        productId: '',
+        basePrice: 0.0,
+        productName: productType,
+        selectedQuantity: 'Single',
+        totalPrice: 0.0,
+      ),
+    );
+
+    setState(() {
+      selectedProducts.add(selectedProduct);
+    });
+  }
+
+  // Function to remove products from the selection
+  void removeProduct(Product product) {
+    setState(() {
+      selectedProducts.remove(product);
+    });
   }
 
   // Widget to build dynamic info for Rating, Distance, and Time
@@ -150,11 +320,49 @@ class PlaceOrderScreen extends StatelessWidget {
   }
 }
 
+// Other necessary widget definitions (CategoryCard, ProductCard) will remain the same.
+
+class CategoryCard extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const CategoryCard({
+    required this.label,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 30, color: Colors.blue),
+              const SizedBox(height: 8),
+              Text(label, style: TextStyle(fontSize: 16, color: Colors.blue)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class ProductCard extends StatefulWidget {
   final Product product;
   final double screenWidth;
+  final Function(Product) removeProduct; // Function to remove product from list
 
-  const ProductCard({required this.product, required this.screenWidth});
+  const ProductCard({required this.product, required this.screenWidth, required this.removeProduct});
 
   @override
   _ProductCardState createState() => _ProductCardState();
@@ -162,35 +370,30 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   late int quantity;
+  late String selectedType;
+  late TextEditingController weightController;
   bool isWeightUnknown = false;
-  TextEditingController weightController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    quantity = widget.product.selectedQuantity == 'Single' ? 1 : 2;
-    if (widget.product.selectedWeight != null) {
-      weightController.text = widget.product.selectedWeight!.toString();
-    } else {
-      weightController.text = '';
-    }
+    quantity = 1; // Default quantity
+    selectedType = widget.product.selectedQuantity; // Default type: Single
+    weightController = TextEditingController();
+    isWeightUnknown = false; // By default, weight is known
   }
 
   void increaseQuantity() {
-    if (!isWeightUnknown) {
-      setState(() {
-        quantity++;
-        widget.product.updateQuantity(quantity == 1 ? 'Single' : 'Double');
-        updatePrice();
-      });
-    }
+    setState(() {
+      quantity++;
+      updatePrice();
+    });
   }
 
   void decreaseQuantity() {
-    if (quantity > 1 && !isWeightUnknown) {
+    if (quantity > 1) {
       setState(() {
         quantity--;
-        widget.product.updateQuantity(quantity == 1 ? 'Single' : 'Double');
         updatePrice();
       });
     }
@@ -199,13 +402,18 @@ class _ProductCardState extends State<ProductCard> {
   void updatePrice() {
     double price = widget.product.basePrice;
 
-    // If weight is provided, update price based on weight
-    if (weightController.text.isNotEmpty && !isWeightUnknown) {
+    // If it's a "Clothes" product, calculate price based on weight
+    if (widget.product.productName == "Clothes" && weightController.text.isNotEmpty && !isWeightUnknown) {
       double weight = double.parse(weightController.text);
       price = widget.product.basePrice * weight;
+    } else if (widget.product.productName == "Blanket" || widget.product.productName == "Comforter") {
+      // If Single or Double, adjust price accordingly
+      if (selectedType == "Double") {
+        price = widget.product.basePrice * 2; // Double the price for Double bed type
+      }
     }
 
-    // Update the total price based on quantity and weight
+    // Multiply by quantity to get the final total price
     setState(() {
       widget.product.totalPrice = price * quantity;
     });
@@ -218,122 +426,112 @@ class _ProductCardState extends State<ProductCard> {
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.product.productName,
-                    style: TextStyle(fontSize: widget.screenWidth * 0.04, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 4),
-                  // Display price after quantity and weight are adjusted
-                  Text(
-                    "\$${(widget.product.totalPrice).toStringAsFixed(2)}",
-                    style: TextStyle(fontSize: widget.screenWidth * 0.035, color: Colors.green),
-                  ),
-                  const SizedBox(height: 8),
+            Text(
+              widget.product.productName,
+              style: TextStyle(fontSize: widget.screenWidth * 0.04, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "\$${widget.product.totalPrice.toStringAsFixed(2)}",
+              style: TextStyle(fontSize: widget.screenWidth * 0.035, color: Colors.green),
+            ),
+            const SizedBox(height: 8),
 
-                  // Show dropdown only for blankets and comforters
-                  if (widget.product.productName.contains('Blanket') || widget.product.productName.contains('Comforter'))
-                    Column(
-                      children: [
-                        DropdownButton<String>(
-                          value: quantity == 1 ? 'Single' : 'Double',
-                          items: const [
-                            DropdownMenuItem<String>(value: 'Single', child: Text('Single')),
-                            DropdownMenuItem<String>(value: 'Double', child: Text('Double')),
-                          ],
-                          onChanged: (value) {
-                            if (value != null) {
-                              setState(() {
-                                quantity = value == 'Single' ? 1 : 2;
-                                widget.product.updateQuantity(value);
-                                updatePrice();
-                              });
-                            }
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Minus Button
-                            GestureDetector(
-                              onTap: decreaseQuantity,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.red,
-                                radius: 18,
-                                child: const Icon(Icons.remove, color: Colors.white),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            // Quantity
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Text(
-                                "$quantity",
-                                style: TextStyle(fontSize: widget.screenWidth * 0.04, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            // Plus Button
-                            GestureDetector(
-                              onTap: increaseQuantity,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.green,
-                                radius: 18,
-                                child: const Icon(Icons.add, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  else
-                  // For other products, we don't show the quantity adjustment buttons
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: isWeightUnknown,
-                              onChanged: (value) {
-                                setState(() {
-                                  isWeightUnknown = value ?? false;
-                                  if (isWeightUnknown) {
-                                    weightController.text = '';
-                                  }
-                                  updatePrice();  // Update price when weight unknown status is changed
-                                });
-                              },
-                            ),
-                            Text("I don't know the weight"),
-                          ],
-                        ),
-                        TextField(
-                          controller: weightController,
-                          decoration: const InputDecoration(
-                            labelText: 'Enter weight in pounds',
-                            border: OutlineInputBorder(),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            if (!isWeightUnknown) {
-                              updatePrice();
-                            }
-                          },
-                          enabled: !isWeightUnknown,
-                        ),
-                      ],
-                    ),
+            // Product Type Dropdown for Blanket and Comforter
+            if (widget.product.productName == "Blanket" || widget.product.productName == "Comforter") ...[
+              DropdownButton<String>(
+                value: selectedType,
+                items: const [
+                  DropdownMenuItem<String>(value: "Single", child: Text('Single')),
+                  DropdownMenuItem<String>(value: "Double", child: Text('Double')),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    setState(() {
+                      selectedType = value;
+                      widget.product.selectedQuantity = value;
+                      updatePrice();
+                    });
+                  }
+                },
+              ),
+            ],
+
+            // Weight input for Clothes
+            if (widget.product.productName == "Clothes") ...[
+              TextField(
+                controller: weightController,
+                enabled: !isWeightUnknown,
+                decoration: const InputDecoration(
+                  labelText: 'Enter weight in pounds',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  updatePrice();
+                },
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: isWeightUnknown,
+                    onChanged: (value) {
+                      setState(() {
+                        isWeightUnknown = value ?? false;
+                        if (isWeightUnknown) {
+                          weightController.clear();
+                        }
+                        updatePrice();
+                      });
+                    },
+                  ),
+                  const Text("I don't know the weight"),
                 ],
               ),
+            ],
+
+            const SizedBox(height: 8),
+
+            // Remove the quantity controls for clothes
+            if (widget.product.productName != "Clothes") ...[
+              // Quantity Controls for Blanket and Comforter
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: decreaseQuantity,
+                  ),
+                  Text("$quantity", style: TextStyle(fontSize: widget.screenWidth * 0.04)),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: increaseQuantity,
+                  ),
+                ],
+              ),
+            ],
+
+            // Action Buttons (Add and Cancel)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Add product logic
+                    Get.snackbar("Added", "Product added to your cart!");
+                  },
+                  child: const Text('Add'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Cancel logic - Remove product
+                    widget.removeProduct(widget.product);  // Calls the remove function
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
             ),
           ],
         ),
