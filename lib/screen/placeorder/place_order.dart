@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laundry/controller/product_controller.dart';
+import 'package:laundry/screen/placeorder/summary.dart';
 import '../../model/laundryment_search_model.dart';
 import '../../model/product_model.dart';
 import 'addAdressInstructions.dart';
@@ -227,17 +228,21 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                     style:
                     TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ElevatedButton(
-                  onPressed: () {
-                    ///////////////////////////////
-                    // add navigationnnnnnnnnn
-                    Navigator.push(
+                  onPressed: () async {
+                    final result = await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AddressAndInstructionScreen()),
+                      MaterialPageRoute(builder: (context) => const AddressAndInstructionScreen()),
                     );
 
+                    if (result != null) {
+                      setState(() {
+                        addressController.text = result["order_address"];
+                      });
+                    }
                   },
                   child: const Text("Add Address"),
                 ),
+
               ],
             ),
 
@@ -255,11 +260,28 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             // Proceed Button (from Screen 2)
             ElevatedButton(
               onPressed: () {
-                // Proceed with the order
-                Get.snackbar("Order Proceeded", "Your order has been proceeded.");
+                if (addressController.text.isEmpty) {
+                  Get.snackbar("Error", "Please add an address before proceeding.");
+                  return;
+                }
+
+                Map<String, dynamic> orderData = {
+                  "serviceName": serviceName,
+                  "selectedProducts": selectedProducts,
+                  "temperature": selectedTemperature,
+                  "pickupTime": pickupTime?.format(context) ?? "Not Selected",
+                  "deliveryTime": deliveryTime?.format(context) ?? "Not Selected",
+                  "deliveryType": selectedDeliveryType,
+                  "totalPrice": totalPrice,
+                  "address": addressController.text,
+                };
+
+
+                Get.to(() => SummaryScreen(), arguments: orderData);
               },
               child: const Text('Proceed'),
             ),
+
           ],
         ),
       ),
