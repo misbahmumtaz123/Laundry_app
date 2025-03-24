@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:laundry/controller/product_controller.dart';
 import '../../model/laundryment_search_model.dart';
 import '../../model/product_model.dart';
+import 'addAdressInstructions.dart';
 
 class PlaceOrderScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class PlaceOrderScreen extends StatefulWidget {
 
 class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   final ProductController productController = Get.put(ProductController());
-  List<Product> selectedProducts = []; // This will hold the selected products
+  List<Product> selectedProducts = [];
   String? selectedTemperature = 'Warm';
   TimeOfDay? pickupTime;
   TimeOfDay? deliveryTime;
@@ -26,12 +27,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     // Calculate the total price of all selected products
-    double totalPrice = selectedProducts.fold(0.0, (sum, product) {
-      // Assuming the price logic is based on product attributes
-      double weight = 0.0; // Default weight is 0
-      String selectedType = "Single"; // Default to Single
-      return sum + productController.calculateTotalPrice(product, 1, selectedType, weight); // Modify as needed
-    });
+    double totalPrice = selectedProducts.fold(0.0, (sum, product) => sum + product.totalPrice);
 
     return Scaffold(
       appBar: AppBar(
@@ -130,13 +126,14 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Selected Products Section
+            // Selected Products Section: Only show products with basePrice > 0
             for (var product in selectedProducts)
-              ProductCard(
-                product: product,
-                screenWidth: screenWidth,
-                removeProduct: removeProduct,
-              ),
+              if (product.basePrice > 0) // Only display products with basePrice > 0
+                ProductCard(
+                  product: product,
+                  screenWidth: screenWidth,
+                  removeProduct: removeProduct,
+                ),
 
             const SizedBox(height: 20),
             const Text("Temperature", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -211,7 +208,6 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
               items: [
                 const DropdownMenuItem<String>(value: 'Same Day', child: Text('Same Day')),
                 const DropdownMenuItem<String>(value: 'Next Day', child: Text('Next Day')),
-                const DropdownMenuItem<String>(value: 'Scheduled', child: Text('Scheduled')),
               ],
               onChanged: (value) {
                 setState(() {
@@ -223,15 +219,29 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
 
             // Address Section (from Screen 2)
             const SizedBox(height: 20),
-            const Text("Address & Instruction", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            TextField(
-              controller: addressController,
-              decoration: const InputDecoration(
-                labelText: 'Enter address and instructions',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 3,
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Address & Instruction",
+                    style:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                ElevatedButton(
+                  onPressed: () {
+                    ///////////////////////////////
+                    // add navigationnnnnnnnnn
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddressAndInstructionScreen()),
+                    );
+
+                  },
+                  child: const Text("Add Address"),
+                ),
+              ],
             ),
+
+            const SizedBox(height:20),
 
             // Display Total Price Section (from Screen 2)
             const SizedBox(height: 20),
@@ -271,9 +281,15 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       ),
     );
 
-    setState(() {
-      selectedProducts.add(selectedProduct);
-    });
+    // Only add product if basePrice > 0
+    if (selectedProduct.basePrice > 0) {
+      setState(() {
+        selectedProducts.add(selectedProduct);
+      });
+    } else {
+      // Optionally, show a message indicating invalid product
+      Get.snackbar("Invalid Product", "This product has no price and won't be added.");
+    }
   }
 
   // Function to remove products from the selection
@@ -320,8 +336,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   }
 }
 
-// Other necessary widget definitions (CategoryCard, ProductCard) will remain the same.
-
+// Category Card Widget
 class CategoryCard extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -357,6 +372,7 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
+// Product Card Widget
 class ProductCard extends StatefulWidget {
   final Product product;
   final double screenWidth;
@@ -421,6 +437,11 @@ class _ProductCardState extends State<ProductCard> {
 
   @override
   Widget build(BuildContext context) {
+    // Return an empty container if the base price is 0
+    if (widget.product.basePrice == 0) {
+      return Container();
+    }
+
     return Card(
       elevation: 4,
       margin: const EdgeInsets.symmetric(vertical: 8),
