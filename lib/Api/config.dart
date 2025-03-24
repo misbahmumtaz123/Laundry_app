@@ -1,4 +1,3 @@
-
 class Config {
   static const String baseurl = 'https://laundry.saleselevation.tech/';
   static const String path = baseurl + 'user_api/';
@@ -52,47 +51,38 @@ class Config {
 
   static const String notification = 'u_notification_list.php';
 
+  // ============================== DELIVERY RELATED APIs ==============================
   static const String dayDeliveryListApi = 'd_deliverylist.php';
-
   static const String normalOrderApi = 'd_order_now.php';
   static const String subScriptionOrderApi = 'd_order_now.php';
-
   static const String timeSlotListApi = 'd_timeslot.php';
-
   static const String normalOrderHistory = 'd_order_history.php';
   static const String normalOrderInfo = 'd_order_product_list.php';
-
   static const String subScriptionHistory = 'd_subscribe_order_history.php';
   static const String subScriptionInfo = 'd_sub_order_product_list.php';
-
   static const String skipAndExtend = 'skip_extend.php';
   static const String mapZone = 'getzone.php';
 
+  // ============================== AUTHENTICATION & PROFILE RELATED APIs ==============================
   static const String smsType = 'sms_type.php';
   static const String msgOtp = 'msg_otp.php';
   static const String twilioOtp = 'twilio_otp.php';
   static String payStack = "paystack/index.php";
 
-  // Laundry-specific API
+  // ============================== LAUNDRY SPECIFIC APIs ==============================
   static const String addLaundryApi = 'add_laundry.php';
+  static const String getLaundromatsApi = 'user_api/get_laundry_by_use.php?latitude=24.92994926038695&longitude=67.07463296801761';
 
-  // Added specific API for fetching laundromats by location
-  static const String getLaundromatsApi =
-      'user_api/get_laundry_by_use.php?latitude=24.92994926038695&longitude=67.07463296801761';
-
-  // New API for fetching all laundry orders
-  static const String getAllOrdersApi = '${path}u_get_all_orders.php';
+  // ============================== ORDER-RELATED APIs ==============================
+  // Order API for fetching all orders
+  static const String getAllOrdersApi = '${path}u_get_all_orders.php'; // API to fetch all orders
 
   // New API for fetching all completed laundry orders
-  static const String getAllCompletedOrdersApi = '${path}get_all_completed_orders.php';
+  static const String getAllCompletedOrdersApi = '${path}get_all_completed_orders.php'; // API to fetch all completed orders
+
   // ✅ New API for fetching laundry products
-  static const String getProductsLaundryApi = '${path}get_products_laundry.php';
+  static const String getProductsLaundryApi = '${path}get_products_laundry.php'; // API to fetch laundry products
+
   // New API for fetching laundry services
-  static const String getLaundryServicesApi = '${path}get_laundry_services.php';
+  static const String getLaundryServicesApi = '${path}get_laundry_services.php'; // API to fetch laundry services
 }
-
-
-
-
-
-

@@ -40,7 +40,7 @@ init() async {
   Get.lazyPut(() => SearchController1());
   Get.lazyPut(() => NotificationController());
   Get.lazyPut(() => SubScibeController());
-  // Get.lazyPut(() => SelectLocatonController());
+  Get.lazyPut(() => SelectLocatonController());
   Get.lazyPut(() => ProductController());
   // Get.lazyPut(() => CurrentOrderController());
   // Get.lazyPut(() => HistoryOrderController());
