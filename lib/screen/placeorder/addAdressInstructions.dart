@@ -71,7 +71,6 @@ class _AddressAndInstructionScreenState extends State<AddressAndInstructionScree
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -90,7 +89,7 @@ class _AddressAndInstructionScreenState extends State<AddressAndInstructionScree
               children: [
                 Expanded(
                   child: CheckboxListTile(
-                    title: const Text("is Building"),
+                    title: const Text("Building"),
                     value: isBuilding,
                     onChanged: (value) {
                       setState(() {
@@ -102,7 +101,7 @@ class _AddressAndInstructionScreenState extends State<AddressAndInstructionScree
                 ),
                 Expanded(
                   child: CheckboxListTile(
-                    title: const Text("is House"),
+                    title: const Text("House"),
                     value: isHouse,
                     onChanged: (value) {
                       setState(() {

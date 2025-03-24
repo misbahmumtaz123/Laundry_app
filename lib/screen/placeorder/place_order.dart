@@ -13,6 +13,7 @@ class PlaceOrderScreen extends StatefulWidget {
 
 class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   final ProductController productController = Get.put(ProductController());
+  Map<String, dynamic>? selectedAddressDetails;
   List<Product> selectedProducts = [];
   String? selectedTemperature = 'Warm';
   TimeOfDay? pickupTime;
@@ -237,11 +238,13 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                     if (result != null) {
                       setState(() {
                         addressController.text = result["order_address"];
+                        selectedAddressDetails = result;  // Store all address details
                       });
                     }
                   },
                   child: const Text("Add Address"),
                 ),
+
 
               ],
             ),
@@ -273,8 +276,9 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                   "deliveryTime": deliveryTime?.format(context) ?? "Not Selected",
                   "deliveryType": selectedDeliveryType,
                   "totalPrice": totalPrice,
-                  "address": addressController.text,
+                  "addressDetails": selectedAddressDetails,  // Full address details
                 };
+
 
 
                 Get.to(() => SummaryScreen(), arguments: orderData);
