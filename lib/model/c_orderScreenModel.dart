@@ -13,13 +13,13 @@ class CurrentOrder {
     if (json['Orders'] != null) {
       orders = <Orders>[];
       json['Orders'].forEach((v) {
-        orders!.add(new Orders.fromJson(v));
+        orders!.add(Orders.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['ResponseCode'] = this.responseCode;
     data['Result'] = this.result;
     data['ResponseMsg'] = this.responseMsg;
@@ -29,7 +29,6 @@ class CurrentOrder {
     return data;
   }
 }
-
 class Orders {
   int? id;
   String? orderQId;
@@ -47,32 +46,33 @@ class Orders {
   String? deliveryCode;
   String? productType;
   String? createdAt;
-  Null? weight;
+  dynamic weight; // weight can be `null`, so we keep it dynamic
   String? pickupOrderTime;
   String? deliveryMethod;
   String? deliveryType;
 
-  Orders(
-      {this.id,
-        this.orderQId,
-        this.customerId,
-        this.laundromatId,
-        this.orderTime,
-        this.orderDate,
-        this.orderType,
-        this.orderStatus,
-        this.driverAssignedId,
-        this.orderPrice,
-        this.receipt,
-        this.rating,
-        this.attachment,
-        this.deliveryCode,
-        this.productType,
-        this.createdAt,
-        this.weight,
-        this.pickupOrderTime,
-        this.deliveryMethod,
-        this.deliveryType});
+  Orders({
+    this.id,
+    this.orderQId,
+    this.customerId,
+    this.laundromatId,
+    this.orderTime,
+    this.orderDate,
+    this.orderType,
+    this.orderStatus,
+    this.driverAssignedId,
+    this.orderPrice,
+    this.receipt,
+    this.rating,
+    this.attachment,
+    this.deliveryCode,
+    this.productType,
+    this.createdAt,
+    this.weight,
+    this.pickupOrderTime,
+    this.deliveryMethod,
+    this.deliveryType,
+  });
 
   Orders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -91,14 +91,14 @@ class Orders {
     deliveryCode = json['delivery_code'];
     productType = json['product_type'];
     createdAt = json['created_at'];
-    weight = json['weight'];
+    weight = json['weight']; // It can be null or a valid value
     pickupOrderTime = json['pickup_order_time'];
     deliveryMethod = json['delivery_method'];
     deliveryType = json['delivery_type'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = this.id;
     data['order_q_id'] = this.orderQId;
     data['customer_id'] = this.customerId;

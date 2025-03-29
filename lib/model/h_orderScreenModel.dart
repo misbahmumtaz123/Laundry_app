@@ -1,5 +1,5 @@
 class HistoryOrder {
-  final String id;
+  final int id; // Change to int
   final String orderId;
   final String orderStatus;
   final String orderDate;
@@ -15,11 +15,12 @@ class HistoryOrder {
 
   factory HistoryOrder.fromJson(Map<String, dynamic> json) {
     return HistoryOrder(
-      id: json['id'] ?? 'Unknown', // Default value if null
-      orderId: json['order_q_id'] ?? 'Unknown',
+      id: json['id'] ?? 0, // Default to 0 if id is missing
+      orderId: json['order_q_id'] ?? 'Unknown', // Default to 'Unknown' if order_q_id is null
       orderStatus: json['order_status'] ?? 'Unknown',
       orderDate: json['order_date'] ?? 'Unknown',
       orderPrice: json['order_price'] ?? '0.00', // Default price if null
     );
   }
 }
+

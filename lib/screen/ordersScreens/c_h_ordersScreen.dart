@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/c_orderScreenController.dart';
+import '../../Controller/c_orderScreenController.dart';
+import '../../Controller/h_orderScreenController.dart';
+
 import '../../model/c_orderScreenModel.dart';
-import '../../utils/Colors.dart';
+import '../../model/h_orderScreenModel.dart';
 import 'ConfirmOrder.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -12,18 +14,20 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   final OrderController orderController = Get.put(OrderController());
+  final HistoryOrderController historyOrderController = Get.put(HistoryOrderController());
   bool showCurrentOrders = true;
 
   @override
   void initState() {
     super.initState();
     orderController.fetchOrders();
+    historyOrderController.fetchHistoryOrders();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -52,8 +56,9 @@ class _OrderScreenState extends State<OrderScreen> {
         return Center(child: CircularProgressIndicator());
       }
 
+      // Check if the ordersList is empty
       if (orderController.ordersList.isEmpty) {
-        return Center(child: Text("No current orders found."));
+        return Center(child: Text("No current orders yet.", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)));
       }
 
       return ListView.builder(
@@ -64,7 +69,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
           return GestureDetector(
             onTap: () {
-              Get.to(() => ConfirmScreen(order: order)); // Navigate to ConfirmScreen
+              Get.to(() => ConfirmScreen(order: order));
             },
             child: _buildOrderCard(
               order.orderType ?? "Unknown",
@@ -79,6 +84,38 @@ class _OrderScreenState extends State<OrderScreen> {
       );
     });
   }
+
+
+
+  Widget _buildHistoryOrders() {
+    return Obx(() {
+      if (historyOrderController.isLoading.value) {
+        return Center(child: CircularProgressIndicator());
+      }
+
+      if (historyOrderController.historyOrders.isEmpty) {
+        return Center(child: Text("No completed orders found."));
+      }
+
+      return ListView.builder(
+        padding: EdgeInsets.all(16),
+        itemCount: historyOrderController.historyOrders.length,
+        itemBuilder: (context, index) {
+          HistoryOrder order = historyOrderController.historyOrders[index];
+
+          return _buildOrderCard(
+            "Completed Order", // Static text for history orders
+            order.id.toString(), // Ensure id is a String
+            order.orderStatus, // ✅ Corrected field
+            order.orderDate, // ✅ Corrected field
+            "N/A", // No time field in history orders
+            order.orderPrice, // ✅ Corrected field
+          );
+        },
+      );
+    });
+  }
+
 
   Widget _buildOrderCard(String type, String orderId, String status, String date, String time, String price) {
     return Card(
@@ -113,10 +150,6 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildHistoryOrders() {
-    return Center(child: Text("History oorders feature coming soon!"));
-  }
-
   Widget _buildTabButton(String text, bool isSelected, VoidCallback onTap) {
     return Expanded(
       child: GestureDetector(
@@ -125,7 +158,7 @@ class _OrderScreenState extends State<OrderScreen> {
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
-            color: isSelected ?primeryColor : Colors.grey[300],
+            color: isSelected ? Colors.blue[900] : Colors.grey[300],
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
@@ -141,48 +174,3 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-//
-// import '../../Controller/c_orderScreenController.dart';
-//
-// class OrderScreen extends StatelessWidget {
-//   final OrderController orderController = Get.put(OrderController());
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("Pending Orders")),
-//       body: Obx(() {
-//         if (orderController.isLoading.value) {
-//           return Center(child: CircularProgressIndicator());
-//         }
-//         if (orderController.ordersList.isEmpty) {
-//           return Center(child: Text("No orders available"));
-//         }
-//         return ListView.builder(
-//           itemCount: orderController.ordersList.length,
-//           itemBuilder: (context, index) {
-//             var order = orderController.ordersList[index];
-//             return Card(
-//               margin: EdgeInsets.all(10),
-//               child: ListTile(
-//                 title: Text("Order #${order.orderQId}"),
-//                 subtitle: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text("Status: ${order.orderStatus}"),
-//                     Text("Price: \$${order.orderPrice}"),
-//                     Text("Date: ${order.orderDate}"),
-//                   ],
-//                 ),
-//                 trailing: Icon(Icons.arrow_forward_ios),
-//               ),
-//             );
-//           },
-//         );
-//       }),
-//     );
-//   }
-// }

@@ -23,7 +23,15 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> data = Get.arguments as Map<String, dynamic>;
+    final Map<String, dynamic>? data = Get.arguments as Map<String, dynamic>?;
+
+    if (data == null || !data.containsKey("laundry")) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Error")),
+        body: const Center(child: Text("Invalid arguments passed.")),
+      );
+    }
+
     final Laundry laundry = Laundry.fromJson(data["laundry"]);
     final String serviceName = data["serviceName"] ?? "Unknown Service";
     final double screenWidth = MediaQuery.of(context).size.width;

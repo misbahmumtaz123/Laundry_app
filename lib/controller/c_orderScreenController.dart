@@ -114,7 +114,7 @@ class OrderController extends GetxController {
 
       var url = "https://laundry.saleselevation.tech/user_api/u_get_pending_orders.php";
 
-      dio.Response response = await _dio.post(  // Use 'dio.Response' explicitly
+      dio.Response response = await _dio.post(
         url,
         data: {"customer_id": customerId},
         options: dio.Options(
@@ -128,10 +128,16 @@ class OrderController extends GetxController {
       if (response.statusCode == 200) {
         print("🔄 API Response: ${response.data}");
         var jsonData = response.data;
-        CurrentOrder orderData = CurrentOrder.fromJson(jsonData);
 
-        if (orderData.orders != null) {
-          ordersList.assignAll(orderData.orders!);
+        if (jsonData['ResponseCode'] == "200" && jsonData['Result'] == "true") {
+          CurrentOrder currentOrder = CurrentOrder.fromJson(jsonData);
+          if (currentOrder.orders != null && currentOrder.orders!.isNotEmpty) {
+            ordersList.assignAll(currentOrder.orders!);
+          } else {
+            Get.snackbar("No Pending Orders", "No orders are pending.");
+          }
+        } else {
+          Get.snackbar("Error", jsonData['ResponseMsg'] ?? "Failed to load orders");
         }
       } else {
         Get.snackbar("Error", "Failed to load orders");
@@ -143,5 +149,7 @@ class OrderController extends GetxController {
     }
   }
 }
+
+
 
 
